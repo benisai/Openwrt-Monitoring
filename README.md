@@ -1,10 +1,11 @@
 # Openwrt-Monitoring
 Openwrt Monitoring via Grafana
 
-https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard1.PNG
-https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard2.PNG
-https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard3.PNG
-https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard4.PNG
+(https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard1.PNG)
+(https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard2.PNG)
+(https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard3.PNG)
+(https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard4.PNG)
+
 ---------------------------------------------------------------
 Install Collectd on Openwrt router
 opkg update
