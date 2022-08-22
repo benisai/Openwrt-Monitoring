@@ -1,0 +1,13 @@
+scrape_configs:
+  - job_name: 'openwrt-collectd'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['SERVERIP:9103']
+
+
+  - job_name: 'openwrt-prom'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['SERVERIP:9100']
+
+
