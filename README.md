@@ -1,7 +1,7 @@
 # Openwrt-Monitoring
-Openwrt Monitoring via Grafana
+Openwrt Monitoring via Grafana.
 This project consists of a few other applications to help. 
-Install on Router. You will need a dual core CPU, with 256mb of RAM
+Install on Router. You will need a dual core CPU, with 256mb of RAM. If you care about SQM/CAKE/ETC, you cannot have these installed as it will not play nice with iptmon/iptables. 
 
 IPTMON.ipk -- Use this guide to install iptmon on the router (https://github.com/oofnikj/iptmon#installation-on-openwrt)
 
