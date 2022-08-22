@@ -60,3 +60,5 @@ opkg install ./iptmon_${VERSION}-1_all.ipk
 
 Docker-Compose.yml
 
+sudo docker-compose up -d
+
