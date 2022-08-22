@@ -1,10 +1,13 @@
 # Openwrt-Monitoring
 Openwrt Monitoring via Grafana
 
-![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/tree/main/screenshots/Dashboard1.png)
-
+![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard1.PNG)
+![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard2.PNG)
+![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard3PNG)
+![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard4.PNG)
 
 ---------------------------------------------------------------
+
 Install Collectd on Openwrt router
 opkg update
 opkg install collectd collectd-mod-contextswitch collectd-mod-cpu  collectd-mod-dhcpleases /
