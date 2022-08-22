@@ -2,9 +2,14 @@
 Openwrt Monitoring via Grafana
 This project consists of a few other applications to help. 
 Install on Router. You will need a dual core CPU, with 256mb of RAM
-IPTMON.ipk
-Prometheus
+
+IPTMON.ipk -- Use this guide to install iptmon on the router (https://github.com/oofnikj/iptmon#installation-on-openwrt)
+
+Prometheus -- Use this guide to install Prometheus on the router (https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/)
+
 Collectd
+
+
 
 ----
 
@@ -35,10 +40,12 @@ prometheus-node-exporter-lua-netstat prometheus-node-exporter-lua-openwrt \
 prometheus-node-exporter-lua-uci_dhcp_host prometheus-node-exporter-lua-wifi \
 prometheus-node-exporter-lua-wifi_stations collectd-mod-dhcpleases
 
+
 Install IPTMON on OpenWRT
 VERSION=0.1.6
 wget https://github.com/oofnikj/iptmon/releases/download/v${VERSION}/iptmon_${VERSION}-1_all.ipk -O iptmon_${VERSION}-1_all.ipk
 opkg install ./iptmon_${VERSION}-1_all.ipk
+
 
 ---------------------------------------------------------------
 
