@@ -1,7 +1,12 @@
 # Openwrt-Monitoring
 Openwrt Monitoring via Grafana.
-This project consists of a few other applications to help. 
-Install on Router. You will need a dual core CPU, with 256mb of RAM. 
+This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 3yrs ago will work) dual core CPU, with 256mb of RAM and 128mb nand and a home server running docker.
+
+Router:
+Install Collectd, Prometheus Plugins and IPTMON
+
+Home Server:
+Install Docker and run the Docker-Compose file. (make sure to update the prometheus.yml file with your server IP)
 
 
 Credit: I started with this dashboard from Matthew Helmke and added some stuff. I cant say I'm an expert in Grafana or Prometheus (first time using Prom)
