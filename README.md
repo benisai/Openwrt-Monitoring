@@ -1,10 +1,8 @@
 # Openwrt-Monitoring
 Openwrt Monitoring via Grafana
 
-![Grafana Dashboard](./screenshots/Dashboard1.png)
-![Grafana Dashboard](./screenshots/Dashboard2.png)
-![Grafana Dashboard](./screenshots/Dashboard3.png)
-![Grafana Dashboard](./screenshots/Dashboard4.png)
+![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/tree/main/screenshots/Dashboard1.png)
+
 
 ---------------------------------------------------------------
 Install Collectd on Openwrt router
