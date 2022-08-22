@@ -29,7 +29,7 @@ services:
     ports:
       - 9191:9090
     volumes:
-      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus:/prometheus
 #####################################################################################
   collectd-exporter:
