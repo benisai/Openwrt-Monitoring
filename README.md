@@ -2,6 +2,8 @@
 Openwrt Monitoring via Grafana.
 This project consists of a few other applications to help. 
 Install on Router. You will need a dual core CPU, with 256mb of RAM. 
+
+
 Credit: I started with this dashboard from Matthew Helmke and added some stuff. I cant say I'm an expert in Grafana or Prometheus (first time using Prom)
 https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/
 
