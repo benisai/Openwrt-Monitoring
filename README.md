@@ -1,5 +1,18 @@
 # Openwrt-Monitoring
 Openwrt Monitoring via Grafana
+This project consists of a few other applications to help. 
+Install on Router. You will need a dual core CPU, with 256mb of RAM
+IPTMON.ipk
+Prometheus
+Collectd
+
+----
+
+Install Grafana,Prometheus,Collectd-Exporter via Docker-Compose.yml
+
+
+
+----
 
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard1.PNG)
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard2.PNG)
