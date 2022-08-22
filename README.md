@@ -7,7 +7,8 @@ IPTMON.ipk -- Use this guide to install iptmon on the router (https://github.com
 
 Prometheus -- Use this guide to install Prometheus on the router (https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/)
 
-Collectd
+Collectd -- After installing collectd on the router, you will need to configure the plugins via luci -> statistics -> collectd. (make sure to configure the firewall like shown below)
+![Collectd firewall](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/CollectD1-firewall.PNG)
 
 
 
