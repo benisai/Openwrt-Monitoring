@@ -1,10 +1,10 @@
 # Openwrt-Monitoring
 Openwrt Monitoring via Grafana
 
-(https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard1.PNG)
-(https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard2.PNG)
-(https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard3.PNG)
-(https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard4.PNG)
+https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard1.PNG
+https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard2.PNG
+https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard3.PNG
+https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard4.PNG
 
 ---------------------------------------------------------------
 Install Collectd on Openwrt router
@@ -25,6 +25,7 @@ Install IPTMON on OpenWRT
 VERSION=0.1.6
 wget https://github.com/oofnikj/iptmon/releases/download/v${VERSION}/iptmon_${VERSION}-1_all.ipk -O iptmon_${VERSION}-1_all.ipk
 opkg install ./iptmon_${VERSION}-1_all.ipk
+
 ---------------------------------------------------------------
 
 Docker-Compose.yml
