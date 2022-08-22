@@ -24,7 +24,7 @@ collectd-mod-rrdtool collectd-mod-tcpconns collectd-mod-uptime
 </pre>
 
 
-Collectd -- After installing collectd on the router, you will need to configure the plugins such as ping and firewall via luci: -> statistics -> collectd. (make sure to configure the firewall like shown below)
+Collectd -- After installing collectd on the router, you will need to configure the plugins such as ping and firewall via luci: -> statistics -> collectd. (make sure to configure the firewall like shown below). Also make sure to configure your output, it has to point to your collectd-exporter.
 ![Collectd firewall](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/CollectD1-firewall.PNG)
 
 
