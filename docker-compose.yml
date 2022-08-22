@@ -1,0 +1,54 @@
+version: '3.5'
+services:
+################################################################################
+  grafana:
+    image: grafana/grafana:latest
+    restart: always
+    container_name: grafana-home
+    networks:
+      - internal
+    user: "$UID:$GID"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+####################################################################################
+  prometheus-home:
+    image: prom/prometheus:latest
+    container_name: prometheus-home
+    restart: always
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=45d
+      - --internal.console.libraries=/usr/share/prometheus/console_libraries
+      - --internal.console.templates=/usr/share/prometheus/consoles
+      - --internal.enable-admin-api
+    networks:
+      - internal
+    ports:
+      - 9191:9090
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus:/prometheus
+#####################################################################################
+  collectd-exporter:
+    image: prom/collectd-exporter:latest
+    container_name: collectd-exp-home
+    restart: always
+    command:
+      - --collectd.listen-address=:25826
+    networks:
+      - internal
+    ports:
+      - 9103:9103
+      - 25826:25826/udp
+#####################################################################################
+
+networks:
+  internal:
+    external: true
+
+volumes:
+  prometheus:
+
