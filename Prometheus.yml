@@ -1,0 +1,30 @@
+scrape_configs:
+  - job_name: 'openwrt-collectd'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['HomeServer-IP-Address:9103']
+        labels:
+          group: 'owrt-collectd'
+
+  - job_name: 'openwrt-prom'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['Router-IP-Address:9100']
+        labels:
+          group: 'Router'
+
+  - job_name: 'speedtest'
+    metrics_path: /probe
+    params:
+      script: [speedtest]
+    static_configs:
+      - targets:
+        - HomeServer-IP-Address:6111
+    scrape_interval: 5m
+    scrape_timeout: 90s
+
+  - job_name: 'script_exporter'
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+        - HomeServer-IP-Address:6111
