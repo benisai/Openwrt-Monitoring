@@ -2,11 +2,15 @@
 Openwrt Monitoring via Grafana.
 This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 3yrs ago will work) dual core CPU, with 256mb of RAM and 128mb nand and a home server running docker.
 
-Router:
+# Router:
 Install Collectd, Prometheus Plugins and IPTMON. 
 Also, you will need to copy the nat_traffic.lua file from this git repo to the prometheus lua location on your router ( /usr/lib/lua/prometheus-collectors/nat_traffic.lua) restart the service
+You will also need to point your DNS to the adguard container for DNS. 
+<pre>
+LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
+</pre>
 
-Home Server:
+# Home Server:
 Install Docker and run the Docker-Compose file. (make sure to update the prometheus.yml file with your server IP)
 This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
 
@@ -23,7 +27,7 @@ https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana
 
 ---------------------------------------------------------------
 
-Install Collectd on Openwrt router
+# Install Collectd on Openwrt router
 <pre>
 opkg update
 opkg install collectd collectd-mod-contextswitch collectd-mod-cpu  collectd-mod-dhcpleases /
@@ -45,7 +49,8 @@ Collectd -- After installing collectd on the router, you will need to configure 
 
 --------
 
-Prometheus -- Use this guide to install Prometheus on the router (https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/)
+# Install Prometheus on OpenWRT Router
+Use this guide to install Prometheus on the router (https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/)
 
 <pre>
 opkg install prometheus prometheus-node-exporter-lua prometheus-node-exporter-lua-nat_traffic \
@@ -59,7 +64,7 @@ prometheus-node-exporter-lua-wifi_stations collectd-mod-dhcpleases
 IPTMON.ipk -- Use this guide to install iptmon on the router (https://github.com/oofnikj/iptmon#installation-on-openwrt)
 NOTE: If you care about SQM/CAKE/ETC, it will **probably** not play nice with iptmon reporting. 
 
-Install IPTMON on OpenWRT
+# Install IPTMON on OpenWRT Router
 <pre>
 VERSION=0.1.6
 wget https://github.com/oofnikj/iptmon/releases/download/v${VERSION}/iptmon_${VERSION}-1_all.ipk -O iptmon_${VERSION}-1_all.ipk
@@ -69,7 +74,8 @@ opkg install ./iptmon_${VERSION}-1_all.ipk
 
 ---------------------------------------------------------------
 
-Docker-Compose.yml
-
+# Home Server with Docker-Compose
+Download this Docker-Compose.yml file and run it on your home server
+<pre>
 sudo docker-compose up -d
-
+</pre>
