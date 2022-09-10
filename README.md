@@ -2,18 +2,6 @@
 Openwrt Monitoring via Grafana.
 This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 3yrs ago will work) dual core CPU, with 256mb of RAM and 128mb nand and a home server running docker.
 
-# Router:
-Install Collectd, Prometheus Plugins and IPTMON. 
-Also, you will need to copy the nat_traffic.lua file from this git repo to the prometheus lua location on your router ( /usr/lib/lua/prometheus-collectors/nat_traffic.lua) restart the service
-You will also need to point your DNS to the adguard container for DNS. 
-<pre>
-LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
-</pre>
-
-# Home Server:
-Install Docker and run the Docker-Compose file. (make sure to update the prometheus.yml file with your server IP)
-This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
-
 
 Credit: I started with this dashboard from Matthew Helmke and added some stuff. I cant say I'm an expert in Grafana or Prometheus (first time using Prom)
 https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/
@@ -26,6 +14,13 @@ https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard4.PNG)
 
 ---------------------------------------------------------------
+# Router:
+Install Collectd, Prometheus Plugins and IPTMON. 
+Also, you will need to copy the nat_traffic.lua file from this git repo to the prometheus lua location on your router ( /usr/lib/lua/prometheus-collectors/nat_traffic.lua) restart the service
+You will also need to point your DNS to the adguard container for DNS. 
+<pre>
+LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
+</pre>
 
 # Install Collectd on Openwrt router
 <pre>
@@ -73,9 +68,11 @@ opkg install ./iptmon_${VERSION}-1_all.ipk
 
 
 ---------------------------------------------------------------
+# Home Server:
+Install Docker and run the Docker-Compose file from this Repo. (make sure to update the prometheus.yml file with your server IP)
+This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
+Import this .json file into Grafana
 
-# Home Server with Docker-Compose
-Download this Docker-Compose.yml file and run it on your home server
 <pre>
 sudo docker-compose up -d
 </pre>
