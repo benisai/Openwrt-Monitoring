@@ -28,3 +28,9 @@ scrape_configs:
     static_configs:
       - targets:
         - HomeServer-IP-Address:6111
+        
+   - job_name: 'agh-exporter'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['HomeServer-IP-Address:9617']
+
