@@ -3,10 +3,12 @@ Openwrt Monitoring via Grafana.
 This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 3yrs ago will work) dual core CPU, with 256mb of RAM and 128mb nand and a home server running docker.
 
 Router:
-Install Collectd, Prometheus Plugins and IPTMON
+Install Collectd, Prometheus Plugins and IPTMON. 
+Also, you will need to copy the nat_traffic.lua file from this git repo to the prometheus lua location on your router ( /usr/lib/lua/prometheus-collectors/nat_traffic.lua) restart the service
 
 Home Server:
 Install Docker and run the Docker-Compose file. (make sure to update the prometheus.yml file with your server IP)
+This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
 
 
 Credit: I started with this dashboard from Matthew Helmke and added some stuff. I cant say I'm an expert in Grafana or Prometheus (first time using Prom)
