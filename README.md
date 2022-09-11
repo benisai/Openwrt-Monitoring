@@ -49,7 +49,9 @@ Collectd -- After installing collectd on the router, you will need to configure 
 --------
 
 # Install Prometheus on OpenWRT Router
-Use this guide to install Prometheus on the router (https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/)
+Use this guide to install and config Prometheus on the router 
+
+(https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/)
 
 <pre>
 opkg install prometheus prometheus-node-exporter-lua prometheus-node-exporter-lua-nat_traffic \
