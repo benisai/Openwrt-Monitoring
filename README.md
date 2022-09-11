@@ -3,7 +3,7 @@ Openwrt Monitoring via Grafana.
 This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 3yrs ago will work) dual core CPU, with 256mb of RAM and 128mb nand and a home server running docker.
 
 Note:: Unfortunately Prometheus does not export via hostname only IP address. And iptimon exports of hostname. 
-You'll find two variables at the top. One for iptimon (hostname) and srcip for prometheus metrics. 
+You'll find two variables at the top. One for iptimon (hostname) and (srcip) for prometheus metrics. You can use the DHCP panel to find the corresponding IP address to hostname. 
 
 
 Credit: I started with this dashboard from Matthew Helmke and added some stuff. I cant say I'm an expert in Grafana or Prometheus (first time using Prom)
