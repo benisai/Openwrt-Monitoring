@@ -80,6 +80,14 @@ services:
       - server_port=9617
       - interval=10s
       - log_limit=10000
+#####################################################################################      
+  Speedtest:
+    image: billimek/prometheus-speedtest-exporter:latest
+    container_name: speedtest
+    restart: unless-stopped
+    ports:
+      - 6111:9469
+
 #####################################################################################
 networks:
   internal:
