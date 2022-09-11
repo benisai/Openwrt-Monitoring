@@ -18,11 +18,11 @@ https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana
 
 ---------------------------------------------------------------
 # Router:
-Install Collectd, Prometheus Plugins and IPTMON. 
-Also, you will need to copy the nat_traffic.lua file from this git repo to the prometheus lua location on your router ( /usr/lib/lua/prometheus-collectors/nat_traffic.lua) restart the service
-You will also need to point your DNS to the adguard container for DNS. 
+Install Collectd, Prometheus, and IPTMON. 
+Also, you will need to copy the nat_traffic.lua file from this git repo and overwrite the prometheus lua location on your router ( /usr/lib/lua/prometheus-collectors/nat_traffic.lua). I modified this file to have src and dest ports, restart the service
+You will also need to point your openwrt DNS to the adguard container for DNS. 
 <pre>
-LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
+Openwrt LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
 </pre>
 
 # Install Collectd on Openwrt router
