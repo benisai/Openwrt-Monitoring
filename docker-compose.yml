@@ -82,13 +82,13 @@ services:
       - log_limit=10000
 #####################################################################################      
   speedtest-exporter:
-    image: miguelndecarvalho/speedtest-exporter
+    image: billimek/prometheus-speedtest-exporter:latest
     container_name: speedtest
     #environment:
     #  - SPEEDTEST_PORT=<speedtest-port> #optional
     #  - SPEEDTEST_SERVER=<server-id> #optional
     ports:
-      - 6100:9798
+      - 6100:9469
     restart: unless-stopped
 
 #####################################################################################
