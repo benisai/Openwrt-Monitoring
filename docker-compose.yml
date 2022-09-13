@@ -81,12 +81,15 @@ services:
       - interval=10s
       - log_limit=10000
 #####################################################################################      
-  Speedtest:
-    image: billimek/prometheus-speedtest-exporter:latest
+  speedtest-exporter:
+    image: miguelndecarvalho/speedtest-exporter
     container_name: speedtest
-    restart: unless-stopped
+    #environment:
+    #  - SPEEDTEST_PORT=<speedtest-port> #optional
+    #  - SPEEDTEST_SERVER=<server-id> #optional
     ports:
-      - 6111:9469
+      - 6100:9798
+    restart: unless-stopped
 
 #####################################################################################
 networks:
@@ -95,7 +98,4 @@ networks:
 
 volumes:
   prometheus:
-
-
-
 
