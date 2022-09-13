@@ -13,21 +13,11 @@ scrape_configs:
         labels:
           group: 'Router'
 
-  - job_name: 'speedtest'
-    metrics_path: /probe
-    params:
-      script: [speedtest]
-    static_configs:
-      - targets:
-        - HomeServer-IP-Address:6111
-    scrape_interval: 5m
-    scrape_timeout: 90s
-
-  - job_name: 'script_exporter'
-    metrics_path: /metrics
-    static_configs:
-      - targets:
-        - HomeServer-IP-Address:6111
+ - job_name: 'speedtest-exporter'
+   scrape_interval: 1h
+   scrape_timeout: 1m
+   static_configs:
+     - targets: ['HomeServer-IP-Address:6100']
         
    - job_name: 'agh-exporter'
     scrape_interval: 10s
