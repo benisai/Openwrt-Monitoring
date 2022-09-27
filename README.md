@@ -69,7 +69,8 @@ wget https://github.com/oofnikj/iptmon/releases/download/v${VERSION}/iptmon_${VE
 opkg install ./iptmon_${VERSION}-1_all.ipk
 </pre>
 
-
+--------
+# Point Router DNS to AdguardHome
 
 You will also need to point your openwrt DNS to the adguard container for DNS. 
 <pre>
