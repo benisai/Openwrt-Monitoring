@@ -35,7 +35,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.1.4"
+      "version": "9.1.6"
     },
     {
       "type": "panel",
@@ -184,7 +184,7 @@
         "rowHeight": 0.91,
         "showValue": "never",
         "tooltip": {
-          "mode": "single",
+          "mode": "none",
           "sort": "none"
         }
       },
@@ -371,7 +371,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -483,7 +483,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -569,7 +569,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -648,7 +648,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -717,7 +717,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -788,7 +788,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -875,7 +875,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -986,7 +986,7 @@
           }
         ]
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1121,7 +1121,7 @@
           }
         ]
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1235,14 +1235,9 @@
           "show": false
         },
         "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "ip"
-          }
-        ]
+        "sortBy": []
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1365,7 +1360,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1450,7 +1445,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1528,7 +1523,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1630,7 +1625,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1712,7 +1707,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1796,7 +1791,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1878,7 +1873,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -1962,7 +1957,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -2044,7 +2039,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -2125,7 +2120,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -2729,7 +2724,7 @@
               }
             ]
           },
-          "unit": "deckbytes"
+          "unit": "decbits"
         },
         "overrides": [
           {
@@ -2773,7 +2768,7 @@
           "sortDesc": true
         },
         "orientation": "auto",
-        "showValue": "auto",
+        "showValue": "always",
         "stacking": "none",
         "text": {},
         "tooltip": {
@@ -2792,7 +2787,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "increase(node_network_receive_packets_total{device=\"wlan-sta0\"}[1h])",
+          "expr": "increase(node_network_receive_bytes_total{device=\"wlan-sta0\"}[1h])",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -2846,7 +2841,7 @@
               }
             ]
           },
-          "unit": "deckbytes"
+          "unit": "decbits"
         },
         "overrides": [
           {
@@ -2920,7 +2915,7 @@
           "sortDesc": true
         },
         "orientation": "auto",
-        "showValue": "auto",
+        "showValue": "always",
         "stacking": "none",
         "tooltip": {
           "mode": "single",
@@ -2938,7 +2933,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "increase(node_network_transmit_packets_total{device=\"wlan-sta0\"}[1h])",
+          "expr": "increase(node_network_transmit_bytes_total{device=\"wlan-sta0\"}[1h])",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -2992,7 +2987,7 @@
               }
             ]
           },
-          "unit": "deckbytes"
+          "unit": "decbits"
         },
         "overrides": []
       },
@@ -3038,7 +3033,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "increase(node_network_receive_packets_total{device=\"wlan-sta0\"}[1d])",
+          "expr": "increase(node_network_receive_bytes_total{device=\"wlan-sta0\"}[1d])",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -3092,7 +3087,7 @@
               }
             ]
           },
-          "unit": "deckbytes"
+          "unit": "decbits"
         },
         "overrides": []
       },
@@ -3138,7 +3133,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "increase(node_network_transmit_packets_total{device=\"wlan-sta0\"}[1d])",
+          "expr": "increase(node_network_transmit_bytes_total{device=\"wlan-sta0\"}[1d])",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -3242,10 +3237,6 @@
                         "index": 7,
                         "text": "RDP (3389)"
                       },
-                      "8443": {
-                        "index": 9,
-                        "text": "Apache Tomcat (8443)"
-                      },
                       "9100": {
                         "index": 8,
                         "text": "Prometheus (9100)"
@@ -3268,11 +3259,11 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 18,
+        "w": 24,
         "x": 0,
         "y": 68
       },
-      "id": 187,
+      "id": 193,
       "options": {
         "footer": {
           "fields": "",
@@ -3289,7 +3280,7 @@
           }
         ]
       },
-      "pluginVersion": "9.1.4",
+      "pluginVersion": "9.1.6",
       "targets": [
         {
           "datasource": {
@@ -3367,13 +3358,15 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 6,
-        "x": 18,
-        "y": 68
+        "w": 12,
+        "x": 0,
+        "y": 75
       },
-      "id": 189,
+      "id": 194,
       "options": {
-        "displayLabels": [],
+        "displayLabels": [
+          "name"
+        ],
         "legend": {
           "displayMode": "list",
           "placement": "right",
@@ -3404,7 +3397,85 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "count by (dport) (count_over_time(node_nat_traffic{dport!=\"53\",dport!=\"9100\"}[1h]))",
+          "expr": "count by (dest) (count_over_time(node_nat_traffic{dport!=\"53\",dport!=\"9100\"}[$__range]))",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{dest}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Dest IP Count ",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 75
+      },
+      "id": 189,
+      "options": {
+        "displayLabels": [
+          "name"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (dport) (count_over_time(node_nat_traffic{dport!=\"53\",dport!=\"9100\"}[$__range]))",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -3504,7 +3575,7 @@
   },
   "timezone": "",
   "title": "OpenWRT-Dashboard",
-  "uid": "benisai",
-  "version": 108,
+  "uid": "S13asd21dasd2",
+  "version": 119,
   "weekStart": ""
 }
