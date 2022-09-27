@@ -19,12 +19,6 @@ https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana
 ---------------------------------------------------------------
 # Router:
 Install Collectd, Prometheus, and IPTMON. 
-You will also need to point your openwrt DNS to the adguard container for DNS. 
-
-
-<pre>
-Openwrt LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
-</pre>
 
 # Install Collectd on Openwrt router
 <pre>
@@ -75,6 +69,12 @@ wget https://github.com/oofnikj/iptmon/releases/download/v${VERSION}/iptmon_${VE
 opkg install ./iptmon_${VERSION}-1_all.ipk
 </pre>
 
+
+
+You will also need to point your openwrt DNS to the adguard container for DNS. 
+<pre>
+Openwrt LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
+</pre>
 
 ---------------------------------------------------------------
 # Home Server:
