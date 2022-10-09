@@ -16,8 +16,9 @@ https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard4.PNG)
 
 ---------------------------------------------------------------
-# Router:
-Install Collectd, Prometheus, and IPTMON. 
+# Router: 
+*This section will cover the openwrt Router config (Install Collectd, Prometheus, and IPTMON)
+
 
 # Install Collectd on Openwrt router
 <pre>
@@ -39,7 +40,7 @@ Collectd -- After installing collectd on the router, you will need to configure 
 * Configure CollectD firewall -> statistics -> collectd. (make sure to configure the firewall like shown below). 
 ![Collectd firewall](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/CollectD1-firewall.PNG)
 
---------
+
 
 # Install Prometheus on OpenWRT Router
 Use this guide to install and config Prometheus on the router 
@@ -56,19 +57,18 @@ prometheus-node-exporter-lua-wifi_stations collectd-mod-dhcpleases
 You will need to copy the nat_traffic.lua file from this git repo and overwrite the prometheus lua location on your router ( /usr/lib/lua/prometheus-collectors/nat_traffic.lua). I modified this file to have src and dest ports, restart the service
 
 
---------
-
-IPTMON.ipk -- Use this guide to install iptmon on the router (https://github.com/oofnikj/iptmon#installation-on-openwrt)
+# Install IPTMON on OpenWRT Router
+Use this guide to install iptmon on the router (https://github.com/oofnikj/iptmon#installation-on-openwrt)
 NOTE: If you care about SQM/CAKE/ETC, it will **probably** not play nice with iptmon reporting. 
 
-# Install IPTMON on OpenWRT Router
+
 <pre>
 VERSION=0.1.6
 wget https://github.com/oofnikj/iptmon/releases/download/v${VERSION}/iptmon_${VERSION}-1_all.ipk -O iptmon_${VERSION}-1_all.ipk
 opkg install ./iptmon_${VERSION}-1_all.ipk
 </pre>
 
---------
+
 # Point Router DNS to AdguardHome
 
 You will also need to point your openwrt DNS to the adguard container for DNS. 
