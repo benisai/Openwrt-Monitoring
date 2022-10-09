@@ -71,17 +71,21 @@ opkg install ./iptmon_${VERSION}-1_all.ipk
 
 # Point Router DNS to AdguardHome
 
-You will also need to point your openwrt DNS to the adguard container for DNS. 
+If you want DNS stats for your dashboard, You will need to point your openwrt DNS to the adguard container (Hosted on the home server)  for DNS. 
 <pre>
 Openwrt LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
 </pre>
 
 ---------------------------------------------------------------
 # Home Server:
-Install Docker and run the Docker-Compose file from this Repo. (make sure to update the prometheus.yml file with your server IP)
-This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
-Import this .json file into Grafana
+
 
 <pre>
-sudo docker-compose up -d
+You will need a Raspberry Pi or other linux server with Docker and Docker Compose. 
+Clone this repo to your server. 
+make sure to update the prometheus.yml file with your server IP and router IP.
+run 'Sudo Docker-Compose.yml up -d'
+This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
+
+Login to grafana and Import the dashboard. (OpenWRT-Dashboard.v2.json)
 </pre>
