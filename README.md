@@ -68,6 +68,16 @@ wget https://github.com/oofnikj/iptmon/releases/download/v${VERSION}/iptmon_${VE
 opkg install ./iptmon_${VERSION}-1_all.ipk
 </pre>
 
+<pre>
+Additional Steps:
+nano /etc/config/dhcp
+  under config dnsmasq
+    add this: option dhcpscript '/usr/sbin/iptmon'
+
+Nano /etc/rc.local and add the following:
+  iptmon init
+  iptmon flush
+</pre>
 
 # Point Router DNS to AdguardHome
 
