@@ -69,7 +69,7 @@ opkg install ./iptmon_${VERSION}-1_all.ipk
 </pre>
 
 <pre>
-Additional Steps:
+Additional Steps if you're on openwrt 21.x:
 nano /etc/config/dhcp
   under config dnsmasq
     add this: option dhcpscript '/usr/sbin/iptmon'
