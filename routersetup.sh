@@ -13,7 +13,7 @@ HOMESERVER=0.0.0.0
  opkg install /root/iptmon_0.1.6-1_all.ipk
 # === Copying nat_traffic.lua and app-statistics Files from GIT =============
  echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/nat_traffic.lua'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/router/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
  echo 'Copying luci_statistics from /benisai/Openwrt-Monitoring/luci_statistics'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/luci_statistics -O /etc/config/luci_statistics
 # === Setting up app-statistics and prometheus configs =============
