@@ -20,7 +20,7 @@ HOMESERVER="10.0.5.5"
  echo 'updating prometheus config from loopback to lan'
  sed -i 's/loopback/lan/g'  /etc/config/prometheus-node-exporter-lua
 # ===
- echo 'updating luci_statistics config from 10.0.5.5 to ${HOMESERVER}'
+ echo 'updating luci_statistics config from 10.0.5.5 to "${HOMESERVER}"'
  sed -i "s/10.0.5.5/${HOMESERVER}/g"  /etc/config/luci_statistics
 # === Setting Services to enable and restarting Services =============
  echo 'restarting services'
