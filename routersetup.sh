@@ -5,9 +5,9 @@ HOMESERVER="10.0.5.5"
  echo 'Updating software packages'
  opkg update
  echo 'Installing Nano and CollectD Software on Router'
- opkg install nano collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics 
+ opkg install nano collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics collectd-mod-dhcpleases 
  echo 'Installing Prometheus on Router'
- opkg install  prometheus prometheus-node-exporter-lua prometheus-node-exporter-lua-nat_traffic prometheus-node-exporter-lua-openwrt prometheus-node-exporter-lua-wifi prometheus-node-exporter-lua-wifi_stations
+ opkg install  prometheus prometheus-node-exporter-lua prometheus-node-exporter-lua-nat_traffic prometheus-node-exporter-lua-openwrt prometheus-node-exporter-lua-uci_dhcp_host prometheus-node-exporter-lua-wifi prometheus-node-exporter-lua-wifi_stations
  echo 'Installing IPTMON 1.6.1'
  wget https://github.com/oofnikj/iptmon/releases/download/v0.1.6/iptmon_0.1.6-1_all.ipk -O /root/iptmon_0.1.6-1_all.ipk
  opkg install /root/iptmon_0.1.6-1_all.ipk
