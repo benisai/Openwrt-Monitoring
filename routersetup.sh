@@ -1,6 +1,6 @@
 #!/bin/sh
 # === Please set the Home server IP ============
-HOMESERVER=0.0.0.0
+HOMESERVER="10.0.5.5"
 # === Installing CollectD, Prometheus, and IPTMON =============
  echo 'Updating software packages'
  opkg update
@@ -21,7 +21,7 @@ HOMESERVER=0.0.0.0
  sed -i 's/loopback/lan/g'  /etc/config/prometheus-node-exporter-lua
 # ===
  echo 'updating luci_statistics config from 10.0.5.5 to ${HOMESERVER}'
- sed -i 's/10.0.5.5/${HOMESERVER}/g'  /etc/config/luci_statistics
+ sed -i "s/10.0.5.5/${HOMESERVER}/g"  /etc/config/luci_statistics
 # === Setting Services to enable and restarting Services =============
  echo 'restarting services'
  /etc/init.d/luci_statistics enable
