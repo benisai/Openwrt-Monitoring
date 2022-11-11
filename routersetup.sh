@@ -38,6 +38,5 @@ uci commit dhcp
  /etc/init.d/prometheus-node-exporter-lua restart
  /etc/init.d/dnsmasq restart
 
- 
 # === 
 echo 'You should restart the router now for these changes to take effect...'
