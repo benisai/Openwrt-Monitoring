@@ -41,6 +41,7 @@ uci commit dhcp
  echo 'restarting services'
  /etc/init.d/luci_statistics enable
  /etc/init.d/collectd enable
+ /etc/init.d/collectd restart
  /etc/init.d/prometheus-node-exporter-lua restart
  /etc/init.d/dnsmasq restart
 
