@@ -22,8 +22,12 @@ HOMESERVER="10.0.5.5"
 # === Copying nat_traffic.lua and app-statistics Files from GIT =============
  echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/nat_traffic.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
+ 
  echo 'Copying luci_statistics from /benisai/Openwrt-Monitoring/luci_statistics'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/luci_statistics -O /etc/config/luci_statistics
+ 
+ echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/Router/speedtest.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
  
 # === Setting up app-statistics and prometheus configs =============
  echo 'updating prometheus config from loopback to lan'
