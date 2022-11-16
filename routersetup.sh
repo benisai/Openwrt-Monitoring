@@ -6,8 +6,8 @@ HOMESERVER="10.0.5.5"
  echo 'Updating software packages'
  opkg update
  
- echo 'Installing Nano and sftp-server'
- opkg install nano openssh-sftp-server
+ echo 'Installing Nano, netperf and sftp-server'
+ opkg install nano netperf openssh-sftp-server
  
  echo 'Installing Nano and CollectD Software on Router'
  opkg install collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics collectd-mod-dhcpleases 
