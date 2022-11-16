@@ -34,8 +34,13 @@ HOMESERVER="10.0.5.5"
  sed -i "s/10.0.5.5/${HOMESERVER}/g"  /etc/config/luci_statistics
 
 # === Setting up DNS ===========
-uci add_list dhcp.lan.dhcp_option="6,${HOMESERVER}"
-uci commit dhcp
+if [[ -z "$L" ]]; then
+  echo "Adding $HOMESERVER DNS entry to LAN Interface"
+  uci add_list dhcp.lan.dhcp_option="6,${HOMESERVER}"
+  uci commit dhcp
+elif [[ -n "$L" ]]; then
+  echo "$L is not empty, found $HOMESERVER"
+fi
 
 # === Setting Services to enable and restarting Services =============
  echo 'restarting services'
