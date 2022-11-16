@@ -70,7 +70,7 @@ sed 's/^.*time=\([^ ]*\) ms/\1/'| \
         if (numrows%2==1) med=arr[(numrows+1)/2]; else med=(arr[numrows/2]); \
       }; \
       pktloss = numdrops/(numdrops+numrows) * 100; \
-      #printf("\n  Latency: (in msec, %d pings, %4.2f%% packet loss)\n      Min: %4.3f \n    10pct: %4.3f \n   Median: %4.3f \n      Avg: %4.3f \n    90pct: %4.3f \n      Max: %4.3f\n", numrows, pktloss, arr[1], pc10, med, sum/numrows, pc90, arr[numrows] )\
+      #printf("Avg: %4.3f", numrows, pktloss, arr[1], pc10, med, sum/numrows, pc90, arr[numrows] )\
      }'
 }
 
