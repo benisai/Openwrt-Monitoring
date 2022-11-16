@@ -190,8 +190,12 @@ wait $ping_pid 2>/dev/null
 
 # sum up all the values (one line per netperf test) from $DLFILE and $ULFILE
 # then summarize the ping stat's
-echo `awk '{s+=$1} END {print s}' $DLFILE`
-echo `awk '{s+=$1} END {print s}' $ULFILE`
+# echo `awk '{s+=$1} END {print s}' $DLFILE`
+# echo `awk '{s+=$1} END {print s}' $ULFILE`
+
+DL=$(`awk '{s+=$1} END {print s}' $DLFILE`)
+UL=$(`awk '{s+=$1} END {print s}' $ULFILE`)
+echo "$(DL)" "$(UL)"
 summarize_pings $PINGFILE
 
 # Clean up
