@@ -193,9 +193,10 @@ wait $ping_pid 2>/dev/null
 # echo `awk '{s+=$1} END {print s}' $DLFILE`
 # echo `awk '{s+=$1} END {print s}' $ULFILE`
 
-DL=$(`awk '{s+=$1} END {print s}' $DLFILE`)
-UL=$(`awk '{s+=$1} END {print s}' $ULFILE`)
-echo "$(DL)" "$(UL)"
+DL=`awk '{s+=$1} END {print s}' $DLFILE`
+UL=`awk '{s+=$1} END {print s}' $ULFILE`
+echo "${DL}" "${UL}"
+
 summarize_pings $PINGFILE
 
 # Clean up
