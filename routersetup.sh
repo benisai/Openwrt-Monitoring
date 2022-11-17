@@ -23,6 +23,15 @@ HOMESERVER="10.0.5.5"
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh
  chmod +x /usr/bin/speedtest.sh
  
+ echo 'Add speedtest.sh to crontab'
+ C=$(crontab -l | grep "speedtest.sh")
+if [[ -z "$C" ]]; then
+   echo "Adding Speedtest.sh to crontab"
+   crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh"; } | crontab -
+   elif [[ -n "$C" ]]; then
+   echo "speedtest.sh was found in crontab"
+fi
+
  
 # === Copying nat_traffic.lua and app-statistics Files from GIT =============
  echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/nat_traffic.lua'
