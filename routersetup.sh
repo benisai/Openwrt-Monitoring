@@ -50,7 +50,7 @@ if [[ -z "$L" ]]; then
   uci add_list dhcp.lan.dhcp_option="6,${HOMESERVER}"
   uci commit dhcp
 elif [[ -n "$L" ]]; then
-  echo "$L is not empty, found $HOMESERVER"
+  echo "DNS was found"
 fi
 
 # === Setting Services to enable and restarting Services =============
