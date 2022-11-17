@@ -44,6 +44,7 @@ HOMESERVER="10.0.5.5"
  sed -i "s/10.0.5.5/${HOMESERVER}/g"  /etc/config/luci_statistics
 
 # === Setting up DNS ===========
+L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
 if [[ -z "$L" ]]; then
   echo "Adding $HOMESERVER DNS entry to LAN Interface"
   uci add_list dhcp.lan.dhcp_option="6,${HOMESERVER}"
