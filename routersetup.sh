@@ -28,7 +28,7 @@ HOMESERVER="10.0.5.5"
 if [[ -z "$C" ]]; then
    echo "Adding Speedtest.sh to crontab"
    crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh > /tmp/speedtest.out"; } | crontab -
-   crontab -l | { cat; echo "10 0 * * * rm /tmp/speedtest.out"; } | crontab -
+   crontab -l | { cat; echo "10 0 * * * rm -rf /tmp/speedtest.out"; } | crontab -
    elif [[ -n "$C" ]]; then
    echo "speedtest.sh was found in crontab"
 fi
