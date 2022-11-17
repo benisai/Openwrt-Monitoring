@@ -71,7 +71,7 @@ sed 's/^.*time=\([^ ]*\) ms/\1/'| \
       }; \
       pktloss = numdrops/(numdrops+numrows) * 100; \
       #printf("\n  Latency: (in msec, %d pings, %4.2f%% packet loss)\n      Min: %4.3f \n    10pct: %4.3f \n   Median: %4.3f \n      Avg: %4.3f \n    90pct: %4.3f \n      Max: %4.3f\n", numrows, pktloss, arr[1], pc10, med, sum/numrows, pc90, arr[numrows] )\
-      LAT=(printf("Avg: %4.3f", numrows, pktloss, arr[1], pc10, med, sum/numrows, pc90, arr[numrows] ))\
+      
      }'
 }
 
@@ -196,9 +196,9 @@ wait $ping_pid 2>/dev/null
 
 DL=`awk '{s+=$1} END {print s}' $DLFILE`
 UL=`awk '{s+=$1} END {print s}' $ULFILE`
-echo "${DL}" "${UL}" "${LAT}"
+echo "${DL}" "${UL}"
 
-summarize_pings $PINGFILE
+#summarize_pings $PINGFILE
 
 # Clean up
 rm $PINGFILE
