@@ -2,7 +2,7 @@
 # === Please set the Home server IP ============
 HOMESERVER="10.0.5.5"
 
-# === Installing CollectD, Prometheus, and IPTMON =============
+# === Installing CollectD, Prometheus, and IPTMON. Also Speedtest.sh =============
  echo 'Updating software packages'
  opkg update
  
@@ -19,6 +19,11 @@ HOMESERVER="10.0.5.5"
  wget https://github.com/oofnikj/iptmon/releases/download/v0.1.6/iptmon_0.1.6-1_all.ipk -O /root/iptmon_0.1.6-1_all.ipk
  opkg install /root/iptmon_0.1.6-1_all.ipk
  
+ echo 'Copy Speedtest.sh Script from /benisai/Openwrt-Monitoring/Router/speedtest.sh'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh
+ chmod +x /usr/bin/speedtest.sh
+ 
+ 
 # === Copying nat_traffic.lua and app-statistics Files from GIT =============
  echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/nat_traffic.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
@@ -28,6 +33,7 @@ HOMESERVER="10.0.5.5"
  
  echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/Router/speedtest.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
+
  
 # === Setting up app-statistics and prometheus configs =============
  echo 'updating prometheus config from loopback to lan'
