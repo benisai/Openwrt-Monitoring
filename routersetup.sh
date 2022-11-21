@@ -19,9 +19,9 @@ HOMESERVER="10.0.5.5"
  wget https://github.com/oofnikj/iptmon/releases/download/v0.1.6/iptmon_0.1.6-1_all.ipk -O /root/iptmon_0.1.6-1_all.ipk
  opkg install /root/iptmon_0.1.6-1_all.ipk
  
- echo 'Copy Speedtest.sh Script from /benisai/Openwrt-Monitoring/Router/speedtest.sh'
+ echo 'Copy shell scripts Speedtest.sh and wanip Script from Github/benisai/Openwrt-Monitoring/Router/'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh
- chmod +x /usr/bin/speedtest.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wanip.sh -O /usr/bin/wanip.sh
  
  echo 'Add speedtest.sh to crontab'
  C=$(crontab -l | grep "speedtest.sh")
@@ -37,12 +37,12 @@ fi
 # === Copying nat_traffic.lua and app-statistics Files from GIT =============
  echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/nat_traffic.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
- 
  echo 'Copying luci_statistics from /benisai/Openwrt-Monitoring/luci_statistics'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/luci_statistics -O /etc/config/luci_statistics
- 
- echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/Router/speedtest.lua'
+ echo 'Copying speedtest.lua from /benisai/Openwrt-Monitoring/Router/speedtest.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
+ echo 'Copying wanip.lua from /benisai/Openwrt-Monitoring/Router/wanip.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wanip.lua -O /usr/lib/lua/prometheus-collectors/wanip.lua
 
  
 # === Setting up app-statistics and prometheus configs =============
