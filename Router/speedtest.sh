@@ -196,7 +196,7 @@ wait $ping_pid 2>/dev/null
 
 DL=`awk '{s+=$1} END {print s}' $DLFILE`
 UL=`awk '{s+=$1} END {print s}' $ULFILE`
-echo "${DL}" "${UL}"
+echo "${DL}" "${UL}" > /tmp/speedtest.out
 
 #summarize_pings $PINGFILE
 
