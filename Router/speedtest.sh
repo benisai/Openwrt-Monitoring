@@ -204,3 +204,6 @@ echo "${DL}" "${UL}"
 rm $PINGFILE
 rm $DLFILE
 rm $ULFILE
+
+sleep 60
+rm /tmp/speedtest.out
