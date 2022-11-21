@@ -1,46 +1,7 @@
 #! /bin/sh
-# Netperfrunner.sh - a shell script that runs several netperf commands simultaneously.
-# This mimics the stress test of Flent (www.flent.org - formerly, "netperf-wrapper") 
-# from Toke <toke@toke.dk> but doesn't have the nice GUI result. 
-# This can live in /usr/lib/OpenWrtScripts
-# 
-# When you start this script, it concurrently uploads and downloads multiple
-# streams (files) to a server on the Internet. This places a heavy load 
-# on the bottleneck link of your network (probably your connection to the 
-# Internet). It also starts a ping to a well-connected host. It displays:
-#
-# a) total bandwidth available 
-# b) the distribution of ping latency
- 
-# Usage: sh netperfrunner.sh [ -4 -6 ] [ -H netperf-server ] [ -t duration ] [ -t host-to-ping ] [ -n simultaneous-streams ]
-
-# Options: If options are present:
-#
-# -H | --host:   DNS or Address of a netperf server (default - netperf.bufferbloat.net)
-#                Alternate servers are netperf-east (east coast US), netperf-west (California), 
-#                and netperf-eu (Denmark)
-# -4 | -6:       IPv4 or IPv6 
-# -t | --time:   Duration for how long each direction's test should run - (default - 60 seconds)
-# -p | --ping:   Host to ping to measure latency (default - gstatic.com)
-# -n | --number: Number of simultaneous sessions (default - 5 sessions)
-
 # Copyright (c) 2014-2022 - Rich Brown rich.brown@blueberryhillsoftware.com
 # GPLv2
 
-  # Process the ping times from the passed-in file, and summarize the results
-  # grep to keep lines that have "time=", then sed to isolate the time stamps, and sort them
-  # Use awk to build an array of those values, and print first & last (which are min, max) 
-  # and compute average.
-  # If the number of samples is >= 10, also compute median, and 10th and 90th percentile readings
-
-  # Display the values as:
-  #   Latency: (in msec, 11 pings, 8.33% packet loss)
-  #    Min: 16.556
-  #  10pct: 16.561
-  # Median: 22.370
-  #    Avg: 21.203
-  #  90pct: 23.202
-  #    Max: 23.394
 
 summarize_pings() {     
   
@@ -75,15 +36,6 @@ sed 's/^.*time=\([^ ]*\) ms/\1/'| \
      }'
 }
 
-# ------- Start of the main routine --------
-
-# Usage: sh betterspeedtest.sh [ -H netperf-server ] [ -t duration ] [ -p host-to-ping ]
-
-# “H” and “host” DNS or IP address of the netperf server host (default: netperf.bufferbloat.net)
-# “t” and “time” Time to run the test in each direction (default: 60 seconds)
-# “p” and “ping” Host to ping for latency measurements (default: gstatic.com)
-# "n" and "number" Number of simultaneous upload or download sessions (default: 4 sessions;
-#       4 sessions chosen to match default of RRUL test)
 
 # set an initial values for defaults
 TESTHOST="netperf.bufferbloat.net"
@@ -144,11 +96,6 @@ else
 	PROTO="ipv6"
 fi
 DATE=`date "+%Y-%m-%d %H:%M:%S"`
-#echo "$DATE Testing $TESTHOST ($PROTO) with $MAXSESSIONS streams down and up while pinging $PINGHOST. Takes about $TESTDUR seconds."
-# echo "It downloads four files, and concurrently uploads four files for maximum stress."
-# echo "It also pings a well-connected host, and prints a summary of the latency results."
-# echo "This test is part of the CeroWrt project. To learn more, visit:"
-# echo "  http://bufferbloat.net/projects/cerowrt/"
 
 # Start Ping
 if [ $TESTPROTO -eq "-4" ]
@@ -161,7 +108,6 @@ ping_pid=$!
 # echo "Ping PID: $ping_pid"
 
 # Start $MAXSESSIONS upload datastreams from netperf client to the netperf server
-# netperf writes the sole output value (in Mbps) to stdout when completed
 for i in $( seq $MAXSESSIONS )
 do
 	netperf $TESTPROTO -H $TESTHOST -t TCP_STREAM -l $TESTDUR -v 0 -P 0 >> $ULFILE &
@@ -175,9 +121,6 @@ do
 	# echo "Starting download #$i $!"
 done
 
-# Wait until each of the background netperf processes completes 
-# echo "Process is $$"
-# echo `pgrep -P $$ netperf `
 
 for i in `pgrep -P $$ netperf`		# get a list of PIDs for child processes named 'netperf'
 do
@@ -189,10 +132,6 @@ done
 kill -9 $ping_pid
 wait $ping_pid 2>/dev/null
 
-# sum up all the values (one line per netperf test) from $DLFILE and $ULFILE
-# then summarize the ping stat's
-# echo `awk '{s+=$1} END {print s}' $DLFILE`
-# echo `awk '{s+=$1} END {print s}' $ULFILE`
 
 DL=`awk '{s+=$1} END {print s}' $DLFILE`
 UL=`awk '{s+=$1} END {print s}' $ULFILE`
