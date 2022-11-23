@@ -24,6 +24,7 @@ if [[ -z "$ipt" ]]; then
   echo "Adding iptmon to DHCPScript option"
         uci set dhcp.@dnsmasq[0].dhcpscript=/usr/sbin/iptmon
         uci commit
+        echo '/usr/sbin/iptmon init' >> /etc/firewall.user
         elif [[ -n "$ipt" ]]; then
   echo "IPTMon was found, no changes made to DHCP"
 fi
