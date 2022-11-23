@@ -31,7 +31,7 @@ fi
  
  echo 'Copy shell scripts Speedtest.sh and wanip Script from Github/benisai/Openwrt-Monitoring/Router/'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wanip.sh -O /usr/bin/wanip.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-min-check -O /usr/bin/1-min-check.sh
  
  echo 'Add speedtest.sh to crontab'
  C=$(crontab -l | grep "speedtest.sh")
