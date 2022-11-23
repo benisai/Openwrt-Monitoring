@@ -53,7 +53,8 @@ fi
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
  echo 'Copying wanip.lua from /benisai/Openwrt-Monitoring/Router/wanip.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wanip.lua -O /usr/lib/lua/prometheus-collectors/wanip.lua
-
+ echo 'Copying packetloss.lua from /benisai/Openwrt-Monitoring/Router/packetloss.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/packetloss.lua -O /usr/lib/lua/prometheus-collectors/packetloss.lua
  
 # === Setting up app-statistics and prometheus configs =============
  echo 'updating prometheus config from loopback to lan'
