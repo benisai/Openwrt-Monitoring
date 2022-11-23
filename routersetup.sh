@@ -19,6 +19,15 @@ HOMESERVER="10.0.5.5"
  wget https://github.com/oofnikj/iptmon/releases/download/v0.1.6/iptmon_0.1.6-1_all.ipk -O /root/iptmon_0.1.6-1_all.ipk
  opkg install /root/iptmon_0.1.6-1_all.ipk
  
+ ipt=$(uci show dhcp.@dnsmasq[0].dhcpscript | grep "iptmon")
+if [[ -z "$ipt" ]]; then
+  echo "Adding iptmon to DHCPScript option"
+        uci set dhcp.@dnsmasq[0].dhcpscript=/usr/sbin/iptmon
+        uci commit
+        elif [[ -n "$ipt" ]]; then
+  echo "IPTMon was found, no changes made to DHCP"
+fi
+ 
  echo 'Copy shell scripts Speedtest.sh and wanip Script from Github/benisai/Openwrt-Monitoring/Router/'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wanip.sh -O /usr/bin/wanip.sh
