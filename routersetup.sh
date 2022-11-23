@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# === Set Custom Alias for clear as cls ============
+alias cls="clear"
+
 # === Please set the Home server IP ============
 HOMESERVER="10.0.5.5"
 
