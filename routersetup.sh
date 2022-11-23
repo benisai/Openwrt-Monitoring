@@ -80,6 +80,7 @@ fi
  /etc/init.d/collectd restart
  /etc/init.d/prometheus-node-exporter-lua restart
  /etc/init.d/dnsmasq restart
+ /etc/init.d/firewall restart
 
 # === 
 echo 'You should restart the router now for these changes to take effect...'
