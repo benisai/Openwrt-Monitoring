@@ -1,7 +1,11 @@
 #!/bin/sh
 
 # === Set Custom Alias for clear as cls ============
+mkdir -p /etc/profile.d
+cat << "EOF" > /etc/profile.d/alias.sh
 alias cls="clear"
+EOF
+
 
 # === Please set the Home server IP ============
 HOMESERVER="10.0.5.5"
