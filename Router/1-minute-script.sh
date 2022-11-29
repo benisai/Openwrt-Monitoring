@@ -1,10 +1,5 @@
 #!/bin/sh
 
-####PacketLoss
-packet=$(ping -c 20 8.8.8.8 | grep "packet loss" | awk -F ',' '{print $3}' | awk '{print $1}' | sed 's/%//g')
-echo "$packet" > /tmp/packetloss.out
-
-sleep 1
 ####WanIP
 #Get WAN Address from Router
 . /lib/functions/network.sh; network_find_wan NET_IF; network_get_ipaddr WAN_ADDR "${NET_IF}";
@@ -19,3 +14,8 @@ vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //
 vnstat --xml |grep -hnr "day id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2- > /tmp/dayoutput.out
 vnstat --xml |grep -hnr "hour id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g; s/  00/:00/g' | cut -d " " -f2-  > /tmp/houroutput.out
 vnstat --xml |grep -hnr "fiveminute id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2-   > /tmp/fiveoutput.out
+
+sleep 1
+####PacketLoss
+packet=$(ping -c 20 8.8.8.8 | grep "packet loss" | awk -F ',' '{print $3}' | awk '{print $1}' | sed 's/%//g')
+echo "$packet" > /tmp/packetloss.out
