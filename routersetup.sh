@@ -2,7 +2,7 @@
 
 # === Please set the IP address to point to your Home Server (Where Docker is installed) ============
 HOMESERVER="10.0.5.5"
-echo 'Using Home Server IP of $HOMESERVER'
+echo "Using Home Server IP of ${HOMESERVER}"
 
 # === Set Custom Alias for clear as cls ============
 mkdir -p /etc/profile.d
@@ -91,7 +91,7 @@ EOF
  sed -i 's/loopback/lan/g'  /etc/config/prometheus-node-exporter-lua
 
 # === Updating CollectD export ip ==============
- echo 'updating luci_statistics server export config to "${HOMESERVER}"'
+ echo 'updating luci_statistics server export config to ${HOMESERVER}"
  sed -i "s/10.0.5.5/${HOMESERVER}/g"  /etc/config/luci_statistics
 
 # === Setting up DNS ===========
