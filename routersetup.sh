@@ -112,6 +112,7 @@ L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
  /etc/init.d/prometheus-node-exporter-lua restart
  /etc/init.d/dnsmasq restart
  /etc/init.d/firewall restart
+ /etc/init.d/cron restart
 
 # === 
 echo 'You should restart the router now for these changes to take effect...'
