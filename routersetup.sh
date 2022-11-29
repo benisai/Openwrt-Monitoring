@@ -39,10 +39,11 @@ HOMESERVER="10.0.5.5"
 
  
  echo 'Copy shell scripts Speedtest.sh and wanip Script from Github/benisai/Openwrt-Monitoring/Router/'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh && chmod +x /usr/bin/new_device.sh
+ 
 
  #Adding new_device.sh script to dhcp dnsmasq
  echo 'Adding new_device.sh script to dhcp dnsmasq.conf'
