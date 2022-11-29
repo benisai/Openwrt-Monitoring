@@ -58,14 +58,17 @@ HOMESERVER="10.0.5.5"
  echo 'Add Scripts to crontab'
  C=$(crontab -l | grep "speedtest.sh")
  if [[ -z "$C" ]]; then
-   echo "Adding Speedtest.sh to crontab"
+   echo "Adding Scripts*.sh to crontab"
    crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh"; } | crontab -
    crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-minute-script.sh"; } | crontab -
-   crontab -l | { cat; echo "0 0 * * * /usr/bin/15-second-script.sh"; } | crontab -
+   crontab -l | { cat; echo "* * * * * /usr/bin/15-second-script.sh"; } | crontab -
+   crontab -l | { cat; echo "* * * * * sleep 15; /usr/bin/15-second-script.sh"; } | crontab -
+   crontab -l | { cat; echo "* * * * * sleep 30; /usr/bin/15-second-script.sh"; } | crontab -
+   crontab -l | { cat; echo "* * * * * sleep 45; /usr/bin/15-second-script.sh"; } | crontab -
    
    crontab -l | { cat; echo "10 0 * * * rm -rf /tmp/speedtest.out"; } | crontab -
    elif [[ -n "$C" ]]; then
-   echo "speedtest.sh was found in crontab"
+   echo "Keyword (speedtest) was found in crontab, no changes made"
  fi
 
  
