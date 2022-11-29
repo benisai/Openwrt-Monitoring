@@ -40,7 +40,8 @@ HOMESERVER="10.0.5.5"
  
  echo 'Copy shell scripts Speedtest.sh and wanip Script from Github/benisai/Openwrt-Monitoring/Router/'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-min-check.sh -O /usr/bin/1-min-check.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-min-script.sh -O /usr/bin/1-min-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh
 
  #Adding new_device.sh script to dhcp dnsmasq
@@ -53,12 +54,15 @@ HOMESERVER="10.0.5.5"
   echo "Script New_Device.sh was found, no changes made to DHCP"
  fi
 
-
- echo 'Add speedtest.sh to crontab'
+ #Adding scripts to Crontab
+ echo 'Add Scripts to crontab'
  C=$(crontab -l | grep "speedtest.sh")
  if [[ -z "$C" ]]; then
    echo "Adding Speedtest.sh to crontab"
-   crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh > /tmp/speedtest.out"; } | crontab -
+   crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh"; } | crontab -
+   crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-minute-script.sh"; } | crontab -
+   crontab -l | { cat; echo "0 0 * * * /usr/bin/15-second-script.sh"; } | crontab -
+   
    crontab -l | { cat; echo "10 0 * * * rm -rf /tmp/speedtest.out"; } | crontab -
    elif [[ -n "$C" ]]; then
    echo "speedtest.sh was found in crontab"
