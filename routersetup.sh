@@ -1,14 +1,15 @@
 #!/bin/sh
 
+# === Please set the IP address to point to your Home Server (Where Docker is installed) ============
+HOMESERVER="10.0.5.5"
+echo 'Using Home Server IP of $HOMESERVER'
+
 # === Set Custom Alias for clear as cls ============
 mkdir -p /etc/profile.d
 cat << "EOF" > /etc/profile.d/alias.sh
 alias cls="clear"
 EOF
 
-
-# === Please set the Home server IP ============
-HOMESERVER="10.0.5.5"
 
 # === Installing CollectD, Prometheus, and IPTMON. Also Speedtest.sh =============
  echo 'Updating software packages'
