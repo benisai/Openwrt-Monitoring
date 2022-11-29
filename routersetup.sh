@@ -104,6 +104,8 @@ L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
 
 # === Setting Services to enable and restarting Services =============
  echo 'restarting services'
+ /etc/init.d/cron start
+ /etc/init.d/cron enable
  /etc/init.d/luci_statistics enable
  /etc/init.d/collectd enable
  /etc/init.d/collectd restart
