@@ -2,7 +2,7 @@
 
 # === Please set the IP address to point to your Home Server (Where Docker is installed) ============
 HOMESERVER="10.0.5.5"
-echo "Using Home Server IP of ${HOMESERVER}"
+echo "Using IP Address: ${HOMESERVER} for HomeServer (where Docker is installed)"
 
 # === Set Custom Alias for clear as cls ============
 mkdir -p /etc/profile.d
