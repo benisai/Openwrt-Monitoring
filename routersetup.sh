@@ -41,7 +41,7 @@ HOMESERVER="10.0.5.5"
  echo 'Copy shell scripts Speedtest.sh and wanip Script from Github/benisai/Openwrt-Monitoring/Router/'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-min-script.sh -O /usr/bin/1-min-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh
 
  #Adding new_device.sh script to dhcp dnsmasq
@@ -60,7 +60,7 @@ HOMESERVER="10.0.5.5"
  if [[ -z "$C" ]]; then
    echo "Adding Scripts*.sh to crontab"
    crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh"; } | crontab -
-   crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-min-script.sh"; } | crontab -
+   crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-minute-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * sleep 15; /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * sleep 30; /usr/bin/15-second-script.sh"; } | crontab -
