@@ -29,8 +29,8 @@ EOF
  opkg install /root/iptmon_0.1.6-1_all.ipk
  
  echo 'Installing WrtBWmon'
- wget https://github.com/pyrovski/wrtbwmon/releases/download/0.35/wrtbwmon_0.35_all.ipk -O /root/wrtbwmon_0.35_all.ipk
- opkg install /root/wrtbwmon_0.35_all.ipk
+ wget https://github.com/pyrovski/wrtbwmon/releases/download/0.36/wrtbwmon_0.36_all.ipk
+ opkg install /root/wrtbwmon_0.36_all.ipk
  
  ipt=$(uci show dhcp.@dnsmasq[0].dhcpscript | grep "iptmon")
  if [[ -z "$ipt" ]]; then
