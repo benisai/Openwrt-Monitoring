@@ -65,9 +65,10 @@ EOF
 
  #Adding scripts to Crontab
  echo 'Add Scripts to crontab'
- C=$(crontab -l | grep "speedtest.sh")
+ C=$(crontab -l | grep "ready")
  if [[ -z "$C" ]]; then
    echo "Adding Scripts*.sh to crontab"
+   crontab -l | { cat; echo "59 * * 12 * /ready"; } | crontab -
    crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh"; } | crontab -
    crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-minute-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * /usr/bin/15-second-script.sh"; } | crontab -
@@ -77,7 +78,7 @@ EOF
    
    crontab -l | { cat; echo "10 0 * * * rm -rf /tmp/speedtest.out"; } | crontab -
    elif [[ -n "$C" ]]; then
-   echo "Keyword (speedtest) was found in crontab, no changes made"
+   echo "Keyword (ready) was found in crontab, no changes made"
  fi
 
  
