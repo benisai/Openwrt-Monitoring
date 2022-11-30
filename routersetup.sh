@@ -39,13 +39,16 @@ EOF
  fi
 
  
- echo 'Copy shell scripts Speedtest.sh and wanip Script from Github/benisai/Openwrt-Monitoring/Router/'
+ echo 'Copying shell scripts and files from Github/benisai/Openwrt-Monitoring/Router/'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh && chmod +x /usr/bin/new_device.sh
  
-
+ echo 'Copy vnstat backup and wrtbwmon files'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
+ 
  #Adding new_device.sh script to dhcp dnsmasq
  echo 'Adding new_device.sh script to dhcp dnsmasq.conf'
  if [[ -z "$new_device.sh" ]]; then
@@ -105,9 +108,10 @@ L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
  fi
 
 # === Setting Services to enable and restarting Services =============
- echo 'restarting services'
+ echo 'Enable and Restart services'
  /etc/init.d/cron start
  /etc/init.d/cron enable
+ /etc/init.d/vnstat_backup enable
  /etc/init.d/luci_statistics enable
  /etc/init.d/collectd enable
  /etc/init.d/collectd restart
@@ -115,6 +119,7 @@ L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
  /etc/init.d/dnsmasq restart
  /etc/init.d/firewall restart
  /etc/init.d/cron restart
+ 
 
 # === 
 echo 'You should restart the router now for these changes to take effect...'
