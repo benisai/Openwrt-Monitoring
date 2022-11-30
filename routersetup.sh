@@ -115,6 +115,8 @@ L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
  echo 'Enable and Restart services'
  /etc/init.d/cron start
  /etc/init.d/cron enable
+ /etc/init.d/wrtbwmon enable
+ /etc/init.d/wrtbwmon start
  /etc/init.d/vnstat_backup enable
  /etc/init.d/luci_statistics enable
  /etc/init.d/collectd enable
