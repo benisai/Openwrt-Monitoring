@@ -28,6 +28,10 @@ EOF
  wget https://github.com/oofnikj/iptmon/releases/download/v0.1.6/iptmon_0.1.6-1_all.ipk -O /root/iptmon_0.1.6-1_all.ipk
  opkg install /root/iptmon_0.1.6-1_all.ipk
  
+ echo 'Installing WrtBWmon'
+ wget https://github.com/pyrovski/wrtbwmon/releases/download/0.35/wrtbwmon_0.35_all.ipk -O /root/wrtbwmon_0.35_all.ipk
+ opkg install /root/wrtbwmon_0.35_all.ipk
+ 
  ipt=$(uci show dhcp.@dnsmasq[0].dhcpscript | grep "iptmon")
  if [[ -z "$ipt" ]]; then
   echo "Adding iptmon to DHCPScript option"
