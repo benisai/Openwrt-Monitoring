@@ -101,7 +101,7 @@ EOF
  sed -i 's/loopback/lan/g'  /etc/config/prometheus-node-exporter-lua
 
 # === Updating CollectD export ip ==============
- echo 'updating luci_statistics server export config to ${HOMESERVER}"
+ echo 'updating luci_statistics server export config to ${HOMESERVER}'
  sed -i "s/10.0.5.5/${HOMESERVER}/g"  /etc/config/luci_statistics
 
 # === Setting up DNS ===========
