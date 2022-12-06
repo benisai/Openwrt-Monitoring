@@ -7,3 +7,7 @@ cp  /var/lib/vnstat/vnstat.db $BACKUP_DIR/vnstat.db-$DATE.bkp
 
 # Delete files older than 5 days #
 find $BACKUP_DIR/*.bkp -mtime +5 -exec rm {} \;
+
+
+
+
