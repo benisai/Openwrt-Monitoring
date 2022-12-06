@@ -7,8 +7,12 @@
 cip=$(curl https://api.ipify.org) > /dev/null 2>&1
 #Echo to File
 echo "wanip=${WAN_ADDR}" "publicip=${cip}" >/tmp/wanip.out
-
 sleep 1
+
+#vnstat update DB
+vnstat -u
+sleep 1
+
 #####Run vnstat and parse output
 #vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2- > /tmp/monthoutput.out
 vnstat --xml |grep -hnr "day id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2- > /tmp/dayoutput.out
