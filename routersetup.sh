@@ -48,7 +48,7 @@ EOF
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh && chmod +x /usr/bin/new_device.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/backup-vnstatDB.sh -O /usr/bin/backup-vnstatDB.sh && chmod +x /usr/bin/backup-vnstatDB.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat-script.sh -O /usr/bin/vnstat-script.sh && chmod +x /usr/bin/vnstat-script.sh
  
  echo 'Copy vnstat backup and wrtbwmon files'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
@@ -70,7 +70,7 @@ EOF
  if [[ -z "$C" ]]; then
    echo "Adding Scripts*.sh to crontab"
    crontab -l | { cat; echo "59 * * 12 * /ready"; } | crontab -
-   crontab -l | { cat; echo "0 1 * * * /usr/bin/backup-vnstatDB.sh"; } | crontab -
+   crontab -l | { cat; echo "1 0 * * * /usr/bin/vnstat-script.sh"; } | crontab -
    crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh"; } | crontab -
    crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-minute-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * /usr/bin/15-second-script.sh"; } | crontab -
