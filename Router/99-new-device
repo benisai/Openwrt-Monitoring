@@ -1,5 +1,8 @@
+#!/bin/sh
+date=$(date '+%Y-%m-%d')
+
 if [ "$ACTION" = add ]; then
     (
-        echo "$HOSTNAME $IPADDR $MACADDR" >> /tmp/new_device.out
+        echo "$date $HOSTNAME $IPADDR $MACADDR" >> /tmp/new_device.out
     )
 fi
