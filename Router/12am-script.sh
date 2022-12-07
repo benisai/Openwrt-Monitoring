@@ -8,7 +8,8 @@ cp  /var/lib/vnstat/vnstat.db $BACKUP_DIR/vnstat.db-$DATE.bkp
 # Delete vnstat backup files older than 3 days #
 find $BACKUP_DIR/*.bkp -mtime +3 -exec rm {} \;
 
-
+#Remove new_device file
+rm /tmp/new_device.out
 
 #NOTE: Please update the interface so it matches your router. 
 # If its the first of the month, it will drop the interface. 
