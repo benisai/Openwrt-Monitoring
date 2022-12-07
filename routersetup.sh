@@ -53,7 +53,7 @@ EOF
  echo 'Copying New_device files'
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/99-New-Device -O /etc/hotplug.d/dhcp/99-New-Device
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/99-new-device -O /etc/hotplug.d/dhcp/99-new-device
  
  #Adding new_device.sh script to dhcp dnsmasq
  echo 'Adding new_device.sh script to dhcp dnsmasq.conf'
