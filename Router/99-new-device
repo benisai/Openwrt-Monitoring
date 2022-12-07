@@ -1,0 +1,5 @@
+if [ "$ACTION" = add ]; then
+    (
+        echo "$HOSTNAME $IPADDR $MACADDR" >> /tmp/new_device.out
+    )
+fi
