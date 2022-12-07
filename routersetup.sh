@@ -47,12 +47,13 @@ EOF
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh && chmod +x /usr/bin/new_device.sh
+ #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh && chmod +x /usr/bin/new_device.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat-script.sh -O /usr/bin/vnstat-script.sh && chmod +x /usr/bin/vnstat-script.sh
  
- echo 'Copy vnstat backup and wrtbwmon files'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
+ echo 'Copying New_device files'
+ #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
+ #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/99-New-Device -O /etc/hotplug.d/dhcp/99-New-Device
  
  #Adding new_device.sh script to dhcp dnsmasq
  echo 'Adding new_device.sh script to dhcp dnsmasq.conf'
