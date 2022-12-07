@@ -47,8 +47,7 @@ EOF
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
- #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.sh -O /usr/bin/new_device.sh && chmod +x /usr/bin/new_device.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat-script.sh -O /usr/bin/vnstat-script.sh && chmod +x /usr/bin/vnstat-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/12am-script.sh -O /usr/bin/12am-script.sh && chmod +x /usr/bin/12am-script.sh
  
  echo 'Copying New_device files'
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
@@ -71,15 +70,14 @@ EOF
  if [[ -z "$C" ]]; then
    echo "Adding Scripts*.sh to crontab"
    crontab -l | { cat; echo "59 * * 12 * /ready"; } | crontab -
-   crontab -l | { cat; echo "1 0 * * * /usr/bin/vnstat-script.sh"; } | crontab -
-   crontab -l | { cat; echo "0 0 * * * /usr/bin/speedtest.sh"; } | crontab -
+   crontab -l | { cat; echo "0 6 * * * /usr/bin/speedtest.sh"; } | crontab -
+   crontab -l | { cat; echo "10 6 * * * rm -rf /tmp/speedtest.out"; } | crontab -
+   crontab -l | { cat; echo "1 0 * * * /usr/bin/12am-script.sh"; } | crontab -
    crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-minute-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * sleep 15; /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * sleep 30; /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * sleep 45; /usr/bin/15-second-script.sh"; } | crontab -
-   
-   crontab -l | { cat; echo "10 0 * * * rm -rf /tmp/speedtest.out"; } | crontab -
    elif [[ -n "$C" ]]; then
    echo "Keyword (ready) was found in crontab, no changes made"
  fi
