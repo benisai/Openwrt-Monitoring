@@ -3,6 +3,6 @@ date=$(date '+%Y-%m-%d--%H:%M:%S')
 
 if [ "$ACTION" = add ]; then
     (
-        echo "$date $HOSTNAME $IPADDR $MACADDR" >> /tmp/new_device.out
+        echo "date=$date device=$HOSTNAME ip=$IPADDR mac=$MACADDR" >> /tmp/new_device.out
     )
 fi
