@@ -15,10 +15,10 @@ EOF
  echo 'Updating software packages'
  opkg update
  
- echo 'Installing Nano, netperf and sftp-server'
- opkg install nano netperf openssh-sftp-server
+ echo 'Installing Nano, netperf and sftp-server and vnstat'
+ opkg install nano netperf openssh-sftp-server vnstat2 vnstati2 luci-app-vnstat2
  
- echo 'Installing Nano and CollectD Software on Router'
+ echo 'Installing CollectD Software on Router'
  opkg install collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics collectd-mod-dhcpleases 
  
  echo 'Installing Prometheus on Router'
@@ -30,7 +30,9 @@ EOF
  
  echo 'Installing WrtBWmon'
  wget https://github.com/pyrovski/wrtbwmon/releases/download/0.36/wrtbwmon_0.36_all.ipk
+ wget https://github.com/Kiougar/luci-wrtbwmon/releases/download/v0.8.3/luci-wrtbwmon_v0.8.3_all.ipk
  opkg install /root/wrtbwmon_0.36_all.ipk
+ opkg install /root/luci-wrtbwmon_v0.8.3_all.ipk
  
  ipt=$(uci show dhcp.@dnsmasq[0].dhcpscript | grep "iptmon")
  if [[ -z "$ipt" ]]; then
@@ -42,17 +44,17 @@ EOF
   echo "IPTMon was found, no changes made to DHCP"
  fi
 
- 
  echo 'Copying shell scripts and files from Github/benisai/Openwrt-Monitoring/Router/'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/12am-script.sh -O /usr/bin/12am-script.sh && chmod +x /usr/bin/12am-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/99-new-device -O /etc/hotplug.d/dhcp/99-new-device 
  
- echo 'Copying New_device files'
+ #echo 'Copying New_device files'
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/99-new-device -O /etc/hotplug.d/dhcp/99-new-device
+
  
  #Adding new_device.sh script to dhcp dnsmasq
  echo 'Adding new_device.sh script to dhcp dnsmasq.conf'
@@ -94,6 +96,8 @@ EOF
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wanip.lua -O /usr/lib/lua/prometheus-collectors/wanip.lua
  echo 'Copying packetloss.lua from /benisai/Openwrt-Monitoring/Router/packetloss.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/packetloss.lua -O /usr/lib/lua/prometheus-collectors/packetloss.lua
+ echo 'Copying new_device.lua from /benisai/Openwrt-Monitoring/Router/new_device.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.lua -O /usr/lib/lua/prometheus-collectors/new_device.lua 
  
 # === Setting up app-statistics and prometheus configs =============
  echo 'updating prometheus config from loopback to lan'
