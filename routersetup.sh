@@ -70,7 +70,7 @@ EOF
  if [[ -z "$C" ]]; then
    echo "Adding Scripts*.sh to crontab"
    crontab -l | { cat; echo "59 * * 12 * /ready"; } | crontab -
-   crontab -l | { cat; echo "0 6 * * * /usr/bin/speedtest.sh"; } | crontab -
+   crontab -l | { cat; echo "0 */8 * * * /usr/bin/speedtest.sh"; } | crontab -
    crontab -l | { cat; echo "10 6 * * * rm -rf /tmp/speedtest.out"; } | crontab -
    crontab -l | { cat; echo "1 0 * * * /usr/bin/12am-script.sh"; } | crontab -
    crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-minute-script.sh"; } | crontab -
