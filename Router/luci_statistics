@@ -172,6 +172,7 @@ config statistics 'collectd_ping'
 	option Interval '15'
 	list Hosts '1.1.1.1'
 	list Hosts '8.8.8.8'
+	list Hosts '9.9.9.9'
 
 config statistics 'collectd_processes'
 	option enable '0'
