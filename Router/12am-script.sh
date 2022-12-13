@@ -9,6 +9,7 @@ cp  /tmp/usage.db $BACKUP_DIR/usage.db-$DATE.bkp
 
 # Delete vnstat backup files older than 3 days #
 find $BACKUP_DIR/*.bkp -mtime +3 -exec rm {} \;
+find /tmp/mountd/disk1_part1/vnstat/*.bkp -mtime +3 -exec rm {} \;
 
 #Remove new_device file
 rm /tmp/new_device.out
