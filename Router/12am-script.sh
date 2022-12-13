@@ -1,9 +1,10 @@
 #!/bin/bash
 DATE=$(date +%m-%d-%Y)
 BACKUP_DIR="/etc/backup"
- 
+
 # backup the vnstat.db and bwmon.db and add a timestamp to the file
 cp  /var/lib/vnstat/vnstat.db $BACKUP_DIR/vnstat.db-$DATE.bkp
+cp  /var/lib/vnstat/vnstat.db /tmp/mountd/disk1_part1/vnstat
 cp  /tmp/usage.db $BACKUP_DIR/usage.db-$DATE.bkp
 
 # Delete vnstat backup files older than 3 days #
