@@ -83,7 +83,11 @@ reboot router
 You will need a Raspberry Pi or other linux server with Docker and Docker Compose. 
 Clone this repo to your server. 
 make sure to update the prometheus.yml file with your server IP and router IP.
-run 'Sudo Docker-Compose.yml up -d'
+
+>cd Dockerrun 
+
+>'Sudo Docker-Compose.yml up -d'
+
 This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
 
 Login to grafana and Import the dashboard. (OpenWRT-Dashboard.v2.json)
