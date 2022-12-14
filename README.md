@@ -1,6 +1,9 @@
 # Openwrt-Monitoring
 Openwrt Monitoring via Grafana.
-This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 3yrs ago will work) Openwrt 21.x, dual core CPU, with 256mb of RAM and 128mb nand and a home server running docker.
+This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand.
+Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported, 
+
+You will also need a Home Server running Docker to run Prometheus,Grafana, and some Exporters. 
 
 Note about the Grafana Dashboard:: You'll find two variables at the top. One for iptimon (hostname) and (srcip) for prometheus metrics. Unfortunately Prometheus exporter does not export via hostname only IP address. And iptimon exports as hostname. You can use the DHCP panel to find the corresponding IP address to hostname. 
 
@@ -18,79 +21,19 @@ https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard6.PNG)
 
 ---------------------------------------------------------------
-# Router: 
+# Router Steps: 
 *This section will cover the openwrt Router config (Install Collectd, Prometheus, and IPTMON)
 
+I've created a shell script that can be ran on the router, it will install all the needed software, scripts and custom lua files. Before running the shell script, please edit the routersetup.sh file and replace the home server ip variable. My home server is at 10.0.5.5, if you dont replace this ip, it will cause your DNS to stop working and your collectd export settings wont work. 
 
-# Install Collectd on Openwrt router
-<pre>
-opkg update
-opkg install collectd collectd-mod-contextswitch collectd-mod-cpu  collectd-mod-dhcpleases /
-collectd-mod-disk collectd-mod-dns collectd-mod-ethstat /
-collectd-mod-interface collectd-mod-iptables collectd-mod-iwinfo /
-collectd-mod-load collectd-mod-memory collectd-mod-network /
-collectd-mod-ping collectd-mod-processes collectd-mod-protocols /
-collectd-mod-rrdtool collectd-mod-tcpconns collectd-mod-uptime
-</pre>
+SSH to your router and run
+wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh
 
+sh routersetup.sh
 
-Collectd -- After installing collectd on the router, you will need to configure the plugins such as ping and firewall via luci
-* make sure to configure your output, it has to point to your collectd-exporter.
-
-![Collectd firewall](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Collectd-output.PNG)
-
-* Configure CollectD firewall -> statistics -> collectd. (make sure to configure the firewall like shown below). 
-![Collectd firewall](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/CollectD1-firewall.PNG)
-
-
-
-# Install Prometheus on OpenWRT Router
-Use this guide to install and config Prometheus on the router 
-
-(https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/)
-
-<pre>
-opkg install prometheus prometheus-node-exporter-lua prometheus-node-exporter-lua-nat_traffic \
-prometheus-node-exporter-lua-netstat prometheus-node-exporter-lua-openwrt \ 
-prometheus-node-exporter-lua-uci_dhcp_host prometheus-node-exporter-lua-wifi \
-prometheus-node-exporter-lua-wifi_stations collectd-mod-dhcpleases
-</pre>
-
-You will need to copy the nat_traffic.lua file from this git repo and overwrite the prometheus lua location on your router ( /usr/lib/lua/prometheus-collectors/nat_traffic.lua). I modified this file to have src and dest ports, restart the service
-
-
-# Install IPTMON on OpenWRT Router
-Use this guide to install iptmon on the router (https://github.com/oofnikj/iptmon#installation-on-openwrt)
-NOTE: If you care about SQM/CAKE/ETC, it will **probably** not play nice with iptmon reporting. 
-
-
-<pre>
-VERSION=0.1.6
-wget https://github.com/oofnikj/iptmon/releases/download/v${VERSION}/iptmon_${VERSION}-1_all.ipk -O iptmon_${VERSION}-1_all.ipk
-opkg install ./iptmon_${VERSION}-1_all.ipk
-</pre>
-
-<pre>
-Additional Steps if you're on openwrt 21.x:
-nano /etc/config/dhcp
-  under config dnsmasq
-    add this: option dhcpscript '/usr/sbin/iptmon'
-
-Nano /etc/rc.local and add the following:
-  iptmon init
-  iptmon flush
-</pre>
-
-# Point Router DNS to AdguardHome
-
-If you want DNS stats for your dashboard, You will need to point your openwrt DNS to the adguard container (Hosted on the home server)  for DNS. 
-<pre>
-Openwrt LuCI → Network → Interfaces → LAN → Edit → DHCP Server → Advanced Settings → DHCP-Options. Enter the following and click Save, then click Save & Apply: 6,192.168.8.1
-</pre>
 
 ---------------------------------------------------------------
-# Home Server:
-
+# Home Server Steps:
 
 <pre>
 You will need a Raspberry Pi or other linux server with Docker and Docker Compose. 
