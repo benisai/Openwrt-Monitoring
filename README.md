@@ -87,7 +87,7 @@ Clone this repo to your server.
 
 :~# cd Docker
 
--->make sure to update the prometheus.yml file with your server IP and router IP.
+------->NOTE: Make sure to update the prometheus.yml file with your server IP and router IP.
 
 :~# Sudo Docker-Compose.yml up -d
 
