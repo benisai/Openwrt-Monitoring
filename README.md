@@ -37,6 +37,36 @@ https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana
 I've created a shell script that can be ran on the router, it will install all the needed software, scripts and custom lua files. Before running the shell script, please edit the routersetup.sh file and replace the home server ip variable. My home server is at 10.0.5.5, if you dont replace this ip, it will cause your DNS to stop working and your collectd export settings wont work. 
 Note: The New_Device section does not work at the moment.
 
+The routersetup.sh script will do the following:
+
+ >Install Nano, netperf (needed for speedtest.sh), openssh-sftp-server,vnstat
+
+ >Install Prometheus and CollectD
+ 
+ >Install iptmon, wrtbwmon and luci-wrtbwmon
+ 
+ >Copy custom scripts from git to /usr/bin/ on the router
+ 
+ >Copy custom LUA files from this git to /usr/lib/lua/prometheus-collectors on the router.
+ 
+ >Adding new_device.sh script to dhcp dnsmasq
+ 
+ >Adding scripts to Crontab
+ 
+ >Update prometheus config to 'lan'
+ 
+ >Update Collectd Export IP to home server ip address
+ 
+ >Add iptmon to your dhcp file under dnsmasq section
+ 
+ >Set your lan interface to assign out DNS IP of your home server
+ 
+ >Add scripts to Crontab
+ 
+ >restarts services
+
+
+
 SSH to your router and run
 <pre>
 wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh
