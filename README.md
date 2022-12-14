@@ -68,8 +68,12 @@ The routersetup.sh script will do the following:
 SSH to your router and run
 <pre>
 wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh
+
 nano routersetup.sh -> find 10.0.5.5 and replace that ip with your home-server ip.
+
 sh routersetup.sh
+
+reboot router
 </pre>
 
 ---------------------------------------------------------------
