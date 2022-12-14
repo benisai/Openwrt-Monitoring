@@ -45,10 +45,10 @@ EOF
  fi
 
  echo 'Copying shell scripts and files from Github/benisai/Openwrt-Monitoring/Router/'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/12am-script.sh -O /usr/bin/12am-script.sh && chmod +x /usr/bin/12am-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/12am-script.sh -O /usr/bin/12am-script.sh && chmod +x /usr/bin/12am-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/99-new-device -O /etc/hotplug.d/dhcp/99-new-device 
  
  
