@@ -61,8 +61,6 @@ The routersetup.sh script will do the following:
  
  >Set your lan interface to assign out DNS IP of your home server
  
- >Add scripts to Crontab
- 
  >restarts services
 
 
