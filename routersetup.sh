@@ -49,7 +49,8 @@ EOF
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/12am-script.sh -O /usr/bin/12am-script.sh && chmod +x /usr/bin/12am-script.sh
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/99-new-device -O /etc/hotplug.d/dhcp/99-new-device 
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/99-new-device -O /etc/hotplug.d/dhcp/99-new-device 
+ 
  
  #echo 'Copying New_device files'
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
