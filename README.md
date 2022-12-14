@@ -4,9 +4,13 @@ This project consists of a few applications to help monitor your home router. Yo
 Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported, 
 
 On the router, the following software will be installed
+
 Prometheus - main router monitoring (CPU,MEM,etc)
+
 Collectd - to monitor ping and export iptmon data 
+
 vnstat2 - to monitor wan bandwidth usage
+
 iptmon - to monitor per device usage
 
 You will also need a Home Server running Docker to run Prometheus,Grafana, and some Exporters. 
