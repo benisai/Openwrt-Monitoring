@@ -11,6 +11,7 @@ if [[ ! -e /etc/config/knownmac.txt ]]; then
 fi
 
 
+
 if [ "$ACTION" = add ]; then
     (
         # check if the mac is in known devices list
@@ -27,3 +28,4 @@ if [ "$ACTION" = add ]; then
         fi
     )
 fi
+
