@@ -83,14 +83,13 @@ reboot router
 You will need a Raspberry Pi or other linux server with Docker and Docker Compose. 
 
 Clone this repo to your server. 
-gh repo clone benisai/Openwrt-Monitoring
+:~# gh repo clone benisai/Openwrt-Monitoring
 
+:~# cd Docker
 
->cd Docker
+-->make sure to update the prometheus.yml file with your server IP and router IP.
 
-make sure to update the prometheus.yml file with your server IP and router IP.
-
->Sudo Docker-Compose.yml up -d
+:~# Sudo Docker-Compose.yml up -d
 
 This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
 
