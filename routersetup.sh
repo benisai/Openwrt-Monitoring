@@ -28,13 +28,7 @@ EOF
  wget https://github.com/oofnikj/iptmon/releases/download/v0.1.6/iptmon_0.1.6-1_all.ipk -O /root/iptmon_0.1.6-1_all.ipk
  opkg install /root/iptmon_0.1.6-1_all.ipk
  
- echo 'Installing WrtBWmon'
- wget https://github.com/pyrovski/wrtbwmon/releases/download/0.36/wrtbwmon_0.36_all.ipk
- wget https://github.com/Kiougar/luci-wrtbwmon/releases/download/v0.8.3/luci-wrtbwmon_v0.8.3_all.ipk
- opkg install /root/wrtbwmon_0.36_all.ipk
- opkg install /root/luci-wrtbwmon_v0.8.3_all.ipk
- 
- ipt=$(uci show dhcp.@dnsmasq[0].dhcpscript | grep "iptmon")
+  ipt=$(uci show dhcp.@dnsmasq[0].dhcpscript | grep "iptmon")
  if [[ -z "$ipt" ]]; then
   echo "Adding iptmon to DHCPScript option"
         uci set dhcp.@dnsmasq[0].dhcpscript=/usr/sbin/iptmon
@@ -43,6 +37,14 @@ EOF
         elif [[ -n "$ipt" ]]; then
   echo "IPTMon was found, no changes made to DHCP"
  fi
+ 
+ echo 'Installing WrtBWmon'
+ wget https://github.com/pyrovski/wrtbwmon/releases/download/0.36/wrtbwmon_0.36_all.ipk
+ wget https://github.com/Kiougar/luci-wrtbwmon/releases/download/v0.8.3/luci-wrtbwmon_v0.8.3_all.ipk
+ opkg install /root/wrtbwmon_0.36_all.ipk
+ opkg install /root/luci-wrtbwmon_v0.8.3_all.ipk
+ 
+
 
  echo 'Copying shell scripts and files from Github/benisai/Openwrt-Monitoring/Router/'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
@@ -52,11 +54,28 @@ EOF
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/99-new-device -O /etc/hotplug.d/dhcp/99-new-device 
  
  
- #echo 'Copying New_device files'
+ #echo 'Copying Extra files'
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
 
- 
+
+# === Copying nat_traffic.lua and app-statistics Files from GIT =============
+ echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/lua/nat_traffic.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
+ echo 'Copying luci_statistics from /benisai/Openwrt-Monitoring/lua/luci_statistics'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/luci_statistics -O /etc/config/luci_statistics
+ echo 'Copying speedtest.lua from /benisai/Openwrt-Monitoring/Router/lua/speedtest.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
+ echo 'Copying wanip.lua from /benisai/Openwrt-Monitoring/Router/lua/wanip.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/wanip.lua -O /usr/lib/lua/prometheus-collectors/wanip.lua
+ echo 'Copying packetloss.lua from /benisai/Openwrt-Monitoring/Router/lua/packetloss.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/packetloss.lua -O /usr/lib/lua/prometheus-collectors/packetloss.lua
+ echo 'Copying new_device.lua from /benisai/Openwrt-Monitoring/Router/lua/new_device.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/new_device.lua -O /usr/lib/lua/prometheus-collectors/new_device.lua 
+ echo 'Copying new_device.lua from /benisai/Openwrt-Monitoring/Router/lua/device_status.lua'
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/device_status.lua -O /usr/lib/lua/prometheus-collectors/device_status.lua
+
+
  #Adding new_device.sh script to dhcp dnsmasq
  echo 'Adding new_device.sh script to dhcp dnsmasq.conf'
  if [[ -z "$new_device.sh" ]]; then
@@ -85,20 +104,6 @@ EOF
    echo "Keyword (ready) was found in crontab, no changes made"
  fi
 
- 
-# === Copying nat_traffic.lua and app-statistics Files from GIT =============
- echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/nat_traffic.lua'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
- echo 'Copying luci_statistics from /benisai/Openwrt-Monitoring/luci_statistics'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/luci_statistics -O /etc/config/luci_statistics
- echo 'Copying speedtest.lua from /benisai/Openwrt-Monitoring/Router/speedtest.lua'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
- echo 'Copying wanip.lua from /benisai/Openwrt-Monitoring/Router/wanip.lua'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wanip.lua -O /usr/lib/lua/prometheus-collectors/wanip.lua
- echo 'Copying packetloss.lua from /benisai/Openwrt-Monitoring/Router/packetloss.lua'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/packetloss.lua -O /usr/lib/lua/prometheus-collectors/packetloss.lua
- echo 'Copying new_device.lua from /benisai/Openwrt-Monitoring/Router/new_device.lua'
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/new_device.lua -O /usr/lib/lua/prometheus-collectors/new_device.lua 
  
 # === Setting up app-statistics and prometheus configs =============
  echo 'updating prometheus config from loopback to lan'
