@@ -45,7 +45,7 @@ The routersetup.sh script will do the following:
  
  >Install iptmon, wrtbwmon and luci-wrtbwmon
  
- >Copy custom scripts from git to /usr/bin/ on the router
+ >Copy custom scripts from this git to /usr/bin/ on the router
  
  >Copy custom LUA files from this git to /usr/lib/lua/prometheus-collectors on the router.
  
