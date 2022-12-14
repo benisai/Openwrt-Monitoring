@@ -14,7 +14,7 @@ On the router, the following software will be installed
 
   >iptmon - to monitor per device usage
 
-You will also need a Home Server running Docker to run Prometheus,Grafana, and some Exporters. 
+You will also need a Home Server running Docker to run Prometheus(TSDB), Grafana(Dashboard), AdGuardHome(DNS) and some Prom-Exporters. 
 
 
 
