@@ -60,19 +60,12 @@ EOF
 
 
 # === Copying LUA Files from GIT to router =============
- echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/lua/nat_traffic.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
- echo 'Copying luci_statistics from /benisai/Openwrt-Monitoring/lua/luci_statistics'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/luci_statistics -O /etc/config/luci_statistics
- echo 'Copying speedtest.lua from /benisai/Openwrt-Monitoring/Router/lua/speedtest.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
- echo 'Copying wanip.lua from /benisai/Openwrt-Monitoring/Router/lua/wanip.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/wanip.lua -O /usr/lib/lua/prometheus-collectors/wanip.lua
- echo 'Copying packetloss.lua from /benisai/Openwrt-Monitoring/Router/lua/packetloss.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/packetloss.lua -O /usr/lib/lua/prometheus-collectors/packetloss.lua
- echo 'Copying new_device.lua from /benisai/Openwrt-Monitoring/Router/lua/new_device.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/new_device.lua -O /usr/lib/lua/prometheus-collectors/new_device.lua 
- echo 'Copying new_device.lua from /benisai/Openwrt-Monitoring/Router/lua/device_status.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/device_status.lua -O /usr/lib/lua/prometheus-collectors/device_status.lua
 
 
