@@ -45,21 +45,15 @@ EOF
  opkg install /root/luci-wrtbwmon_v0.8.3_all.ipk
  
 
-
+ #Copying scripts and lua files to router
  echo 'Copying shell scripts and files from Github to Router'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/12am-script.sh -O /usr/bin/12am-script.sh && chmod +x /usr/bin/12am-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/99-new-device -O /etc/hotplug.d/dhcp/99-new-device 
- 
- 
- #echo 'Copying Extra files'
- #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
- #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
 
-
-# === Copying LUA Files from GIT to router =============
+ echo 'Copying custom LUA Files from GIT to router'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/luci_statistics -O /etc/config/luci_statistics
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
@@ -67,6 +61,10 @@ EOF
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/packetloss.lua -O /usr/lib/lua/prometheus-collectors/packetloss.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/new_device.lua -O /usr/lib/lua/prometheus-collectors/new_device.lua 
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/device_status.lua -O /usr/lib/lua/prometheus-collectors/device_status.lua
+ 
+ #echo 'Copying Extra files'
+ #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
+ #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
 
 
  #Adding new_device.sh script to dhcp dnsmasq
@@ -93,6 +91,7 @@ EOF
    crontab -l | { cat; echo "* * * * * sleep 15; /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * sleep 30; /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * sleep 45; /usr/bin/15-second-script.sh"; } | crontab -
+   crontab -l | { cat; echo "*/1 * * * * /usr/bin/device-status-ping.sh"; } | crontab -  
    elif [[ -n "$C" ]]; then
    echo "Keyword (ready) was found in crontab, no changes made"
  fi
