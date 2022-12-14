@@ -46,7 +46,7 @@ EOF
  
 
 
- echo 'Copying shell scripts and files from Github/benisai/Openwrt-Monitoring/Router/'
+ echo 'Copying shell scripts and files from Github to Router'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/Scripts/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
@@ -59,7 +59,7 @@ EOF
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
 
 
-# === Copying nat_traffic.lua and app-statistics Files from GIT =============
+# === Copying LUA Files from GIT to router =============
  echo 'Copying nat_traffic.lua from /benisai/Openwrt-Monitoring/lua/nat_traffic.lua'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
  echo 'Copying luci_statistics from /benisai/Openwrt-Monitoring/lua/luci_statistics'
