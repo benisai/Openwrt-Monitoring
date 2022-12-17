@@ -38,6 +38,12 @@ EOF
   echo "IPTMon was found, no changes made to DHCP"
  fi
  
+#Changing vnstat backup location to SD Card. 
+#cat << "EOF" >> /etc/vnstat.conf
+#DatabaseDir "/tmp/mountd/disk1_part1/vnstat"
+#EOF
+ 
+ 
  echo 'Installing WrtBWmon'
  wget https://github.com/pyrovski/wrtbwmon/releases/download/0.36/wrtbwmon_0.36_all.ipk
  wget https://github.com/Kiougar/luci-wrtbwmon/releases/download/v0.8.3/luci-wrtbwmon_v0.8.3_all.ipk
@@ -122,7 +128,8 @@ L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
  /etc/init.d/cron enable
  /etc/init.d/wrtbwmon enable
  /etc/init.d/wrtbwmon start
- /etc/init.d/vnstat_backup enable
+ #/etc/init.d/vnstat_backup enable
+ /etc/init.d/vnstat restart
  /etc/init.d/luci_statistics enable
  /etc/init.d/collectd enable
  /etc/init.d/collectd restart
