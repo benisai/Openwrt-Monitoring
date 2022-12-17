@@ -145,5 +145,5 @@ rm $DLFILE
 rm $ULFILE
 
 sleep 60
-echo "0" "0" > /tmp/speedtest.out
+rm /tmp/speedtest.out
 
