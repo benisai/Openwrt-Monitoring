@@ -21,6 +21,12 @@ vnstat --xml |grep -hnr "hour id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g
 vnstat --xml |grep -hnr "fiveminute id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2-   > /tmp/fiveoutput.out
 
 sleep 1
+#Get Temp and Fan speed for GL-Routers
+temp=`cat /sys/class/thermal/thermal_zone0/temp`
+speed=`gl_fan -s`
+echo "$temp $speed" > /tmp/tempstats.out
+
+sleep 1
 ####PacketLoss
 packet=$(ping -c 20 8.8.8.8 | grep "packet loss" | awk -F ',' '{print $3}' | awk '{print $1}' | sed 's/%//g')
 echo "$packet" > /tmp/packetloss.out
