@@ -20,11 +20,6 @@ vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //
 vnstat --xml |grep -hnr "hour id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g; s/  00/:00/g' | cut -d " " -f2-  > /tmp/houroutput.out
 vnstat --xml |grep -hnr "fiveminute id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2-   > /tmp/fiveoutput.out
 
-sleep 1
-#Get Temp and Fan speed for GL-Routers
-temp=`cat /sys/class/thermal/thermal_zone0/temp`
-speed=`gl_fan -s`
-echo "$temp $speed" > /tmp/tempstats.out
 
 sleep 1
 ####PacketLoss
