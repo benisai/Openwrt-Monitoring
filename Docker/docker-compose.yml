@@ -46,7 +46,7 @@ services:
 #####################################################################################
   adguard-home:
     image: adguard/adguardhome
-    container_name: "Adguard-Home"
+    container_name: Adguard-Home
     restart: always
     networks:
       - internal
@@ -65,7 +65,7 @@ services:
 #####################################################################################
   adguard_exporter:
     image: ebrianne/adguard-exporter:latest
-    container_name: "agh-exporter-home"
+    container_name: agh-exporter-home
     restart: always
     ports:
       - '9617:9617'
