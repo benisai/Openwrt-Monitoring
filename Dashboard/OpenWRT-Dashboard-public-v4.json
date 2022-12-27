@@ -41,7 +41,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.3.1"
+      "version": "9.3.2"
     },
     {
       "type": "panel",
@@ -125,7 +125,7 @@
         "y": 0
       },
       "id": 198,
-      "title": "Row title",
+      "title": "Router Status",
       "type": "row"
     },
     {
@@ -133,6 +133,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "Internet Connection is based on a ping data from CollectD against 1.1.1.1. \nIf the ping is higher than 50ms, it will turn yellow-ish. If its over 100ms, it will turn red. ",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -237,7 +238,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -259,6 +260,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "WAN IP data is gathered via the 1-min-script. it will curl a public site to get the Public IP. The WAN IP is gathered locally from WRT. It is then outputted to a file in /tmp/wanip.out. \n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/1-minute-script.sh",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -309,7 +311,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -391,7 +393,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -415,28 +417,22 @@
       },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
           "mappings": [],
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "#933742",
+                "color": "green",
                 "value": null
               },
               {
                 "color": "red",
-                "value": 0
-              },
-              {
-                "color": "green",
-                "value": 1
+                "value": 80
               }
             ]
-          }
+          },
+          "unit": "none"
         },
         "overrides": []
       },
@@ -449,8 +445,8 @@
       "id": 205,
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
+        "graphMode": "area",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -461,7 +457,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -469,13 +465,25 @@
             "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
-          "expr": "",
-          "legendFormat": "__auto",
+          "expr": "router_temp{}",
+          "legendFormat": "Temp ℃",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "expr": "router_fan_speed{}",
+          "hide": false,
+          "legendFormat": "Fan Speed (RPM)",
+          "range": true,
+          "refId": "B"
         }
       ],
-      "title": "Errors",
+      "title": "Temperature and Fan",
       "type": "stat"
     },
     {
@@ -496,6 +504,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "Network Health is based on a ping data from CollectD against 1.1.1.1. \nIf the ping is higher than 50ms, it will turn yellow-ish. If its over 100ms, it will turn red. ",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -581,6 +590,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "SpeedTest data is gathered from the speedtest.sh script. It is then outputted to /tmp/speedtest.out file for Prometheus to collect. If there is no data from the script, more than likely the testhost (netperf.bufferbloat.net) blocked you from attempting speedtests, try again in a few hours. \n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/speedtest.sh",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -601,7 +611,7 @@
               "tooltip": false,
               "viz": false
             },
-            "lineInterpolation": "smooth",
+            "lineInterpolation": "linear",
             "lineStyle": {
               "fill": "solid"
             },
@@ -633,7 +643,38 @@
           },
           "unit": "decmbytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Download Speed"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Upload Speed"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 4,
@@ -685,7 +726,7 @@
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Download Speed",
+          "legendFormat": "Upload Speed",
           "range": true,
           "refId": "B"
         }
@@ -705,7 +746,6 @@
             "mode": "thresholds"
           },
           "mappings": [],
-          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -742,7 +782,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -776,7 +816,6 @@
           "refId": "B"
         }
       ],
-      "timeFrom": "12h",
       "title": "SpeedTest",
       "type": "stat"
     },
@@ -785,6 +824,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "PacketLoss data is based on ping data collected via the 1-min-script.sh. It will ping 1.1.1.1  20 times and the script will record any packet drops. \n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/1-minute-script.sh",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -851,7 +891,7 @@
           "sort": "none"
         },
         "xTickLabelRotation": 0,
-        "xTickLabelSpacing": 0
+        "xTickLabelSpacing": 100
       },
       "targets": [
         {
@@ -885,6 +925,7 @@
           },
           "mappings": [],
           "max": 16384,
+          "min": 1,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -918,7 +959,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1013,7 +1054,7 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1099,7 +1140,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1178,7 +1219,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1247,7 +1288,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1318,7 +1359,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1405,7 +1446,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1516,7 +1557,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1651,7 +1692,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1723,7 +1764,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
-      "description": "/usr/bin/device-status-ping.sh script will ping IP in /tmp/dhcp.lease filr. The script will run every minute and output a file to tmp/device-status.out",
+      "description": "/usr/bin/device-status-ping.sh script will ping IP Addr in /tmp/dhcp.lease file. \nThe device-status-ping.sh script will run every minute via crontab and output a file to tmp/device-status.out\n\nSome devices dont respond to pings, I dont know why. \n\n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/device-status-ping.sh",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1801,7 +1842,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -1927,7 +1968,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2012,7 +2053,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2090,7 +2131,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2192,7 +2233,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2274,7 +2315,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2358,7 +2399,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2440,7 +2481,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2524,7 +2565,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2606,7 +2647,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2689,7 +2730,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2713,7 +2754,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
-      "description": "Bandwidth Usage Provided by Vnstat2, with custom lua file. ",
+      "description": "Bandwidth Usage Provided by Vnstat2. The 1-min-script.sh will parse and output a file to /tmp/monthoutput.out for Prometheus to scrape.  \n\n\n\nThe cap is set in this panel:\nMax\nLeave empty to calculate based on all values\n\n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/1-minute-script.sh",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2733,6 +2774,7 @@
             }
           ],
           "max": 161061273600,
+          "min": 1,
           "noValue": "0",
           "thresholds": {
             "mode": "absolute",
@@ -2773,7 +2815,7 @@
       "links": [],
       "options": {
         "displayMode": "basic",
-        "minVizHeight": 1,
+        "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
         "reduceOptions": {
@@ -2786,7 +2828,7 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -2854,7 +2896,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -3031,6 +3073,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "This live traffic data is created by IPTmon. It is gathered via CollectD.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3112,14 +3155,14 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_tx\"}[10s])",
+          "expr": "rate(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_tx\"}[10s])/2",
           "interval": "",
           "legendFormat": "{{type}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Download Traffic",
+      "title": "Live Download Traffic",
       "transformations": [
         {
           "id": "extractFields",
@@ -3135,6 +3178,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "This live traffic data is created by IPTmon. It is gathered via CollectD.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3216,14 +3260,14 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_rx\"}[10s])",
+          "expr": "rate(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_rx\"}[10s])/2",
           "interval": "",
           "legendFormat": "{{type}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Upload Traffic",
+      "title": "Live Upload Traffic",
       "type": "timeseries"
     },
     {
@@ -3231,6 +3275,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "This data is created by IPTmon. It is gathered via CollectD.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3275,7 +3320,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -3307,6 +3352,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "This data is created by IPTmon. It is gathered via CollectD.",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3351,7 +3397,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -3901,6 +3947,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS-OWRT}"
       },
+      "description": "You can define src and dest names in the overrides section. I left some examples. ",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -4001,7 +4048,58 @@
               "id": "byName",
               "options": "src"
             },
-            "properties": []
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "10.0.5.220": {
+                        "index": 1,
+                        "text": "LivingRoom-CAM"
+                      },
+                      "10.0.5.221": {
+                        "index": 2,
+                        "text": "AI-CAM"
+                      },
+                      "10.0.5.222": {
+                        "index": 3,
+                        "text": "EI-CAM"
+                      },
+                      "10.0.5.224": {
+                        "index": 4,
+                        "text": "ChromeCast"
+                      },
+                      "10.0.5.226": {
+                        "index": 5,
+                        "text": "Pixel-7"
+                      },
+                      "10.0.5.230": {
+                        "index": 6,
+                        "text": "TasmotaPC"
+                      },
+                      "10.0.5.231": {
+                        "index": 7,
+                        "text": "TasmotaOL3"
+                      },
+                      "10.0.5.232": {
+                        "index": 8,
+                        "text": "TasmotaOL1"
+                      },
+                      "10.0.5.233": {
+                        "index": 9,
+                        "text": "TasmotaOL2"
+                      },
+                      "10.0.5.5": {
+                        "index": 0,
+                        "text": "Home Server"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
           },
           {
             "matcher": {
@@ -4111,7 +4209,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -4120,7 +4218,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(node_nat_traffic{src=~\"$srcip\",dest!=\"10.0.5.1\",dport!=\"53\",dport!=\"53\"} /1024/1024)",
+          "expr": "(node_nat_traffic{dest!=\"10.0.5.1\",dport!=\"53\",dport!=\"53\"} /1024/1024)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -4218,7 +4316,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -4468,7 +4566,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.1",
+      "pluginVersion": "9.3.2",
       "targets": [
         {
           "datasource": {
@@ -4516,54 +4614,7 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": [
-      {
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS-OWRT}"
-        },
-        "definition": "label_values(type)",
-        "hide": 0,
-        "includeAll": true,
-        "label": "",
-        "multi": false,
-        "name": "hostname",
-        "options": [],
-        "query": {
-          "query": "label_values(type)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "/(?:tx|rx)_(\\D[a-zA-Z0-9.-]+)/",
-        "skipUrlSync": false,
-        "sort": 1,
-        "type": "query"
-      },
-      {
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS-OWRT}"
-        },
-        "definition": "label_values(src)",
-        "hide": 0,
-        "includeAll": true,
-        "label": "srcip",
-        "multi": false,
-        "name": "srcip",
-        "options": [],
-        "query": {
-          "query": "label_values(src)",
-          "refId": "StandardVariableQuery"
-        },
-        "refresh": 1,
-        "regex": "/^((10\\.0\\.)\\d+\\.\\d+)$/",
-        "skipUrlSync": false,
-        "sort": 1,
-        "type": "query"
-      }
-    ]
+    "list": []
   },
   "time": {
     "from": "now-15m",
@@ -4597,6 +4648,6 @@
   "timezone": "",
   "title": "OpenWRT-Dashboard",
   "uid": "benisai",
-  "version": 221,
+  "version": 243,
   "weekStart": ""
 }
