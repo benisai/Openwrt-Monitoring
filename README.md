@@ -38,7 +38,10 @@ You will also need a Home Server running Docker to run the following application
 # Router Steps: 
 *This section will cover the openwrt Router config
 
-I've created a shell script that can be ran on the router, it will install all the needed software, scripts and custom lua files. Before running the shell script, please edit the routersetup.sh file and replace the home server ip variable. My home server is at 10.0.5.5, if you dont replace this ip, it will cause your DNS to stop working and your collectd export settings wont work. 
+I've created a shell script that can be ran on the router, it will install all the needed software, scripts and custom lua files. 
+
+Before running the shell script, please edit the routersetup.sh file and replace the home server ip variable. My home server is at 10.0.5.5, if you dont replace this ip, it will cause your DNS to stop working and your collectd export settings wont work. 
+
 Note: The New_Device section does not work at the moment.
 
 The routersetup.sh script will do the following:
@@ -97,7 +100,7 @@ Clone this repo to your server.
 
 This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
 
-Login to grafana and Import the dashboard. (OpenWRT-Dashboard.v2.json)
+Login to grafana, add the prometheus datasource and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
 
 Note about the Grafana Dashboard:: You'll find two variables at the top. One for iptimon (hostname) and (srcip) for prometheus metrics. Unfortunately Prometheus exporter does not export via hostname only IP address. And iptimon exports as hostname. You can use the DHCP panel to find the corresponding IP address to hostname. 
 
