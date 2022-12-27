@@ -23,9 +23,7 @@ local function scrape()
       end
 
     end
-    -- local src, sport, dest, dport, bytes = string.match(natstat[i], "src=([^ ]+) dst=([^ ]+) sport=([^ ]+) dport=([^ ]+) .- bytes=([^ ]+)");
-    -- local src, sport, dest, dport, bytes = string.match(natstat[i], "src=([^ ]+) dst=([^ ]+) sport=([^ ]+) dport=([^ ]+) packets=[^ ]+ bytes=([^ ]+)")
-
+    
     local labels = { src = src, sport = sport, dest = dest, dport = dport }
     -- output(string.format("src=|%s| dest=|%s| bytes=|%s|", src, dest, bytes  ))
     nat_metric(labels, bytes )
