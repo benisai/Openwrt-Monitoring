@@ -1,26 +1,15 @@
 #!/bin/sh
-date=$(date '+%Y-%m-%d--%H:%M:%S')
-
-#DHCP File
-known_mac_addr="/etc/config/knownmac.txt"
-
-
-#Create knownmac file if it doesnt exist.
-if [[ ! -e /etc/config/knownmac.txt ]]; then
-    cat /tmp/dhcp.leases | awk '{ print $2, $3, $4 }'  > /etc/config/knownmac.txt
-fi
-
-
 
 if [ "$ACTION" = add ]; then
     (
         # check if the mac is in known devices list
+        known_mac_addr="/etc/config/knownmac.txt"
         grep -q "$MACADDR" "$known_mac_addr"
         unknown_mac_addr=$?
+        date=$(date '+%Y-%m-%d--%H:%M:%S')        
         if [ "$1" == "add" ] && [ "$unknown_mac_addr" -ne 0 ]; then
         (
          echo "date=$date device=$HOSTNAME ip=$IPADDR mac=$MACADDR" > /tmp/new_device.out
-
          cat << "EOF" >> /etc/config/knownmac.txt
          $MACADDR $IPADDR $HOSTNAME
          EOF
