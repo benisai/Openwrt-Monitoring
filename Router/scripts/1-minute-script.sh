@@ -16,7 +16,7 @@ sleep 1
 #####Run vnstat and parse output
 #vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2- > /tmp/monthoutput.out
 vnstat --xml |grep -hnr "day id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2- > /tmp/dayoutput.out
-vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2- | cut -d " " -f2- > /tmp/monthoutput.out
+vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2- | cut -d " " -f2- > /tmp/vnstatmonth.out
 vnstat --xml |grep -hnr "hour id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g; s/  00/:00/g' | cut -d " " -f2-  > /tmp/houroutput.out
 vnstat --xml |grep -hnr "fiveminute id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //g' | cut -d " " -f2-   > /tmp/fiveoutput.out
 
