@@ -23,5 +23,5 @@ vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2022//g; s/        //
 
 sleep 1
 ####PacketLoss
-packet=$(ping -c 20 8.8.8.8 | grep "packet loss" | awk -F ',' '{print $3}' | awk '{print $1}' | sed 's/%//g')
+packet=$(ping -c 40 8.8.8.8 | grep "packet loss" | awk -F ',' '{print $3}' | awk '{print $1}' | sed 's/%//g')
 echo "$packet" > /tmp/packetloss.out
