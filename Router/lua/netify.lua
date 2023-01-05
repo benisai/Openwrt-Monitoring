@@ -1,6 +1,6 @@
 local function scrape()
   router_netify =  metric("router_netify_traffic", "gauge" )
-  for e in io.lines("/proc/net/nf_conntrack") do
+  for e in io.lines("/tmp/netify.out") do
     local fields = space_split(e)
     local detected_protocol_name, host_server_name, local_ip, local_mac, local_port, other_ip, other_port, client_sni, http, url, user_agent, interface, bytes;
     bytes = 0;
