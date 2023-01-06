@@ -15,8 +15,8 @@ EOF
  echo 'Updating software packages'
  opkg update
  
- echo 'Installing Nano, netperf and sftp-server and vnstat'
- opkg install nano netperf openssh-sftp-server vnstat2 vnstati2 luci-app-vnstat2
+ echo 'Installing Nano, netperf and sftp-server, vnstat and Netify'
+ opkg install nano netperf openssh-sftp-server vnstat2 vnstati2 luci-app-vnstat2 netifyd
  
  echo 'Installing CollectD Software on Router'
  opkg install collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics collectd-mod-dhcpleases 
