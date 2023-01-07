@@ -12,5 +12,5 @@ speed=`gl_fan -s`
 echo "$temp $speed" > /tmp/tempstats.out
 
 #Kill Netify Output and Restart Output
-ps | grep 7150 | grep -v grep | awk '{print $1}' | xargs kill
-sleep 15000 | nc 10.0.5.1 7150 | grep established | tr -d '"' | sed 's/:/=/g; s/,/ /g'   > /tmp/netify.out &
+#ps | grep 7150 | grep -v grep | awk '{print $1}' | xargs kill
+#sleep 15000 | nc 10.0.5.1 7150 | grep established | tr -d '"' | sed 's/:/=/g; s/,/ /g'   > /tmp/netify.out &
