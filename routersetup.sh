@@ -105,6 +105,7 @@ EOF
    crontab -l | { cat; echo "* * * * * sleep 30; /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * sleep 45; /usr/bin/15-second-script.sh"; } | crontab -
    crontab -l | { cat; echo "*/1 * * * * /usr/bin/device-status-ping.sh"; } | crontab -  
+   crontab -l | { cat; echo "*/1 * * * * /usr/bin/new_device.sh"; } | crontab - 
    elif [[ -n "$C" ]]; then
    echo "Keyword (ready) was found in crontab, no changes made"
  fi
