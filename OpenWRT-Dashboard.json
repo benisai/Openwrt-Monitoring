@@ -1,0 +1,5745 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS-OWRT",
+      "label": "Prometheus-owrt",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "DS_PROMETHEUS-HOME",
+      "label": "Prometheus-Home",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "barchart",
+      "name": "Bar chart",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.3.2"
+    },
+    {
+      "type": "panel",
+      "id": "piechart",
+      "name": "Pie chart",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "state-timeline",
+      "name": "State timeline",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "status-history",
+      "name": "Status history",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "HomeNetwork",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 5438,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 198,
+      "title": "Router Status",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Internet Connection is based on a ping data from CollectD against 1.1.1.1. \nIf the ping is higher than 50ms, it will turn yellow-ish. If its over 100ms, it will turn red. ",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "green",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "#b24552",
+                  "index": 1,
+                  "text": "Down"
+                }
+              },
+              "type": "value"
+            },
+            {
+              "options": {
+                "from": 1,
+                "result": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Connected"
+                },
+                "to": 50
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 50,
+                "result": {
+                  "color": "#bcad4a",
+                  "index": 2,
+                  "text": "Connected | Ping Latency"
+                },
+                "to": 100
+              },
+              "type": "range"
+            },
+            {
+              "options": {
+                "from": 100,
+                "result": {
+                  "color": "#c28343",
+                  "index": 3,
+                  "text": "Connected | High Latency"
+                },
+                "to": 200
+              },
+              "type": "range"
+            }
+          ],
+          "noValue": "NA",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#819798",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              },
+              {
+                "color": "#c0af47",
+                "value": 50
+              },
+              {
+                "color": "#c2894f",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "id": 200,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "expr": "collectd_ping{ping=\"1.1.1.1\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Internet Connection",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "WAN IP data is gathered via the 1-min-script. it will curl a public site to get the Public IP. The WAN IP is gathered locally from WRT. It is then outputted to a file in /tmp/wanip.out. \n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/1-minute-script.sh",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "noValue": "NA",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-yellow",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 6,
+        "y": 1
+      },
+      "id": 201,
+      "options": {
+        "footer": {
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "wan_info{}",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "WAN IP",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "group": true,
+              "instance": true,
+              "job": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "noValue": "NA",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 12,
+        "y": 1
+      },
+      "id": 202,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "expr": "sum(uci_dhcp_host{})",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Clients",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-yellow",
+                "value": 145
+              },
+              {
+                "color": "dark-orange",
+                "value": 150
+              },
+              {
+                "color": "red",
+                "value": 158
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 205,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "expr": "router_temp{} *9/5 +32",
+          "legendFormat": "Temp F",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "expr": "router_fan_speed{}",
+          "hide": false,
+          "legendFormat": "Fan Speed (RPM)",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Temperature and Fan",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 162,
+      "panels": [],
+      "title": "Network Health",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Network Health is based on a ping data from CollectD against 1.1.1.1. \nIf the ping is higher than 50ms, it will turn yellow-ish. If its over 100ms, it will turn red. ",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 98,
+            "lineWidth": 0
+          },
+          "displayName": ".",
+          "mappings": [],
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#034608",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": 0
+              },
+              {
+                "color": "#034608",
+                "value": 1
+              },
+              {
+                "color": "#c2894f",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "hideTimeOverride": true,
+      "id": 191,
+      "options": {
+        "colWidth": 1,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "rowHeight": 0.91,
+        "showValue": "never",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "collectd_ping{ping=~\"1\\\\.1\\\\.1\\\\.1\"}",
+          "interval": "",
+          "legendFormat": "{{ping}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "Network Health",
+      "transparent": true,
+      "type": "status-history"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "SpeedTest data is gathered from the speedtest.sh script. It is then outputted to /tmp/speedtest.out file for Prometheus to collect. If there is no data from the script, more than likely the testhost (netperf.bufferbloat.net) blocked you from attempting speedtests, try again in a few hours. \n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/speedtest.sh",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "right",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "noValue": "Looks like speedtest.sh script did not run",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decmbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Download Speed"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Upload Speed"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 17,
+        "x": 0,
+        "y": 9
+      },
+      "hideTimeOverride": false,
+      "id": 159,
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "router_speedtest_download{}",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Download Speed",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "router_speedtest_upload{}",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Upload Speed",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "timeFrom": "12h",
+      "title": "SpeedTest",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decmbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 7,
+        "x": 17,
+        "y": 9
+      },
+      "hideTimeOverride": false,
+      "id": 204,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "router_speedtest_download{}",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Download:",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "router_speedtest_upload{}",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Upload:",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "SpeedTest",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "PacketLoss data is based on ping data collected via the 1-min-script.sh. It will ping 1.1.1.1  20 times and the script will record any packet drops. \n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/1-minute-script.sh",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#884e55",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
+      "id": 207,
+      "interval": "60s",
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.56,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 100
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "packet_loss{}",
+          "instant": false,
+          "legendFormat": "{{__name__}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Packet Loss",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "purple",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "max": 16384,
+          "min": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 209,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "expr": "node_nf_conntrack_entries{}",
+          "legendFormat": "Connections",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Active Connection Count",
+      "type": "bargauge"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 164,
+      "panels": [],
+      "title": "DNS",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "light-red",
+                  "index": 1,
+                  "text": "Stopped"
+                },
+                "1": {
+                  "color": "#6d716f",
+                  "index": 0,
+                  "text": "Started"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 21
+      },
+      "id": 166,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-HOME}"
+          },
+          "editorMode": "code",
+          "expr": "adguard_running",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Status",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "text": "Stopped"
+                },
+                "1": {
+                  "text": "Enabled"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 3,
+        "y": 21
+      },
+      "id": 168,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-HOME}"
+          },
+          "editorMode": "code",
+          "expr": "adguard_protection_enabled",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Protection",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 6,
+        "y": 21
+      },
+      "id": 172,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-HOME}"
+          },
+          "editorMode": "code",
+          "expr": "adguard_num_dns_queries",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Number of queries",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "light-red",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-red",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 10,
+        "y": 21
+      },
+      "id": 174,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-HOME}"
+          },
+          "editorMode": "code",
+          "expr": "adguard_num_blocked_filtering",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Domains being blocked",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "light-red",
+                "value": null
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 14,
+        "y": 21
+      },
+      "id": 176,
+      "links": [],
+      "maxDataPoints": 1000,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-HOME}"
+          },
+          "editorMode": "code",
+          "expr": "adguard_num_blocked_filtering / adguard_num_dns_queries * 100",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Percent of ads blocked",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              },
+              {
+                "color": "dark-blue",
+                "value": 100
+              },
+              {
+                "color": "dark-yellow",
+                "value": 250
+              },
+              {
+                "color": "dark-orange",
+                "value": 500
+              },
+              {
+                "color": "dark-red",
+                "value": 1000
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 18,
+        "y": 21
+      },
+      "id": 170,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-HOME}"
+          },
+          "editorMode": "code",
+          "expr": "adguard_avg_processing_time",
+          "format": "time_series",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ legend }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Processing TIme",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "decimals": 2,
+          "displayName": "",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Time"
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              },
+              {
+                "id": "custom.align"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Metric"
+            },
+            "properties": [
+              {
+                "id": "custom.width"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 178,
+      "links": [],
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Value"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-HOME}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "adguard_top_clients{}",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ client }}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Top clients",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {
+            "reducers": []
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "decimals": 2,
+          "displayName": "",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Time"
+              },
+              {
+                "id": "unit",
+                "value": "time: YYYY-MM-DD HH:mm:ss"
+              },
+              {
+                "id": "custom.align"
+              },
+              {
+                "id": "custom.width",
+                "value": 174
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Metric"
+            },
+            "properties": [
+              {
+                "id": "custom.width"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 24
+      },
+      "id": 180,
+      "links": [],
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Value"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-HOME}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(adguard_top_blocked_domains) by (domain)",
+          "format": "time_series",
+          "instant": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "{{ domain }}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Top ads domains",
+      "transformations": [
+        {
+          "id": "seriesToRows",
+          "options": {
+            "reducers": []
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "influxdb",
+        "uid": "UlHBWLJMz"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 89,
+      "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "UlHBWLJMz"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "OpenWRT",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "/usr/bin/device-status-ping.sh script will ping IP Addr in /tmp/dhcp.lease file. \nThe device-status-ping.sh script will run every minute via crontab and output a file to tmp/device-status.out\n\nSome devices dont respond to pings, I dont know why. \n\n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/device-status-ping.sh",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "offline": {
+                  "color": "#811f2a",
+                  "index": 0,
+                  "text": "Offline"
+                },
+                "online": {
+                  "color": "dark-green",
+                  "index": 1,
+                  "text": "Online"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "status"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 215,
+      "options": {
+        "footer": {
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "status"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "router_device_status{}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Clients",
+      "transformations": [
+        {
+          "id": "seriesToColumns",
+          "options": {
+            "byField": "name"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "group": true,
+              "instance": true,
+              "ip": false,
+              "job": true,
+              "mac": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 8,
+              "__name__": 1,
+              "device": 4,
+              "group": 2,
+              "instance": 3,
+              "ip": 5,
+              "job": 6,
+              "mac": 7,
+              "status": 9
+            },
+            "renameByName": {
+              "Time": "",
+              "Value": "Status",
+              "name": ""
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "System uptime",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 1,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 36
+      },
+      "hideTimeOverride": true,
+      "id": 91,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "exemplar": true,
+          "expr": "node_time_seconds - node_boot_time_seconds",
+          "interval": "",
+          "intervalFactor": 2,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 1800
+        }
+      ],
+      "title": "Uptime",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Busy state of all CPU cores together",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 85
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "value": 95
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 36
+      },
+      "id": 93,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "exemplar": true,
+          "expr": "(((count(count(node_cpu_seconds_total) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle'}[5m])))) * 100) / count(count(node_cpu_seconds_total) by (cpu))",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 900
+        }
+      ],
+      "title": "CPU Busy",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Non available RAM memory",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 80
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 36
+      },
+      "hideTimeOverride": false,
+      "id": 95,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "exemplar": true,
+          "expr": "((node_memory_MemTotal_bytes - node_memory_MemFree_bytes) / (node_memory_MemTotal_bytes )) * 100",
+          "format": "time_series",
+          "hide": true,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 900
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "exemplar": true,
+          "expr": "100 - ((node_memory_MemAvailable_bytes * 100) / node_memory_MemTotal_bytes)",
+          "format": "time_series",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "B",
+          "step": 900
+        }
+      ],
+      "title": "Used RAM Memory",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Busy state of all CPU cores together (1 min average)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 85
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "value": 95
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 12,
+        "y": 36
+      },
+      "id": 97,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg(node_load15) /  count(count(node_cpu_seconds_total) by (cpu)) * 100",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A",
+          "step": 900
+        }
+      ],
+      "title": "CPU System Load (1m avg)",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Total number of CPU cores",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 15,
+        "y": 36
+      },
+      "id": 99,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "count(count(node_cpu_seconds_total) by (cpu))",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A",
+          "step": 900
+        }
+      ],
+      "title": "CPU Cores",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Total RAM",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 18,
+        "y": 36
+      },
+      "id": 101,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "exemplar": true,
+          "expr": "node_memory_MemTotal_bytes",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 900
+        }
+      ],
+      "title": "Total RAM",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "RAM Used",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 21,
+        "y": 36
+      },
+      "id": 109,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "node_memory_MemTotal_bytes - node_memory_MemFree_bytes",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A",
+          "step": 900
+        }
+      ],
+      "title": "RAM Used",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Total NAT traffic (WAN)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 15,
+        "y": 38
+      },
+      "id": 105,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "exemplar": true,
+          "expr": "sum(node_nat_traffic)",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "A",
+          "step": 900
+        }
+      ],
+      "title": "Total NAT Traffic",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Total network traffic",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 18,
+        "y": 38
+      },
+      "id": 103,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "(sum(node_network_transmit_bytes_total{device=\"wlan-sta0\"}) + sum(node_network_receive_bytes_total{device=\"wlan-sta0\"})/1024/1024)",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A",
+          "step": 900
+        }
+      ],
+      "title": "Total Network Traffic Rx/Tx",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "DHCP Clients",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 21,
+        "y": 38
+      },
+      "id": 107,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "sum(uci_dhcp_host{})",
+          "interval": "",
+          "legendFormat": "",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "DHCP Clients",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "Bandwidth Usage Provided by Vnstat2. The 1-min-script.sh will parse and output a file to /tmp/monthoutput.out for Prometheus to scrape.  \n\n\n\nThe cap is set in this panel:\nMax\nLeave empty to calculate based on all values\n\n\nhttps://github.com/benisai/Openwrt-Monitoring/blob/main/Router/scripts/1-minute-script.sh",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "max": 161061273600,
+          "min": 1,
+          "noValue": "0",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "blue",
+                "value": 134217728000
+              },
+              {
+                "color": "dark-yellow",
+                "value": 139586437120
+              },
+              {
+                "color": "orange",
+                "value": 150323855360
+              },
+              {
+                "color": "red",
+                "value": 161061273600
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 40
+      },
+      "id": 210,
+      "links": [],
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {}
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(router_vnstat_month_download{}) + sum(router_vnstat_month_upload{})",
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "range": true,
+          "refId": "A",
+          "step": 900
+        }
+      ],
+      "title": "Bandwidth Usage - 150GB Cap",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 43
+      },
+      "id": 213,
+      "links": [],
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "increase(node_network_receive_bytes_total{device=\"wlan-sta0\"}[12h])",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "WAN Download",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "increase(node_network_transmit_bytes_total{device=\"wlan-sta0\"}[12h])",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "WAN Upload",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "timeFrom": "12h",
+      "title": "12h Traffic",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbits"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "WAN Upload"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 47
+      },
+      "id": 131,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true,
+          "sortBy": "Last *",
+          "sortDesc": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(node_network_receive_bytes_total{device=~\"wlan-sta0\"}[10s])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "WAN Download",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(node_network_transmit_bytes_total{device=\"wlan-sta0\"}[10s])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "WAN Upload",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Interface Speed WAN",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "This live traffic data is created by IPTmon. It is gathered via CollectD.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 54
+      },
+      "id": 135,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_tx\"}[10s])/2",
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Live Download Traffic",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Value"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "This live traffic data is created by IPTmon. It is gathered via CollectD.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbits"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 54
+      },
+      "id": 133,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "rate(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_rx\"}[10s])/2",
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Live Upload Traffic",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "This data is created by IPTmon. It is gathered via CollectD.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 63
+      },
+      "id": 211,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 12,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "increase(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_tx\"}[2h])",
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Download Traffic Last 2h",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Value"
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "description": "This data is created by IPTmon. It is gathered via CollectD.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 63
+      },
+      "id": 212,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 12,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "increase(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_rx\"}[2h])",
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Uploaded Traffic Last 2h",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Value"
+          }
+        }
+      ],
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 40
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "light-red",
+                "value": 80
+              },
+              {
+                "color": "dark-red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 70
+      },
+      "hideTimeOverride": false,
+      "id": 143,
+      "options": {
+        "alignValue": "center",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "always",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.4.5",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "collectd_ping{ping=~\"1\\\\.1\\\\.1\\\\.1|9\\\\.9\\\\.9\\\\.9\"}",
+          "interval": "",
+          "legendFormat": "{{ping}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "ping (5m)",
+      "type": "state-timeline"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "8.8.8.8"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1.1.1.1"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 75
+      },
+      "id": 137,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "collectd_ping{ping=~\"1\\\\.1\\\\.1\\\\.1|9\\\\.9\\\\.9\\\\.9\"}",
+          "interval": "",
+          "legendFormat": "{{ping}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "ping (5m)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbits"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "WAN Download"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "semi-dark-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "WAN Upload"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 80
+      },
+      "id": 142,
+      "interval": "1h",
+      "links": [],
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": false,
+          "sortBy": "Last",
+          "sortDesc": true
+        },
+        "orientation": "auto",
+        "showValue": "always",
+        "stacking": "normal",
+        "text": {},
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "9.0.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "increase(node_network_receive_bytes_total{device=\"wlan-sta0\"}[1h])",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "WAN Download",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "increase(node_network_transmit_bytes_total{device=\"wlan-sta0\"}[1h])",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "WAN Upload",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "timeFrom": "6h",
+      "title": "Hourly Traffic",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "left",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "log": 2,
+              "type": "log"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decbits"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "WAN Download"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "WAN Upload"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 80
+      },
+      "id": 160,
+      "interval": "1d",
+      "links": [],
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": false,
+          "sortBy": "Last",
+          "sortDesc": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "normal",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "9.0.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "increase(node_network_receive_bytes_total{device=\"wlan-sta0\"}[1d])",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "WAN Download",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "increase(node_network_transmit_bytes_total{device=\"wlan-sta0\"}[1d])",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "WAN Upload",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "timeFrom": "7d",
+      "title": "7dayTraffic",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false,
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decmbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sport"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dport"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "22": {
+                        "index": 0,
+                        "text": "SSH (22)"
+                      },
+                      "23": {
+                        "index": 1,
+                        "text": "Telnet (23)"
+                      },
+                      "25": {
+                        "index": 2,
+                        "text": "SMTP (25)"
+                      },
+                      "53": {
+                        "index": 3,
+                        "text": "DNS (53)"
+                      },
+                      "80": {
+                        "index": 4,
+                        "text": "HTTP (80)"
+                      },
+                      "123": {
+                        "index": 5,
+                        "text": "NTP (123)"
+                      },
+                      "443": {
+                        "index": 6,
+                        "text": "HTTPS (443)"
+                      },
+                      "3389": {
+                        "index": 7,
+                        "text": "RDP (3389)"
+                      },
+                      "9100": {
+                        "index": 8,
+                        "text": "Prometheus (9100)"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dest"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "Search ARIN",
+                    "url": "https://www.abuseipdb.com/whois/${__data.fields.dest}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 87
+      },
+      "id": 193,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(node_nat_traffic{dest!=\"10.0.5.1\",dport!=\"53\",dport!=\"53\"} /1024/1024)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "legendFormat": "Dest {{dest}} ->  SRC {{src}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "NAT Traffic",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": false,
+              "dport": false,
+              "group": true,
+              "instance": true,
+              "job": true,
+              "sport": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 8,
+              "dest": 3,
+              "dport": 4,
+              "group": 5,
+              "instance": 6,
+              "job": 7,
+              "sport": 2,
+              "src": 1
+            },
+            "renameByName": {
+              "Value": "data",
+              "dport": "",
+              "sport": "src port"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false,
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "local_ip"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "10.0.5.10": {
+                        "index": 3,
+                        "text": "Synology"
+                      },
+                      "10.0.5.11": {
+                        "index": 4,
+                        "text": "MeLe-Prox"
+                      },
+                      "10.0.5.2": {
+                        "index": 0,
+                        "text": "Firewalla"
+                      },
+                      "10.0.5.220": {
+                        "index": 5,
+                        "text": "LivingRoom-CAM"
+                      },
+                      "10.0.5.221": {
+                        "index": 6,
+                        "text": "AI-CAM"
+                      },
+                      "10.0.5.222": {
+                        "index": 7,
+                        "text": "EI-CAM"
+                      },
+                      "10.0.5.224": {
+                        "index": 8,
+                        "text": "ChromeCast"
+                      },
+                      "10.0.5.226": {
+                        "index": 9,
+                        "text": "Pixel-7"
+                      },
+                      "10.0.5.230": {
+                        "index": 10,
+                        "text": "TasmotaPC"
+                      },
+                      "10.0.5.231": {
+                        "index": 11,
+                        "text": "TasmotaOL3"
+                      },
+                      "10.0.5.232": {
+                        "index": 12,
+                        "text": "TasmotaOL1"
+                      },
+                      "10.0.5.233": {
+                        "index": 13,
+                        "text": "TasmotaOL2"
+                      },
+                      "10.0.5.234": {
+                        "index": 14,
+                        "text": "Ben Note10"
+                      },
+                      "10.0.5.239": {
+                        "index": 15,
+                        "text": "SurfacePro4"
+                      },
+                      "10.0.5.249": {
+                        "index": 16,
+                        "text": "BKF-ISAI"
+                      },
+                      "10.0.5.5": {
+                        "index": 1,
+                        "text": "Home Server"
+                      },
+                      "10.0.5.6": {
+                        "index": 2,
+                        "text": "LVN-Prox"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "other_ip"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "Search ARIN",
+                    "url": "https://www.abuseipdb.com/whois/${__data.fields.dest}"
+                  }
+                ]
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "146.75.94.73": {
+                        "index": 13,
+                        "text": "fastly.com"
+                      },
+                      "166.205.110.129": {
+                        "index": 6,
+                        "text": "mobile-166-205-110-129.mycingular.net"
+                      },
+                      "35.190.22.22": {
+                        "index": 11,
+                        "text": "22.22.190.35.bc.googleusercontent.com"
+                      },
+                      "44.196.175.70": {
+                        "index": 12,
+                        "text": "ec2-44-196-175-70.compute-1.amazonaws.com"
+                      },
+                      "52.182.141.63": {
+                        "index": 10,
+                        "text": "self.events.data.microsoft.com"
+                      },
+                      "52.85.193.246": {
+                        "index": 9,
+                        "text": "server-52-85-193-246.lax50.r.cloudfront.net"
+                      },
+                      "66.23.204.162": {
+                        "index": 5,
+                        "text": "mx5.homeassurednow.com"
+                      },
+                      "74.125.137.188": {
+                        "index": 4,
+                        "text": "dy-in-f188.1e100.net"
+                      },
+                      "74.125.157.106": {
+                        "index": 8,
+                        "text": "lax17s48-in-f10.1e100.net"
+                      },
+                      "8.252.185.124": {
+                        "index": 7,
+                        "text": "level3.com"
+                      },
+                      "8.8.8.8": {
+                        "index": 2,
+                        "text": "DNS.Google.com"
+                      },
+                      "94.140.14.15": {
+                        "index": 1,
+                        "text": "dns-family.adguard.com"
+                      },
+                      "96.16.55.132": {
+                        "index": 3,
+                        "text": "deploy.static.akamaitechnologies.com"
+                      },
+                      "96.43.82.113": {
+                        "index": 0,
+                        "text": "Benisai.com"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "detected_protocol_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 182
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 200
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "local_mac"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 172
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "host_server_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 246
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "client_sni"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 260
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 94
+      },
+      "id": 218,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Time"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "router_netify_traffic{other_ip!=\"10.0.5.1\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "legendFormat": "Dest {{dest}} ->  SRC {{src}}",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": "Netify Traffic",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Value": true,
+              "__name__": true,
+              "client_sni": true,
+              "group": true,
+              "http": true,
+              "instance": true,
+              "job": true,
+              "local_ip": false,
+              "local_mac": true,
+              "local_port": true,
+              "user_agent": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 15,
+              "__name__": 3,
+              "client_sni": 4,
+              "detected_protocol_name": 16,
+              "group": 5,
+              "host_server_name": 6,
+              "http": 13,
+              "instance": 7,
+              "interface": 1,
+              "job": 8,
+              "local_ip": 2,
+              "local_mac": 9,
+              "local_port": 10,
+              "other_ip": 11,
+              "other_port": 12,
+              "user_agent": 14
+            },
+            "renameByName": {
+              "Time": "",
+              "__name__": "",
+              "interface": "",
+              "local_ip": ""
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false,
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decmbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 101
+      },
+      "id": 214,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "router_new_device{}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "intervalFactor": 1,
+          "legendFormat": "Dest {{dest}} ->  SRC {{src}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "New Devices Connected Last 24hrs",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "device": false,
+              "group": true,
+              "instance": true,
+              "job": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "date": "Date Connected",
+              "device": "Devices",
+              "ip": "IP",
+              "mac": "MAC"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "1.1.1.1",
+                  "10.0.5.1",
+                  "10.0.5.10",
+                  "10.0.5.110",
+                  "10.0.5.111",
+                  "10.0.5.112",
+                  "10.0.5.113",
+                  "10.0.5.120",
+                  "10.0.5.131",
+                  "10.0.5.143",
+                  "10.0.5.144",
+                  "10.0.5.203",
+                  "10.0.5.204",
+                  "10.0.5.238",
+                  "10.0.5.245",
+                  "10.0.5.255",
+                  "10.0.5.5",
+                  "10.184.110.4",
+                  "10.98.220.151",
+                  "100.21.136.224",
+                  "102.129.145.5",
+                  "102.129.145.9",
+                  "102.129.152.2",
+                  "102.129.152.3",
+                  "102.129.153.8",
+                  "102.129.232.189",
+                  "102.129.232.3",
+                  "102.129.232.51",
+                  "102.129.252.97",
+                  "102.165.16.2",
+                  "103.100.31.24",
+                  "104.106.38.96",
+                  "104.114.76.33",
+                  "104.114.76.34",
+                  "104.114.76.43",
+                  "104.114.76.48",
+                  "104.129.195.107",
+                  "104.129.197.67",
+                  "104.129.198.169",
+                  "104.129.198.73",
+                  "104.18.1.236",
+                  "104.237.62.212",
+                  "104.244.42.136",
+                  "104.244.43.131",
+                  "104.46.162.226",
+                  "107.122.31.21",
+                  "107.122.31.31",
+                  "12.167.151.1",
+                  "13.107.42.16",
+                  "13.107.5.93",
+                  "13.225.142.125",
+                  "13.225.142.79",
+                  "13.249.85.241",
+                  "13.249.85.86",
+                  "13.249.85.98",
+                  "13.249.90.38",
+                  "13.33.62.206",
+                  "13.33.62.249",
+                  "13.89.179.10",
+                  "130.35.104.178",
+                  "138.199.10.1",
+                  "138.199.18.129",
+                  "138.199.24.1",
+                  "138.199.28.246",
+                  "138.199.30.149",
+                  "138.199.30.150",
+                  "138.199.39.1",
+                  "138.199.54.33",
+                  "138.199.54.49",
+                  "138.199.59.193",
+                  "138.199.59.33",
+                  "140.228.21.7",
+                  "140.228.21.9",
+                  "140.228.24.4",
+                  "140.82.113.26",
+                  "142.250.101.156",
+                  "142.250.101.188",
+                  "142.250.141.188",
+                  "142.250.176.1",
+                  "142.250.176.10",
+                  "142.250.176.14",
+                  "142.250.176.2",
+                  "142.250.188.225",
+                  "142.250.188.226",
+                  "142.250.188.234",
+                  "142.250.188.238",
+                  "142.250.189.1",
+                  "142.250.189.10",
+                  "142.250.189.14",
+                  "142.250.189.3",
+                  "142.250.189.4",
+                  "142.250.190.42",
+                  "142.250.190.74",
+                  "142.250.191.170",
+                  "142.250.217.129",
+                  "142.250.217.131",
+                  "142.250.217.132",
+                  "142.250.217.138",
+                  "142.250.217.142",
+                  "142.250.68.1",
+                  "142.250.68.106",
+                  "142.250.68.110",
+                  "142.250.68.14",
+                  "142.250.68.33",
+                  "142.250.68.35",
+                  "142.250.68.46",
+                  "142.250.68.65",
+                  "142.250.68.67",
+                  "142.250.68.78",
+                  "142.250.68.8",
+                  "142.250.68.97",
+                  "142.250.68.99",
+                  "142.250.72.129",
+                  "142.250.72.132",
+                  "142.250.72.138",
+                  "142.250.72.142",
+                  "142.250.72.161",
+                  "142.250.72.170",
+                  "142.250.72.174",
+                  "142.250.72.225",
+                  "142.250.72.234",
+                  "142.251.2.188",
+                  "142.251.32.10",
+                  "142.251.40.33",
+                  "142.251.40.42",
+                  "142.251.40.46",
+                  "143.244.37.1",
+                  "143.244.37.129",
+                  "143.244.37.60",
+                  "143.244.44.60",
+                  "143.244.52.1",
+                  "143.244.54.119",
+                  "146.70.10.15",
+                  "146.70.10.28",
+                  "146.70.10.53",
+                  "146.70.102.2",
+                  "146.70.11.15",
+                  "146.70.11.28",
+                  "146.70.15.17",
+                  "146.70.15.34",
+                  "146.70.38.22",
+                  "146.70.38.42",
+                  "146.70.38.75",
+                  "146.70.59.2",
+                  "146.70.59.35",
+                  "146.70.65.130",
+                  "146.70.65.143",
+                  "146.70.8.130",
+                  "146.70.9.28",
+                  "146.70.9.41",
+                  "146.70.98.18",
+                  "146.75.92.159",
+                  "146.75.94.73",
+                  "147.135.36.150",
+                  "147.160.179.64",
+                  "147.160.180.33",
+                  "147.160.181.32",
+                  "147.160.182.32",
+                  "149.28.71.192",
+                  "149.36.49.129",
+                  "149.57.16.1",
+                  "149.57.16.129",
+                  "149.57.16.161",
+                  "149.57.16.33",
+                  "149.57.29.1",
+                  "149.57.29.129",
+                  "149.57.29.160",
+                  "151.101.1.140",
+                  "151.101.129.140",
+                  "151.101.193.140",
+                  "151.101.193.16",
+                  "151.101.2.114",
+                  "151.101.26.73",
+                  "151.101.3.9",
+                  "151.139.128.10",
+                  "152.199.4.33",
+                  "154.16.192.2",
+                  "154.16.81.7",
+                  "154.21.20.157",
+                  "154.21.20.188",
+                  "154.21.20.95",
+                  "154.21.21.131",
+                  "154.21.21.35",
+                  "154.47.20.129",
+                  "154.47.20.160",
+                  "154.47.20.60",
+                  "154.47.30.31",
+                  "154.47.30.65",
+                  "154.6.12.130",
+                  "154.6.12.2",
+                  "154.6.13.130",
+                  "154.6.13.2",
+                  "154.6.130.129",
+                  "154.6.147.6",
+                  "154.6.147.8",
+                  "154.6.151.6",
+                  "154.6.151.8",
+                  "154.6.80.130",
+                  "154.6.80.2",
+                  "154.6.81.130",
+                  "154.6.81.2",
+                  "154.6.82.130",
+                  "154.6.82.2",
+                  "154.6.83.130",
+                  "154.6.83.2",
+                  "154.6.84.2",
+                  "154.6.85.130",
+                  "154.6.85.2",
+                  "154.6.86.130",
+                  "154.6.86.2",
+                  "154.6.87.2",
+                  "154.6.88.130",
+                  "154.6.88.2",
+                  "154.6.89.130",
+                  "154.6.89.2",
+                  "154.6.90.130",
+                  "154.6.90.2",
+                  "154.6.91.130",
+                  "154.6.91.2",
+                  "154.6.92.130",
+                  "154.6.92.2",
+                  "154.6.93.130",
+                  "154.6.93.2",
+                  "154.6.94.130",
+                  "154.6.94.2",
+                  "154.6.95.130",
+                  "154.6.95.2",
+                  "156.146.39.1",
+                  "156.146.41.1",
+                  "156.146.41.65",
+                  "156.146.47.11",
+                  "156.146.57.171",
+                  "156.146.57.38",
+                  "156.146.60.1",
+                  "156.146.60.129",
+                  "156.146.62.129",
+                  "156.146.62.193",
+                  "156.146.63.134",
+                  "157.240.11.17",
+                  "157.240.11.22",
+                  "157.240.11.32",
+                  "157.240.11.35",
+                  "157.240.11.52",
+                  "157.240.11.54",
+                  "157.240.22.11",
+                  "157.240.22.12",
+                  "157.240.22.19",
+                  "157.240.22.25",
+                  "157.240.22.53",
+                  "157.240.22.63",
+                  "157.240.229.17",
+                  "157.240.229.18",
+                  "157.240.229.20",
+                  "157.240.249.13",
+                  "162.159.200.1",
+                  "162.159.200.123",
+                  "162.248.241.94",
+                  "165.225.26.22",
+                  "165.231.182.109",
+                  "165.231.182.15",
+                  "165.231.182.83",
+                  "166.0.218.129",
+                  "166.216.153.131",
+                  "169.150.227.161",
+                  "169.150.248.210",
+                  "17.120.252.48",
+                  "17.120.252.51",
+                  "17.248.174.16",
+                  "17.248.174.19",
+                  "17.248.188.104",
+                  "17.248.188.108",
+                  "17.248.188.142",
+                  "17.248.188.144",
+                  "17.248.188.164",
+                  "17.248.188.177",
+                  "17.248.188.71",
+                  "17.248.188.75",
+                  "17.248.188.81",
+                  "17.248.190.200",
+                  "17.248.190.79",
+                  "17.253.16.125",
+                  "17.253.26.125",
+                  "17.253.26.253",
+                  "17.253.27.201",
+                  "17.253.27.202",
+                  "17.253.27.205",
+                  "17.253.27.206",
+                  "17.253.4.125",
+                  "17.253.49.202",
+                  "17.57.144.118",
+                  "17.57.144.119",
+                  "17.57.144.121",
+                  "17.57.144.25",
+                  "17.57.152.23",
+                  "17.57.172.16",
+                  "171.66.97.126",
+                  "172.107.198.122",
+                  "172.16.209.7",
+                  "172.217.14.110",
+                  "172.217.14.74",
+                  "172.217.14.78",
+                  "172.217.14.97",
+                  "172.217.2.46",
+                  "172.217.4.74",
+                  "172.217.5.10",
+                  "172.83.47.71",
+                  "172.98.80.130",
+                  "172.98.87.130",
+                  "173.222.53.167",
+                  "173.223.163.203",
+                  "173.231.16.76",
+                  "173.239.226.129",
+                  "173.239.226.190",
+                  "173.239.232.2",
+                  "176.125.228.14",
+                  "176.125.228.2",
+                  "176.125.228.27",
+                  "176.125.229.2",
+                  "176.125.230.16",
+                  "176.125.230.2",
+                  "176.125.230.29",
+                  "178.175.128.34",
+                  "178.175.129.34",
+                  "18.154.123.65",
+                  "18.154.147.196",
+                  "18.154.206.39",
+                  "18.164.153.196",
+                  "18.164.161.233",
+                  "18.164.173.222",
+                  "18.213.131.20",
+                  "18.220.227.12",
+                  "18.65.18.202",
+                  "18.65.3.127",
+                  "18.65.3.48",
+                  "181.214.153.9",
+                  "181.214.164.190",
+                  "181.214.164.51",
+                  "181.214.165.51",
+                  "181.214.218.3",
+                  "181.214.218.4",
+                  "181.214.218.5",
+                  "181.214.93.191",
+                  "181.214.93.97",
+                  "181.215.176.33",
+                  "181.41.202.3",
+                  "181.41.206.13",
+                  "181.41.206.4",
+                  "181.41.206.8",
+                  "184.170.241.2",
+                  "184.170.241.66",
+                  "184.170.242.199",
+                  "184.28.78.141",
+                  "184.28.78.163",
+                  "184.28.98.117",
+                  "184.30.225.216",
+                  "185.113.25.54",
+                  "185.125.190.17",
+                  "185.125.190.49",
+                  "185.125.190.57",
+                  "185.164.35.73",
+                  "185.164.35.74",
+                  "185.189.114.102",
+                  "185.189.114.98",
+                  "185.199.108.133",
+                  "185.199.110.133",
+                  "185.199.111.133",
+                  "185.225.28.114",
+                  "185.225.28.130",
+                  "185.253.160.2",
+                  "185.253.162.15",
+                  "185.253.162.2",
+                  "185.94.190.194",
+                  "188.126.89.130",
+                  "188.126.89.2",
+                  "188.126.89.34",
+                  "188.126.89.66",
+                  "188.126.94.162",
+                  "188.126.94.34",
+                  "188.126.94.98",
+                  "188.213.34.138",
+                  "188.213.34.82",
+                  "188.213.34.98",
+                  "188.214.106.162",
+                  "188.214.106.66",
+                  "188.214.106.82",
+                  "188.214.122.114",
+                  "188.214.122.98",
+                  "188.214.125.130",
+                  "188.214.125.146",
+                  "188.214.125.178",
+                  "188.214.152.66",
+                  "188.214.152.82",
+                  "188.215.235.114",
+                  "188.215.235.98",
+                  "188.241.177.106",
+                  "188.241.177.50",
+                  "188.241.80.29",
+                  "188.241.80.43",
+                  "188.241.80.56",
+                  "188.241.82.15",
+                  "188.241.82.2",
+                  "188.241.82.28",
+                  "191.101.157.120",
+                  "191.101.157.150",
+                  "191.101.157.180",
+                  "191.101.210.4",
+                  "191.101.210.7",
+                  "191.101.217.2",
+                  "191.101.31.3",
+                  "191.101.61.9",
+                  "191.96.106.7",
+                  "191.96.168.3",
+                  "191.96.168.6",
+                  "191.96.185.2",
+                  "191.96.185.7",
+                  "191.96.185.9",
+                  "191.96.227.5",
+                  "191.96.36.154",
+                  "191.96.36.185",
+                  "191.96.67.220",
+                  "191.96.67.91",
+                  "192.0.0.6",
+                  "192.142.226.142",
+                  "192.142.227.13",
+                  "192.225.158.2",
+                  "192.229.163.25",
+                  "192.229.173.16",
+                  "192.30.255.164",
+                  "192.30.255.165",
+                  "192.99.160.133",
+                  "192.99.4.226",
+                  "192.99.8.134",
+                  "193.56.252.210",
+                  "193.56.252.242",
+                  "193.56.252.34",
+                  "194.32.122.60",
+                  "194.32.122.75",
+                  "195.146.6.50",
+                  "195.146.6.70",
+                  "195.181.167.33",
+                  "195.80.150.130",
+                  "195.80.150.178",
+                  "196.196.53.130",
+                  "196.196.53.2",
+                  "196.196.53.50",
+                  "196.196.53.82",
+                  "196.245.54.130",
+                  "196.245.54.160",
+                  "199.232.194.114",
+                  "199.232.94.73",
+                  "20.190.151.9",
+                  "202.60.86.2",
+                  "202.60.86.66",
+                  "207.38.90.8",
+                  "208.67.222.222",
+                  "208.78.42.159",
+                  "209.54.183.75",
+                  "209.73.190.12",
+                  "212.102.35.1",
+                  "212.102.36.1",
+                  "212.102.38.212",
+                  "212.102.39.130",
+                  "212.102.39.65",
+                  "212.102.49.1",
+                  "212.102.49.185",
+                  "212.102.52.1",
+                  "212.102.53.12",
+                  "212.102.57.1",
+                  "216.218.192.202",
+                  "216.239.35.0",
+                  "216.239.35.12",
+                  "216.239.35.4",
+                  "216.239.35.8",
+                  "216.24.213.2",
+                  "224.0.0.1",
+                  "224.0.0.22",
+                  "224.0.0.251",
+                  "23.14.132.149",
+                  "23.15.136.53",
+                  "23.15.196.26",
+                  "23.15.196.43",
+                  "23.15.241.26",
+                  "23.15.241.35",
+                  "23.15.241.48",
+                  "23.15.241.66",
+                  "23.196.44.47",
+                  "23.198.220.9",
+                  "23.204.147.200",
+                  "23.204.147.201",
+                  "23.204.147.202",
+                  "23.204.147.225",
+                  "23.204.147.227",
+                  "23.204.147.234",
+                  "23.204.147.235",
+                  "23.204.147.241",
+                  "23.204.147.242",
+                  "23.204.147.248",
+                  "23.205.155.24",
+                  "23.212.73.148",
+                  "23.215.101.18",
+                  "23.215.101.26",
+                  "23.219.38.27",
+                  "23.219.38.32",
+                  "23.219.38.40",
+                  "23.219.38.41",
+                  "23.219.38.66",
+                  "23.223.198.210",
+                  "23.223.198.216",
+                  "23.223.198.218",
+                  "23.223.198.224",
+                  "23.223.198.226",
+                  "23.223.198.232",
+                  "23.223.199.168",
+                  "23.223.199.169",
+                  "23.223.199.177",
+                  "23.223.199.178",
+                  "23.223.199.179",
+                  "23.223.199.184",
+                  "23.223.199.185",
+                  "23.223.199.186",
+                  "23.246.15.179",
+                  "23.246.15.191",
+                  "23.32.1.201",
+                  "23.43.124.211",
+                  "23.45.173.136",
+                  "23.45.38.46",
+                  "23.5.240.169",
+                  "23.56.0.47",
+                  "23.66.3.133",
+                  "23.66.3.136",
+                  "23.66.3.139",
+                  "23.66.3.141",
+                  "23.66.3.142",
+                  "23.66.3.143",
+                  "23.66.3.144",
+                  "23.66.3.145",
+                  "23.66.3.146",
+                  "23.66.3.147",
+                  "23.66.3.148",
+                  "23.66.3.149",
+                  "23.66.3.150",
+                  "23.66.3.152",
+                  "23.66.3.153",
+                  "23.66.3.71",
+                  "23.66.3.74",
+                  "23.66.3.78",
+                  "23.66.3.80",
+                  "23.66.3.83",
+                  "23.66.3.90",
+                  "23.72.90.12",
+                  "23.72.90.21",
+                  "23.72.90.69",
+                  "23.72.90.81",
+                  "23.72.90.83",
+                  "23.72.90.85",
+                  "23.72.90.86",
+                  "23.72.90.88",
+                  "23.82.72.130",
+                  "23.82.75.184",
+                  "255.255.255.255",
+                  "3.215.216.203",
+                  "3.216.34.172",
+                  "3.81.123.71",
+                  "31.13.70.1",
+                  "31.13.70.23",
+                  "31.13.70.3",
+                  "31.13.70.52",
+                  "31.171.154.114",
+                  "31.171.154.130",
+                  "31.171.154.66",
+                  "34.120.177.193",
+                  "34.120.195.249",
+                  "34.122.121.32",
+                  "34.202.64.211",
+                  "34.205.13.154",
+                  "34.208.222.177",
+                  "34.210.92.132",
+                  "34.213.114.77",
+                  "34.213.123.137",
+                  "34.213.13.161",
+                  "34.213.247.100",
+                  "34.214.209.123",
+                  "34.215.229.252",
+                  "34.215.41.107",
+                  "34.218.73.158",
+                  "34.223.115.196",
+                  "34.223.137.226",
+                  "34.223.162.116",
+                  "35.160.19.48",
+                  "35.165.193.116",
+                  "35.165.242.126",
+                  "35.165.73.211",
+                  "35.190.22.22",
+                  "35.190.43.134",
+                  "35.190.54.210",
+                  "35.224.170.84",
+                  "35.232.111.17",
+                  "35.241.16.93",
+                  "35.244.164.0",
+                  "35.245.142.17",
+                  "35.81.252.226",
+                  "35.82.246.118",
+                  "35.83.130.12",
+                  "37.120.221.210",
+                  "37.120.221.82",
+                  "37.19.198.91",
+                  "37.19.221.28",
+                  "37.46.113.153",
+                  "37.46.113.191",
+                  "37.46.115.15",
+                  "38.70.11.130",
+                  "38.70.11.162",
+                  "38.70.11.34",
+                  "40.126.26.133",
+                  "40.64.128.224",
+                  "40.97.221.114",
+                  "40.97.222.194",
+                  "43.250.205.178",
+                  "43.250.205.57",
+                  "43.250.205.59",
+                  "43.250.207.82",
+                  "44.190.40.123",
+                  "44.197.221.236",
+                  "44.202.21.17",
+                  "44.202.21.21",
+                  "44.202.21.48",
+                  "44.202.21.8",
+                  "44.205.64.79",
+                  "44.224.106.12",
+                  "44.224.153.9",
+                  "44.225.17.85",
+                  "44.228.58.54",
+                  "44.229.178.197",
+                  "44.235.104.247",
+                  "44.235.227.192",
+                  "44.235.65.165",
+                  "44.236.202.228",
+                  "44.236.57.166",
+                  "44.237.155.183",
+                  "44.238.1.62",
+                  "44.239.200.226",
+                  "44.240.26.152",
+                  "44.240.37.149",
+                  "45.133.172.194",
+                  "45.133.172.34",
+                  "45.133.173.2",
+                  "45.133.193.34",
+                  "45.133.193.82",
+                  "45.57.100.130",
+                  "45.57.100.148",
+                  "45.57.100.168",
+                  "45.57.100.170",
+                  "45.57.100.171",
+                  "45.57.101.133",
+                  "45.57.101.138",
+                  "45.57.101.147",
+                  "45.57.101.156",
+                  "45.57.101.160",
+                  "45.57.101.170",
+                  "45.57.40.1",
+                  "45.57.41.1",
+                  "45.57.45.167",
+                  "45.57.90.1",
+                  "45.79.40.130",
+                  "45.9.250.46",
+                  "45.9.250.62",
+                  "46.246.106.34",
+                  "46.246.122.162",
+                  "46.246.122.34",
+                  "46.246.122.66",
+                  "46.246.3.106",
+                  "46.246.3.220",
+                  "46.246.3.4",
+                  "46.246.3.71",
+                  "51.104.15.252",
+                  "52.109.13.63",
+                  "52.109.88.33",
+                  "52.11.218.199",
+                  "52.112.113.23",
+                  "52.112.115.26",
+                  "52.112.115.28",
+                  "52.112.95.94",
+                  "52.113.194.132",
+                  "52.113.207.43",
+                  "52.114.128.205",
+                  "52.114.133.158",
+                  "52.114.133.204",
+                  "52.114.142.105",
+                  "52.114.142.198",
+                  "52.114.142.199",
+                  "52.114.142.213",
+                  "52.114.144.100",
+                  "52.114.144.101",
+                  "52.114.159.61",
+                  "52.115.153.105",
+                  "52.115.153.232",
+                  "52.115.153.233",
+                  "52.115.153.35",
+                  "52.115.171.52",
+                  "52.115.182.221",
+                  "52.115.221.21",
+                  "52.115.63.106",
+                  "52.115.63.83",
+                  "52.115.84.100",
+                  "52.115.84.109",
+                  "52.115.84.110",
+                  "52.115.84.137",
+                  "52.115.84.182",
+                  "52.115.92.8",
+                  "52.13.68.104",
+                  "52.206.150.125",
+                  "52.218.243.9",
+                  "52.24.142.4",
+                  "52.26.206.111",
+                  "52.27.126.66",
+                  "52.35.192.142",
+                  "52.37.119.196",
+                  "52.39.44.36",
+                  "52.40.130.66",
+                  "52.40.134.57",
+                  "52.40.198.33",
+                  "52.40.229.28",
+                  "52.40.85.113",
+                  "52.41.190.83",
+                  "52.42.232.148",
+                  "52.42.93.69",
+                  "52.43.154.191",
+                  "52.43.64.149",
+                  "52.46.154.73",
+                  "52.53.68.155",
+                  "52.84.189.231",
+                  "52.96.10.82",
+                  "52.96.110.66",
+                  "52.96.110.82",
+                  "52.96.165.66",
+                  "52.96.166.18",
+                  "52.96.166.2",
+                  "52.96.166.210",
+                  "52.96.166.226",
+                  "52.96.18.2",
+                  "52.96.187.226",
+                  "52.96.188.130",
+                  "52.96.228.130",
+                  "52.96.26.162",
+                  "52.96.3.178",
+                  "52.96.39.162",
+                  "52.96.42.98",
+                  "54.148.130.143",
+                  "54.148.207.232",
+                  "54.184.93.203",
+                  "54.189.33.245",
+                  "54.191.241.129",
+                  "54.192.81.26",
+                  "54.192.81.94",
+                  "54.201.231.134",
+                  "54.201.64.147",
+                  "54.205.83.108",
+                  "54.212.191.24",
+                  "54.213.71.90",
+                  "54.219.149.118",
+                  "54.243.168.148",
+                  "54.68.227.83",
+                  "54.69.195.15",
+                  "62.133.47.2",
+                  "64.185.227.156",
+                  "64.251.10.152",
+                  "66.115.145.199",
+                  "66.115.165.135",
+                  "66.23.204.162",
+                  "67.150.26.230",
+                  "67.195.228.147",
+                  "69.147.88.7",
+                  "71.18.6.225",
+                  "72.246.156.22",
+                  "72.247.4.53",
+                  "74.125.137.188",
+                  "74.125.137.192",
+                  "74.125.137.92",
+                  "74.6.160.138",
+                  "77.81.142.118",
+                  "77.81.142.229",
+                  "77.81.142.60",
+                  "8.18.18.245",
+                  "8.251.231.124",
+                  "8.251.232.122",
+                  "8.252.72.252",
+                  "8.253.130.250",
+                  "8.253.95.112",
+                  "8.8.4.4",
+                  "8.8.8.8",
+                  "84.252.92.2",
+                  "84.252.93.2",
+                  "86.107.104.226",
+                  "86.107.104.241",
+                  "89.187.168.1",
+                  "9.9.9.9",
+                  "91.189.91.157",
+                  "91.189.91.48",
+                  "91.189.91.49",
+                  "91.90.120.130",
+                  "91.90.120.145",
+                  "91.90.120.160",
+                  "91.90.122.2",
+                  "91.90.122.20",
+                  "91.90.124.2",
+                  "91.90.124.20",
+                  "91.90.126.2",
+                  "91.90.126.35",
+                  "91.90.126.65",
+                  "94.140.14.15",
+                  "94.156.14.1",
+                  "95.181.232.2",
+                  "95.181.232.27",
+                  "95.181.233.14",
+                  "95.181.233.2",
+                  "95.181.234.14",
+                  "95.181.234.2",
+                  "95.181.234.26",
+                  "95.181.235.145",
+                  "95.181.235.2",
+                  "95.181.236.14",
+                  "95.181.236.2",
+                  "95.181.237.14",
+                  "95.181.237.2",
+                  "95.181.237.38",
+                  "95.181.238.2",
+                  "95.181.238.50",
+                  "95.181.238.87",
+                  "95.181.239.2",
+                  "98.137.11.161",
+                  "98.137.27.103",
+                  "99.84.174.246",
+                  "94.140.14.14"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 106
+      },
+      "id": 194,
+      "options": {
+        "displayLabels": [
+          "name"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (dest) (count_over_time(node_nat_traffic{dport!=\"53\",dport!=\"9100\"}[$__range]))",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "{{dest}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Dest IP Count ",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 106
+      },
+      "id": 189,
+      "options": {
+        "displayLabels": [
+          "name"
+        ],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (dport) (count_over_time(node_nat_traffic{dport!=\"53\",dport!=\"9100\"}[$__range]))",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "intervalFactor": 1,
+          "legendFormat": "Port {{dport}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Dest Port Count ",
+      "transformations": [],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS-OWRT}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 113
+      },
+      "id": 217,
+      "options": {
+        "displayMode": "basic",
+        "minVizHeight": 12,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "9.3.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "increase(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_tx\"}[2h])",
+          "hide": true,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "count by (dest) (count_over_time(node_nat_traffic{dport!=\"53\",dport!=\"9100\"}[1h]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{type}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Top IP Last 1h",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "source": "Value"
+          }
+        }
+      ],
+      "type": "bargauge"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 37,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "OpenWRT-Dashboard",
+  "uid": "benisai",
+  "version": 258,
+  "weekStart": ""
+}
