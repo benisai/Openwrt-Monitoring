@@ -25,7 +25,3 @@ ps | grep 7150 | grep -v grep | awk '{print $1}' | xargs kill
 rm /tmp/netify.out
 sleep 1000 | nc 10.0.5.1 7150 | grep established | tr -d '"' | sed 's/:/=/g; s/,/ /g'   >> /tmp/netify.out &
 
-sleep 1
-####PacketLoss
-packet=$(ping -c 40 8.8.8.8 | grep "packet loss" | awk -F ',' '{print $3}' | awk '{print $1}' | sed 's/%//g')
-echo "$packet" > /tmp/packetloss.out
