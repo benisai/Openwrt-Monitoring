@@ -51,6 +51,7 @@ local function scrape()
     
     local labels = { detected_protocol_name = detected_protocol_name, host_server_name = host_server_name, local_ip = local_ip, local_mac = local_mac, local_port = local_port, other_ip = other_ip, other_port = other_port, client_sni = client_sni, http = http, url = url, user_agent = user_agent, interface = interface }
     router_netify(labels, bytes )
+    os.remove("/tmp/netify.out")
   end
 end
 
