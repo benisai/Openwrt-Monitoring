@@ -56,6 +56,7 @@ EOF
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/speedtest.sh -O /usr/bin/speedtest.sh && chmod +x /usr/bin/speedtest.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/15-second-script.sh -O /usr/bin/15-second-script.sh && chmod +x /usr/bin/15-second-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/1-minute-script.sh -O /usr/bin/1-minute-script.sh && chmod +x /usr/bin/1-minute-script.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/1-hour-script.sh -O /usr/bin/1-hour-script.sh && chmod +x /usr/bin/1-hour-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/5-minute-script.sh -O /usr/bin/5-minute-script.sh && chmod +x /usr/bin/5-minute-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/12am-script.sh -O /usr/bin/12am-script.sh && chmod +x /usr/bin/12am-script.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/99-new-device -O /etc/hotplug.d/dhcp/99-new-device 
