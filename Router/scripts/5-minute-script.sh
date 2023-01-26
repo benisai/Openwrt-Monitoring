@@ -1,6 +1,6 @@
 #!/bin/sh
 
-service netifyd restart
+#service netifyd restart
 
 ###-----Restart Netifyd as it uses alot of memory---------###
 #PID=`ps | grep "netifyd" | grep -v "grep" | awk '{print $1}'`
