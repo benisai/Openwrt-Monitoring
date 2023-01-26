@@ -102,6 +102,7 @@ EOF
    crontab -l | { cat; echo "0 */8 * * * /usr/bin/speedtest.sh"; } | crontab -
    crontab -l | { cat; echo "10 6 * * * rm -rf /tmp/speedtest.out"; } | crontab -
    crontab -l | { cat; echo "1 0 * * * /usr/bin/12am-script.sh"; } | crontab -
+   crontab -l | { cat; echo "0 * * * * /usr/bin/1-hour-script.sh"; } | crontab -
    crontab -l | { cat; echo "*/1 * * * * /usr/bin/1-minute-script.sh"; } | crontab -
    crontab -l | { cat; echo "*/5 * * * * /usr/bin/5-minute-script.sh"; } | crontab -
    crontab -l | { cat; echo "* * * * * /usr/bin/15-second-script.sh"; } | crontab -
