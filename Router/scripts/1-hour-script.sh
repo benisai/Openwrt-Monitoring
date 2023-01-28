@@ -1,6 +1,6 @@
 #!/bin/sh
 
-service netifyd restart
+#service netifyd restart
 
 PID=`ps | grep "netifyd" | grep -v "grep" | awk '{print $1}'`
 
