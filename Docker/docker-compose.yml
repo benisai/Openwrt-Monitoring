@@ -80,16 +80,6 @@ services:
       - server_port=9617
       - interval=10s
       - log_limit=10000
-#####################################################################################      
-  speedtest-exporter:
-    image: billimek/prometheus-speedtest-exporter:latest
-    container_name: speedtest
-    #environment:
-    #  - SPEEDTEST_PORT=<speedtest-port> #optional
-    #  - SPEEDTEST_SERVER=<server-id> #optional
-    ports:
-      - 6100:9469
-    restart: unless-stopped
 
 #####################################################################################
   loki:
@@ -127,6 +117,13 @@ services:
     command: -config.file=/etc/promtail/promtail-config.yaml
     networks:
       - internal
+#####################################################################################      
+  #speedtest-exporter:
+  #  image: billimek/prometheus-speedtest-exporter:latest
+  #  container_name: speedtest
+  #  ports:
+  #    - 6100:9469
+  #  restart: unless-stopped
 #####################################################################################
 
 networks:
