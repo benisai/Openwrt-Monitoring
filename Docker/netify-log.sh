@@ -7,7 +7,7 @@ if test -d /proc/"$PID"/; then
     kill -9 $PID 1>&2
 fi
 
-#########################--Start NetCat--#########################
+#########################--Start NetCat--#####################################
 PIDS=`ps -eaf | grep "10.0.5.1" | grep -v grep | awk '{print $2}'`
 if [ -z "$PIDS" ]; then
   echo "Netify Netcat Process is Not Running." 1>&2
