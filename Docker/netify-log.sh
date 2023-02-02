@@ -18,6 +18,6 @@ if [ -z "$PIDS" ]; then
   exit 1
 else
   for PID in $PIDS; do
-    echo Netify is running,  PID is $PID
+    echo Netify is running,  PID is $PIDS
   done
 fi
