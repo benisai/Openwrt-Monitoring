@@ -9,7 +9,7 @@ scrape_configs:
   - job_name: 'openwrt-collectd'
     scrape_interval: 5s
     static_configs:
-      - targets: ['HomeServer-IP-Address:9103']
+      - targets: ['collectd-exp-home:9103']
         labels:
           group: 'owrt-collectd'
 
