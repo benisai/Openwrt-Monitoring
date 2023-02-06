@@ -1,5 +1,5 @@
 #!/bin/sh
 
-service netifyd restart
+#Not used yet
 
 
