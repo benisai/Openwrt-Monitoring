@@ -38,10 +38,20 @@ EOF
   echo "IPTMon was found, no changes made to DHCP"
  fi
  
+ 
+ 
+ 
 #Changing vnstat backup location to SD Card. 
-#cat << "EOF" >> /etc/vnstat.conf
-#DatabaseDir "/tmp/mountd/disk1_part1/vnstat"
-#EOF
+DIR=/tmp/mountd/disk1_part1
+if [ -d "$DIR" ]; then
+    echo "$DIR directory exists."
+    cat << "EOF" >> /etc/vnstat.conf
+    DatabaseDir "/tmp/mountd/disk1_part1/vnstat"
+    EOF
+    else
+	echo "$DIR directory does not exist."
+fi
+
  
  
  echo 'Installing WrtBWmon'
