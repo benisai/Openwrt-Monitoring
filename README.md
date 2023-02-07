@@ -5,7 +5,7 @@ This project consists of a few applications to help monitor your home router. Yo
 Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported. 
 
 
-A Home Server running Docker to run the following applications. If you do not, I provided a Docker-Compose.Yml file with all the containers needed for the project. 
+A Home Server running Docker to run the following applications. If you do not have the following applications setup, I provided a Docker-Compose.yml file with all the containers needed for the project. 
 
   >Prometheus - Container to scrape and store data.
 
