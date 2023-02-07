@@ -12,7 +12,8 @@ A Home Server running Docker to run the following applications
 
   >Grafana - Container to display the graphs. (you will need to add your Prometheus location as the data source) 
 
-  >AdGuardHome - Container to block Ads/Porn/etc.
+  >AdGuardHome - Container to block Ads/Porn/etc. <br />
+  Note: you will need to free port 53, see this link "https://www.linuxuprising.com/2020/07/ubuntu-how-to-free-up-port-53-used-by.html"
 
   >Prom-Exporters - Container(s) used to export data so prometheus can scrape the data.
 
