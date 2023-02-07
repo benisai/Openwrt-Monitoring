@@ -44,25 +44,6 @@ services:
       - 9103:9103
       - 25826:25826/udp
 #####################################################################################
-#  adguard-home:
-#    image: adguard/adguardhome
-#    container_name: Adguard-Home
-#    restart: always
-#    networks:
-#      - internal
-#    dns:
-#      - 1.1.1.1
-#      - 8.8.8.8
-#    ports:
-#      - '84:80/tcp' #webport
-#      - '53:53/udp' #DNS
-#      - '53:53/tcp' #DNS
-#      - '853:853/tcp'
-#      - '3333:3000/tcp'
-#    volumes:
-#      - './opt:/opt/adguardhome/work'
-#      - './confdir:/opt/adguardhome/conf'
-#####################################################################################
   adguard_exporter:
     image: ebrianne/adguard-exporter:latest
     container_name: agh-exporter-home
@@ -118,13 +99,34 @@ services:
     networks:
       - internal
 #####################################################################################      
-  #speedtest-exporter:
+#  adguard-home:
+#    image: adguard/adguardhome
+#    container_name: Adguard-Home
+#    restart: always
+#    networks:
+#      - internal
+#    dns:
+#      - 1.1.1.1
+#      - 8.8.8.8
+#    ports:
+#      - '84:80/tcp' #webport
+#      - '53:53/udp' #DNS
+#      - '53:53/tcp' #DNS
+#      - '853:853/tcp'
+#      - '3333:3000/tcp'
+#    volumes:
+#      - './opt:/opt/adguardhome/work'
+#      - './confdir:/opt/adguardhome/conf'
+#####################################################################################
+#speedtest-exporter:
   #  image: billimek/prometheus-speedtest-exporter:latest
   #  container_name: speedtest
   #  ports:
   #    - 6100:9469
   #  restart: unless-stopped
 #####################################################################################
+
+
 
 networks:
   internal:
