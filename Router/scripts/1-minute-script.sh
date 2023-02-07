@@ -20,10 +20,13 @@ vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //
 #vnstat --xml |grep -hnr "hour id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g; s/  00/:00/g' | cut -d " " -f2-  > /tmp/houroutput.out
 #vnstat --xml |grep -hnr "fiveminute id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g' | cut -d " " -f2-   > /tmp/fiveoutput.out
 
-#Kill Netify Output and Restart Output
-ps | grep 7150 | grep -v grep | awk '{print $1}' | xargs kill
-rm /tmp/netify.out
-service netifyd restart
-sleep 1000 | nc 10.0.5.1 7150 | grep established | tr -d '"' | sed 's/:/=/g; s/,/ /g'   >> /tmp/netify.out &
+# Restart Netify if dead
+if ! pgrep netifyd
+then /etc/init.d/netifyd restart
+fi
+#ps | grep 7150 | grep -v grep | awk '{print $1}' | xargs kill
+#rm /tmp/netify.out
+#service netifyd restart
+#sleep 1000 | nc 10.0.5.1 7150 | grep established | tr -d '"' | sed 's/:/=/g; s/,/ /g'   >> /tmp/netify.out &
 
 
