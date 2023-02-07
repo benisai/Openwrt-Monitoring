@@ -4,9 +4,9 @@ Openwrt Monitoring via Grafana.
 This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand.
 Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported. 
 
-<br>
 
-A Home Server running Docker to run the following applications
+A Home Server running Docker to run the following applications. If you do not, I provided a Docker-Compose.Yml file with all the containers needed for the project. Please create Docker Network called Internal
+```Sudo docker network create internal```
 
   >Prometheus - Container to scrape and store data.
 
@@ -25,7 +25,7 @@ On the router, the following software will be installed
 
   >Collectd - to monitor ping and export iptmon data 
 
-  >vnstat2 - to monitor wan bandwidth usage
+  >vnstat2 - to monitor monthly WAN Bandwidth usage (12am-Script.sh will check if its the 1st of the month and drop the vnstatdb)
 
   >iptmon - to monitor per device usage
  
