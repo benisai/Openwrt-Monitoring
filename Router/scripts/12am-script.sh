@@ -18,7 +18,7 @@ touch /tmp/new_device.out
 # If its the first of the month, it will drop the interface.
 
 bi=$(date +%d)
-if [ $bi = "05" ]
+if [ $bi = "01" ]
 then
     vnstat --remove -i wlan-sta0 --force
     vnstat --add -i wlan-sta0
