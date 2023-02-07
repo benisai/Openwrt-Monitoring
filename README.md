@@ -5,15 +5,14 @@ This project consists of a few applications to help monitor your home router. Yo
 Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported. 
 
 
-A Home Server running Docker to run the following applications. If you do not, I provided a Docker-Compose.Yml file with all the containers needed for the project. Please create Docker Network called Internal
-```Sudo docker network create internal```
+A Home Server running Docker to run the following applications. If you do not, I provided a Docker-Compose.Yml file with all the containers needed for the project. 
 
   >Prometheus - Container to scrape and store data.
 
   >Grafana - Container to display the graphs. (you will need to add your Prometheus location as the data source) 
 
   >AdGuardHome - Container to block Ads/Porn/etc. <br />
-  Note: you will need to free port 53, see this link "https://www.linuxuprising.com/2020/07/ubuntu-how-to-free-up-port-53-used-by.html"
+  ```Note: you will need to free port 53, see this link "https://www.linuxuprising.com/2020/07/ubuntu-how-to-free-up-port-53-used-by.html"```
 
   >Prom-Exporters - Container(s) used to export data so prometheus can scrape the data.
 
@@ -55,12 +54,15 @@ Clone this repo to your server.
 
 -->NOTE: Make sure to update the prometheus.yml file with your router IP (replace 10.0.5.1 with your Router IP).
 
+Please create Docker Network called Internal
+:~# Sudo docker network create internal
+
 :~# Sudo Docker-Compose.yml up -d
 
-This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
+This Docker-Compose.yml file will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
 
-Login to grafana, add the prometheus datasource and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
-(There are 2 Prometheus datasources, one is for OpenWRT, the other is HOME for AdguardHome. If you do not use AdguardHome, just set both sources to the same Prometheus Source)
+Login to grafana, add the prometheus datasource (I have 2 sources, one for OWRT and the other for AdguardHome, we can use the same datasource if you'd like) and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
+If you do not use AdguardHome, just set both sources to the same Prometheus Source)
 
 Note about the Grafana Dashboard:: You'll find two variables at the top. One for iptimon (hostname) and (srcip) for prometheus metrics. Unfortunately Prometheus exporter does not export via hostname only IP address. And iptimon exports as hostname. You can use the DHCP panel to find the corresponding IP address to hostname. 
 
