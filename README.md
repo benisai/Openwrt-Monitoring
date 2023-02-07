@@ -108,6 +108,7 @@ Clone this repo to your server.
 This will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
 
 Login to grafana, add the prometheus datasource and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
+(There are 2 Prometheus datasources, one is for OpenWRT, the other is HOME for AdguardHome. If you do not use AdguardHome, just set both sources to the same Prometheus Source)
 
 Note about the Grafana Dashboard:: You'll find two variables at the top. One for iptimon (hostname) and (srcip) for prometheus metrics. Unfortunately Prometheus exporter does not export via hostname only IP address. And iptimon exports as hostname. You can use the DHCP panel to find the corresponding IP address to hostname. 
 
