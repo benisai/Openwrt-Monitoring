@@ -6,7 +6,7 @@ Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supp
 
 
 A Home Server running Docker to run the following applications. <br/>
-```Note:  I provided a Docker-Compose.yml file with all the containers needed for the project if you do not have these running already```
+```Note:  I provided a Docker-Compose.yml file with all the containers needed for the project, if you do not have these running already```
 
   >Prometheus - Container to scrape and store data.
 
