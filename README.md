@@ -5,7 +5,7 @@ This project consists of a few applications to help monitor your home router. Yo
 Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported. 
 
 
-A Home Server running Docker to run the following applications. <br/>
+A Home Server running Docker to run the following applications (Scroll down for steps). <br/>
 ```Note:  I provided a Docker-Compose.yml file with all the containers needed for the project, if you do not have these running already```
 <br/>
 
@@ -20,7 +20,7 @@ A Home Server running Docker to run the following applications. <br/>
 
 
 
-On the router, the following software will be installed
+On the router, the following software will be installed (Scroll down for routersetup.sh script)
 
   >Prometheus - main router monitoring (CPU,MEM,etc)
 
