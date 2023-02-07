@@ -28,7 +28,8 @@ On the router, the following software will be installed
 
   >iptmon - to monitor per device usage
  
-
+ 
+---------------------------------------------------------------
 <br>
 
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard1.PNG)
