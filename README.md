@@ -2,7 +2,13 @@
 Openwrt Monitoring via Grafana.
 
 This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand.
-Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported. This setup assumes you have AdguardHome running in a docker container. If you do not, please comment out the Settings Up DNS section in the RouterSetup.sh 
+Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported. 
+<br>
+```
+This setup assumes you have AdguardHome running in a docker container. If you do not, please comment out the "Settings Up DNS" section in the RouterSetup.sh 
+```
+<br>
+<br>
 
 
 On the router, the following software will be installed
