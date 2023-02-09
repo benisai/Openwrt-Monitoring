@@ -51,6 +51,8 @@ if [[ -d "$DIR" ]]; then
     cp /etc/vnstat.conf /etc/vnstat.conf.$dt
     sed -i 's/;DatabaseDir /DatabaseDir /g' /etc/vnstat.conf
     sed -i 's,/var/lib/vnstat,/tmp/mountd/disk1_part1/vnstat,g' /etc/vnstat.conf
+    #Change VNStatDB save time from 5 mins to 1 min
+    sed -i 's/;SaveInterval 5 /;SaveInterval 1 /g' /etc/vnstat.conf
     else
   echo "$DIR directory does not exist."
 fi
