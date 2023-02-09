@@ -6,6 +6,6 @@ known_mac_addr="/etc/known_mac_addr"
 
 if ! /bin/grep -iq "$MACADDR" "$known_mac_addr"; then
         datetime=$(date '+%Y-%m-%d__%H:%M:%S')
-        echo DATE=$datetime, MAC=$MACADDR, IP=$IPADDR, NAME=$HOSTNAME" > /tmp/99-new_device.out
+        echo date=$datetime, mac=$MACADDR, ip=$IPADDR, device=$HOSTNAME" > /tmp/99-new_device.out
 fi
 exit 0
