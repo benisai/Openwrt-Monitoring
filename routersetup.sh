@@ -40,17 +40,20 @@ EOF
  
  
  
- 
-#Changing vnstat backup location to SD Card. 
-#DIR=/tmp/mountd/disk1_part1
-#if [ -d "$DIR" ]; then
-#    echo "$DIR directory exists."
-#    cat << "EOF" >> /etc/vnstat.conf
-#    DatabaseDir "/tmp/mountd/disk1_part1/vnstat"
-#    EOF
-#    else
-#	echo "$DIR directory does not exist."
-#fi
+
+#Changing vnstat backup location to SD Card.
+dt=$(date '+%d%m%Y%H%M%S');
+DatabaseDir "/var/lib/vnstat"
+DIR=/tmp/mountd/disk1_part1
+if [[ -d "$DIR" ]]; then
+    echo "$DIR directory exists."
+    echo "Backing up /etc/vnstat.conf.$dt"
+    cp /etc/vnstat.conf /etc/vnstat.conf.$dt
+    sed -i 's/;DatabaseDir /DatabaseDir /g' /etc/vnstat.conf
+    sed -i 's,/var/lib/vnstat,/tmp/mountd/disk1_part1/vnstat,g' /etc/vnstat.conf
+    else
+  echo "$DIR directory does not exist."
+fi
 
  
  
