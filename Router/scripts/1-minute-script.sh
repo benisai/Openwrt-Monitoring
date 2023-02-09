@@ -20,10 +20,20 @@ vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //
 #vnstat --xml |grep -hnr "hour id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g; s/  00/:00/g' | cut -d " " -f2-  > /tmp/houroutput.out
 #vnstat --xml |grep -hnr "fiveminute id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g' | cut -d " " -f2-   > /tmp/fiveoutput.out
 
-# Restart Netify if dead
+# Restart Netify if service is not running
 if ! pgrep netifyd
-then /etc/init.d/netifyd restart
+then /etc/init.d/netifyd start
+else
+#Restart Netify is it uses high memory
+if [ `top -b -n 1 | grep netify | grep -v "grep" | awk '{print $6}'| tr -d '%'` -gt 25 ];then
+echo "Restarting Netify due to high memory"
+/etc/init.d/netifyd restart
+else
+echo "Netify Memory is fine"
 fi
+fi
+exit 0
+
 #ps | grep 7150 | grep -v grep | awk '{print $1}' | xargs kill
 #rm /tmp/netify.out
 #service netifyd restart
