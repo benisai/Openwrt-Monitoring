@@ -9,9 +9,7 @@ cip=$(curl https://api.ipify.org) > /dev/null 2>&1
 echo "wanip=${WAN_ADDR}" "publicip=${cip}" >/tmp/wanip.out
 sleep 1
 
-#vnstat update DB
-vnstat -u
-sleep 1
+
 
 #####Run vnstat and parse output
 vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g' | cut -d " " -f2- | cut -d " " -f2- > /tmp/vnstatmonth.out
@@ -40,3 +38,6 @@ exit 0
 #sleep 1000 | nc 10.0.5.1 7150 | grep established | tr -d '"' | sed 's/:/=/g; s/,/ /g'   >> /tmp/netify.out &
 
 
+#vnstat update DB
+#vnstat -u
+#sleep 1
