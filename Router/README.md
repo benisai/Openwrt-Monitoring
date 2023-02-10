@@ -3,7 +3,7 @@
 
 
 
-On the router, the following scripts and prometheus Lua files are used to create and collect data
+On the router, the following scripts and prometheus Lua files are used. The Scripts will output "Reports" to /tmp/ location as *.out. The Prometheus lua files will read these "Reports.out" files and parse the data for prometheus to scrape. 
 
 In the Scripts folder:
   >1-hour-script.sh - mainly used to restart netify
