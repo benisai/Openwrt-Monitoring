@@ -83,7 +83,6 @@ fi
 
  echo 'Copying custom LUA Files from GIT to router'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/luci_statistics -O /etc/config/luci_statistics
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/wanip.lua -O /usr/lib/lua/prometheus-collectors/wanip.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/packetloss.lua -O /usr/lib/lua/prometheus-collectors/packetloss.lua
@@ -96,7 +95,7 @@ fi
  #echo 'Copying Extra files'
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/wrtbwmon -O /usr/sbin/wrtbwmon && chmod +x /usr/sbin/wrtbwmon
-
+ #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/luci_statistics -O /etc/config/luci_statistics
 
  #Adding new_device.sh script to dhcp dnsmasq
  echo 'Adding new_device.sh script to dhcp dnsmasq.conf'
