@@ -6,7 +6,7 @@ Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supp
 
 
 A Home Server running Docker to run the following applications (Scroll down for steps). <br/>
-```Note:  I provided a Docker-Compose.yml file with all the containers needed for the project, if you do not have these running already```
+```Note:  I provided a Docker-Compose.yml file with all the containers needed for the project```
 <br/>
 
   >Prometheus - Container to scrape and store data.
@@ -43,11 +43,17 @@ On the router, the following software will be installed (Scroll down for routers
 
 
 
----------------------------------------------------------------
-# Home Server Steps:
+
+<br/>
+
+# Installation
+
+
+
+Home Server Steps:
+You will need a Raspberry Pi or other linux server with Docker and Docker Compose. 
 
 <pre>
-You will need a Raspberry Pi or other linux server with Docker and Docker Compose. 
 
 Clone this repo to your server. 
 :~# gh repo clone benisai/Openwrt-Monitoring
@@ -73,19 +79,25 @@ Note about the Grafana Dashboard:: You'll find two variables at the top. One for
 
 
 ---------------------------------------------------------------
-# Router Steps: 
-*This section will cover the openwrt Router config
+OpenWRT21.x Router Steps: 
 
-<br>
-```
-This setup assumes you have AdguardHome running in a docker container. If you do not, please comment out the "Settings Up DNS" section in the RouterSetup.sh 
-```
-<br>
+
 <br>
 
 I've created a shell script that can be ran on the router, it will install all the needed software, scripts and custom lua files. 
 
 Before running the shell script, please edit the routersetup.sh file and replace the home server ip variable. My home server is at 10.0.5.5, if you dont replace this ip, it will cause your DNS to stop working and your collectd export settings wont work. 
+
+<pre>
+wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh
+
+nano routersetup.sh -> find 10.0.5.5 and replace that ip with your home-server ip.
+
+sh routersetup.sh
+
+reboot router
+
+</pre>
 
 Note: The New_Device section does not work at the moment.
 
@@ -117,16 +129,6 @@ The routersetup.sh script will do the following:
 
 
 
-SSH to your router and run
-<pre>
-wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh
-
-nano routersetup.sh -> find 10.0.5.5 and replace that ip with your home-server ip.
-
-sh routersetup.sh
-
-reboot router
-</pre>
 
 
 
