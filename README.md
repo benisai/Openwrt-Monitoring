@@ -1,6 +1,29 @@
 
 ## Intro
-* This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand. Note: This will only work with Openwrt 21.x (IPTables). NFTables will not be supported as IPTmon uses iptables. You can still run this project, but you wont get stats per device. 
+* This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand. 
+  * Note: This will only work with Openwrt 21.x (IPTables). NFTables will not be supported as IPTmon uses iptables. You can still run this project, but you wont get stats per device. 
+* Here are some features of this project
+  * Internet monitoring via pings to google/quad9/Cloudflare
+  * Packetloss monitoring via shell script, pinging google 40 times
+  * Speedtest monitoring -- (kind of a hit/miss, I'll explain below)
+  * DNS Stats via AdguardHome
+  * GeoIP Map for Destnation (provided by Netify logs)
+  * Device Traffic Panel (provided by Netify logs). Src + Dst + Port + GeoInfo 
+  * Device Status (Hostname + IP + Status Online or Offline)
+  * System Resources monitoring (CPU/MEM/Load/Etc)
+  * Monthly Bandwidth monitoring (Will clear monthly)
+  * 12hr Traffic usage
+  * WAN Speeds
+  * Live traffic per device (iptmon)
+  * Traffic per client usage for 2hr
+  * Ping Stats
+  * Hourly traffic usage (iptmon total)
+  * 7 Day traffic usage (iptmon total)
+  * New Devices Connected to Network
+  * Destnation IP count
+  * Destnation Port count
+  * NAT Traffic (Not really used anymore)
+* We need to install a few pieces of software + custom shell scripts on the router to collect this data  
 
 
 ## Software Used to Monitor Traffic
@@ -17,6 +40,14 @@
 ### Router
 * Openwrt Router (21.x)
   * Custom shell scripts to collect / output data to report files 
+    * 1-hour-script.sh - mainly used to restart netify
+    * 1-min-script.sh - Get your WanIP, Run VNstat monthly report, Restart Netify if service is not running
+    * 5-min-script.sh - Not used at the moment
+    * 12am-script.sh - Backup vnstat.db, Remove new_device file, and if its the 1st of the month, drop vnstat DB
+    * device-status-ping.sh -- Ping devices on network to see if they are online
+    * new_device.sh -- Check if new devices are found on network (WIP Doesnt work yet)
+    * packet-loss.sh -- This will monitor packetloss by pinging google 40 times a minute and gather the packetloss rate
+    * speedtest.sh -- This is a speedtest script created by someone else, if this doesnt run its because the 3rd party speed test blocked your ip.
   * Prometheus - main router monitoring (CPU,MEM,etc) with custom Prometheus Lua Files
   * Collectd - to monitor ping and export iptmon data
   * vnstat2 - to monitor monthly WAN Bandwidth usage (12am-Script.sh will check if its the 1st of the month and drop the vnstatdb)
