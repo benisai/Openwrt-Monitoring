@@ -12,6 +12,8 @@ A Home Server running Docker to run the following applications (Scroll down for 
   >Prometheus - Container to scrape and store data.
 
   >Grafana - Container to display the graphs. (you will need to add your Prometheus location as the data source) 
+  
+  >Loki + Promtail + Middleware - Containers used to collect and process Netify logs provided created by netify-log.sh
 
   >AdGuardHome - Container to block Ads/Porn/etc. <br />
   ```Note: you will need to free port 53, see this link "https://www.linuxuprising.com/2020/07/ubuntu-how-to-free-up-port-53-used-by.html"```
@@ -63,7 +65,7 @@ Clone this repo to your server.
 
 :~# cd Docker
 
--->NOTE: Make sure to update the prometheus.yml file with your router IP (replace 10.0.5.1 with your Router IP).
+-->NOTE: Make sure to update the prometheus.yml and the netify-log.sh file with your router IP (replace 10.0.5.1 with your Router IP).
 
 Please create Docker Network called Internal
 :~# Sudo docker network create internal
@@ -71,6 +73,11 @@ Please create Docker Network called Internal
 :~# Sudo Docker-Compose.yml up -d
 
 This Docker-Compose.yml file will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
+
+Lastly, we need to create a 'sudo crontab -e' entry for the netify-log.sh script. 
+  > sudo chmod +x netify-log.sh
+  > sudo crontab -e 
+    */1 * * * * /home/USER/Openwrt-Monitoring/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
 
 Login to grafana, add the prometheus datasource (I have 2 sources, one for OWRT and the other for AdguardHome, we can use the same datasource if you'd like) and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
 If you do not use AdguardHome, just set both sources to the same Prometheus Source)
