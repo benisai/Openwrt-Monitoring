@@ -13,7 +13,7 @@ A Home Server running Docker to run the following applications (Scroll down for 
 
   >Grafana - Container to display the graphs. (you will need to add your Prometheus location as the data source) 
   
-  >Loki + Promtail + Middleware - Containers used to collect and process Netify logs provided created by netify-log.sh
+  >Loki + Promtail + Middleware - Containers used to collect and process Netify logs created by netify-log.sh
 
   >AdGuardHome - Container to block Ads/Porn/etc. <br />
   ```Note: you will need to free port 53, see this link "https://www.linuxuprising.com/2020/07/ubuntu-how-to-free-up-port-53-used-by.html"```
