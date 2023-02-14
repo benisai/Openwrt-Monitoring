@@ -40,21 +40,24 @@
 
 ## Installation
 ### Home Server (Linux)
+
 * Clone this repo to your server. 
-  * gh repo clone benisai/Openwrt-Monitoring
-  * cd Openwrt-Monitoring
-  * sudo nano prometheus.yml 
+```sh
+   gh repo clone benisai/Openwrt-Monitoring
+   cd Openwrt-Monitoring
+   sudo nano prometheus.yml 
     * replace 10.0.5.1 with your Router IP
-  * sudo nano netify-log.sh 
+   sudo nano netify-log.sh 
     * replace 10.0.5.1 with your Router IP
-  * sudo docker network create internal
-  * sudo Docker-Compose.yml up -d
-
-* Create a Crontab -e to run the netify-log.sh script
-  * sudo crontab -e
-    * */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
-  * sudo chmod +x /home/USER/Openwrt-Monitoring/Docker/netify-log.sh  
-
+   sudo docker network create internal
+   sudo Docker-Compose.yml up -d
+```
+  * Create a Crontab -e to run the netify-log.sh script
+```sh
+   sudo crontab -e
+   Add the following line:  */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1  
+   sudo chmod +x /home/USER/Openwrt-Monitoring/Docker/netify-log.sh  
+```
 
 ### Router Setup (Openwrt 21.x)
 * Download the shell script to setup the router
@@ -66,30 +69,18 @@
 
 <pre>
 The routersetup.sh script will do the following:
-
-Install Nano, netperf (needed for speedtest.sh), openssh-sftp-server,vnstat
-
-Install Prometheus and CollectD
-
-Install iptmon, wrtbwmon and luci-wrtbwmon
-
-Copy custom scripts from this git to /usr/bin/ on the router
-
-Copy custom LUA files from this git to /usr/lib/lua/prometheus-collectors on the router.
-
-Adding new_device.sh script to dhcp dnsmasq
-
-Adding scripts to Crontab
-
-Update prometheus config to 'lan'
-
-Update Collectd Export IP to home server ip address
-
-Add iptmon to your dhcp file under dnsmasq section
-
-Set your lan interface to assign out DNS IP of your home server
-
-restarts services
+* Install Nano, netperf (needed for speedtest.sh), openssh-sftp-server,vnstat
+* Install Prometheus and CollectD
+* Install iptmon, wrtbwmon and luci-wrtbwmon
+* Copy custom scripts from this git to /usr/bin/ on the router
+* Copy custom LUA files from this git to /usr/lib/lua/prometheus-collectors on the router.
+* Adding new_device.sh script to dhcp dnsmasq
+* Adding scripts to Crontab
+* Update prometheus config to 'lan'
+* Update Collectd Export IP to home server ip address
+* Add iptmon to your dhcp file under dnsmasq section
+* Set your lan interface to assign out DNS IP of your home server
+* restarts services
 </pre>
 
 
