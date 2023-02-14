@@ -66,6 +66,10 @@ Clone this repo to your server.
 :~# cd Docker
 
 -->NOTE: Make sure to update the prometheus.yml and the netify-log.sh file with your router IP (replace 10.0.5.1 with your Router IP).
+-->NOTE: Make sure to update the netify-log.sh script to include your ip to hostname conversion. For example, mine look like this:
+        s/10.0.5.120/AI-CAM/g;
+        s/10.0.5.121/LivingRoom-CAM/g;
+        s/10.0.5.131/Bens-iPhone/g;
 
 Please create Docker Network called Internal
 :~# Sudo docker network create internal
