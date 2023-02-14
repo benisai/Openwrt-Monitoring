@@ -25,6 +25,8 @@
   * NAT Traffic (Not really used anymore)
 * We need to install a few pieces of software + custom shell scripts on the router to collect this data  
 
+</br>
+</br>
 
 ## Software Used to Monitor Traffic
 ### Home Server (Linux)
@@ -54,8 +56,9 @@
   * iptmon - to monitor per device usage
 
 
----------------------------------------------------------------
-<br>
+</br>
+</br>
+
 
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard1.PNG)
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard2.PNG)
@@ -68,6 +71,8 @@
 ![Grafana Dashboard](https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Dashboard9.PNG)
 
 
+</br>
+</br>
 
 ## Installation
 ### Home Server (Linux)
