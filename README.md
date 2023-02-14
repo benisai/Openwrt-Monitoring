@@ -2,6 +2,7 @@
 ## Intro
 * This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand. 
   * Note: This will only work with Openwrt 21.x (IPTables). NFTables will not be supported as IPTmon uses iptables. You can still run this project, but you wont get stats per device. 
+```
 * Here are some features of this project
   * Internet monitoring via pings to google/quad9/Cloudflare
   * Packetloss monitoring via shell script, pinging google 40 times
@@ -24,6 +25,7 @@
   * Destnation Port count
   * NAT Traffic (Not really used anymore)
 * We need to install a few pieces of software + custom shell scripts on the router to collect this data  
+```
 
 </br>
 </br>
