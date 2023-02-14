@@ -97,6 +97,7 @@
    sudo chmod +x /home/USER/Openwrt-Monitoring/Docker/netify-log.sh  
    sudo nano /home/USER/Openwrt-Monitoring/Docker/netify-log.sh and replace the IP + hostname for each device
 ```
+</br>
 
 ### Router Setup (Openwrt 21.x)
 * Download the shell script to setup the router
