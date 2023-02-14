@@ -9,12 +9,12 @@
       "pluginName": "Prometheus"
     },
     {
-      "name": "DS_PROMETHEUS-HOME",
-      "label": "Prometheus-Home",
+      "name": "DS_LOKI-HOME",
+      "label": "Loki-Home",
       "description": "",
       "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
+      "pluginId": "loki",
+      "pluginName": "Loki"
     }
   ],
   "__elements": {},
@@ -38,10 +38,22 @@
       "version": ""
     },
     {
+      "type": "panel",
+      "id": "geomap",
+      "name": "Geomap",
+      "version": ""
+    },
+    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "9.3.2"
+      "version": "9.3.6"
+    },
+    {
+      "type": "datasource",
+      "id": "loki",
+      "name": "Loki",
+      "version": "1.0.0"
     },
     {
       "type": "panel",
@@ -238,7 +250,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -311,7 +323,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -393,7 +405,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -465,7 +477,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -790,7 +802,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -881,7 +893,7 @@
         "y": 13
       },
       "id": 207,
-      "interval": "60s",
+      "interval": "60",
       "options": {
         "barRadius": 0,
         "barWidth": 0.56,
@@ -967,7 +979,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -1000,7 +1012,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-HOME}"
+        "uid": "${DS_PROMETHEUS-OWRT}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1062,12 +1074,12 @@
         },
         "textMode": "value"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-HOME}"
+            "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
           "expr": "adguard_running",
@@ -1086,7 +1098,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-HOME}"
+        "uid": "${DS_PROMETHEUS-OWRT}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1148,12 +1160,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-HOME}"
+            "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
           "expr": "adguard_protection_enabled",
@@ -1172,7 +1184,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-HOME}"
+        "uid": "${DS_PROMETHEUS-OWRT}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1227,12 +1239,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-HOME}"
+            "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
           "expr": "adguard_num_dns_queries",
@@ -1251,7 +1263,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-HOME}"
+        "uid": "${DS_PROMETHEUS-OWRT}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1275,7 +1287,7 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
+        "w": 5,
         "x": 10,
         "y": 21
       },
@@ -1296,12 +1308,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-HOME}"
+            "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
           "expr": "adguard_num_blocked_filtering",
@@ -1320,7 +1332,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-HOME}"
+        "uid": "${DS_PROMETHEUS-OWRT}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1347,7 +1359,7 @@
       "gridPos": {
         "h": 3,
         "w": 4,
-        "x": 14,
+        "x": 15,
         "y": 21
       },
       "id": 176,
@@ -1367,12 +1379,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-HOME}"
+            "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
           "expr": "adguard_num_blocked_filtering / adguard_num_dns_queries * 100",
@@ -1391,7 +1403,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-HOME}"
+        "uid": "${DS_PROMETHEUS-OWRT}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1433,8 +1445,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 4,
-        "x": 18,
+        "w": 5,
+        "x": 19,
         "y": 21
       },
       "id": 170,
@@ -1454,12 +1466,12 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-HOME}"
+            "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
           "expr": "adguard_avg_processing_time",
@@ -1478,7 +1490,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-HOME}"
+        "uid": "${DS_PROMETHEUS-OWRT}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1565,12 +1577,12 @@
           }
         ]
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-HOME}"
+            "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1609,7 +1621,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-HOME}"
+        "uid": "${DS_PROMETHEUS-OWRT}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1700,12 +1712,12 @@
           }
         ]
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-HOME}"
+            "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1766,6 +1778,633 @@
       ],
       "title": "OpenWRT",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "${DS_LOKI-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 17,
+        "x": 0,
+        "y": 30
+      },
+      "id": 220,
+      "options": {
+        "basemap": {
+          "config": {},
+          "name": "Layer 0",
+          "type": "default"
+        },
+        "controls": {
+          "mouseWheelZoom": false,
+          "showAttribution": true,
+          "showDebug": false,
+          "showMeasure": false,
+          "showScale": false,
+          "showZoom": true
+        },
+        "layers": [
+          {
+            "config": {
+              "showLegend": true,
+              "style": {
+                "color": {
+                  "fixed": "dark-green"
+                },
+                "opacity": 0.4,
+                "rotation": {
+                  "fixed": 0,
+                  "max": 360,
+                  "min": -360,
+                  "mode": "mod"
+                },
+                "size": {
+                  "fixed": 5,
+                  "max": 15,
+                  "min": 2
+                },
+                "symbol": {
+                  "fixed": "img/icons/marker/circle.svg",
+                  "mode": "fixed"
+                },
+                "textConfig": {
+                  "fontSize": 12,
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "textAlign": "center",
+                  "textBaseline": "middle"
+                }
+              }
+            },
+            "location": {
+              "gazetteer": "public/gazetteer/countries.json",
+              "lookup": "Line",
+              "mode": "auto"
+            },
+            "name": "Layer 1",
+            "tooltip": true,
+            "type": "markers"
+          }
+        ],
+        "tooltip": {
+          "mode": "details"
+        },
+        "view": {
+          "allLayers": true,
+          "id": "zero",
+          "lat": 0,
+          "lon": 0,
+          "zoom": 2
+        }
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "${DS_LOKI-HOME}"
+          },
+          "editorMode": "builder",
+          "expr": "{filename=\"/var/log/netify/netify.log\"} | logfmt",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "GeoMap",
+      "transformations": [
+        {
+          "id": "extractFields",
+          "options": {
+            "replace": true,
+            "source": "labels"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "detected_protocol_name": true,
+              "detected_protocol_name_extracted": true,
+              "filename": true,
+              "geo_ip_city": false,
+              "geo_ip_city_geoname_id": true,
+              "geo_ip_country_iso_code": true,
+              "host_server_name_extracted": true,
+              "job": true,
+              "local_ip": true,
+              "local_ip_extracted": true,
+              "local_port": true,
+              "local_port_extracted": true,
+              "other_ip": false,
+              "other_port": true,
+              "other_port_extracted": true
+            },
+            "indexByName": {
+              "detected_protocol_name": 0,
+              "detected_protocol_name_extracted": 1,
+              "filename": 2,
+              "geo_ip_asn": 13,
+              "geo_ip_city": 16,
+              "geo_ip_city_geoname_id": 21,
+              "geo_ip_continent": 14,
+              "geo_ip_country": 15,
+              "geo_ip_country_geoname_id": 17,
+              "geo_ip_country_iso_code": 18,
+              "geo_ip_latitude": 19,
+              "geo_ip_longitude": 20,
+              "host_server_name": 3,
+              "host_server_name_extracted": 4,
+              "job": 5,
+              "local_ip": 6,
+              "local_ip_extracted": 7,
+              "local_port": 8,
+              "local_port_extracted": 9,
+              "other_ip": 10,
+              "other_port": 11,
+              "other_port_extracted": 12
+            },
+            "renameByName": {
+              "geo_ip_asn": "Company",
+              "geo_ip_city": "City",
+              "geo_ip_continent": "Continent",
+              "geo_ip_country": "Country",
+              "geo_ip_country_geoname_id": "Geo-ID",
+              "geo_ip_latitude": "lat",
+              "geo_ip_longitude": "lon",
+              "host_server_name": "FQDN",
+              "other_ip": "Public IP"
+            }
+          }
+        }
+      ],
+      "type": "geomap"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "${DS_LOKI-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 60
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 30
+      },
+      "id": 225,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Value"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(count_over_time({filename=\"/var/log/netify/netify.log\"}| logfmt |= \"geo_ip_country\" [$__range])) by (geo_ip_country)",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "{{country}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Top Countries (5m)",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "Value #A": "Value",
+              "geo_ip_country": "Country"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "${DS_LOKI-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 50
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 99
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 37
+      },
+      "id": 226,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Value"
+          }
+        ]
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS-OWRT}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(count_over_time({filename=\"/var/log/netify/netify.log\"}| logfmt |= \"host_server_name\" [$__range])) by (host_server_name)",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "{{country}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Top Sites (5m)",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "Value #A": "Value",
+              "geo_ip_country": "Country",
+              "host_server_name": "Site"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "${DS_LOKI-HOME}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "displayMode": "auto",
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "FQDN"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Server"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Protocol"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Device"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": "center"
+              },
+              {
+                "id": "custom.width"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Country"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Server Port"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 44
+      },
+      "id": 222,
+      "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "9.3.6",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "${DS_LOKI-HOME}"
+          },
+          "editorMode": "builder",
+          "expr": "{filename=\"/var/log/netify/netify.log\"} != `DNS` != `DHCP` != `IGMP` != `ICMP` | logfmt",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "Traffic",
+      "transformations": [
+        {
+          "disabled": true,
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "labels",
+                "handlerKey": "field.name"
+              }
+            ]
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "replace": true,
+            "source": "labels"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "detected_protocol_name_extracted": true,
+              "filename": true,
+              "geo_ip_asn": true,
+              "geo_ip_city": true,
+              "geo_ip_city_geoname_id": true,
+              "geo_ip_continent": true,
+              "geo_ip_country": false,
+              "geo_ip_country_geoname_id": true,
+              "geo_ip_country_iso_code": true,
+              "geo_ip_latitude": true,
+              "geo_ip_longitude": true,
+              "host_server_name_extracted": true,
+              "job": true,
+              "local_ip_extracted": true,
+              "local_port": true,
+              "local_port_extracted": true,
+              "other_port": false,
+              "other_port_extracted": true
+            },
+            "indexByName": {
+              "detected_protocol_name": 19,
+              "detected_protocol_name_extracted": 0,
+              "filename": 1,
+              "geo_ip_asn": 2,
+              "geo_ip_city": 3,
+              "geo_ip_city_geoname_id": 4,
+              "geo_ip_continent": 5,
+              "geo_ip_country": 21,
+              "geo_ip_country_geoname_id": 6,
+              "geo_ip_country_iso_code": 7,
+              "geo_ip_latitude": 8,
+              "geo_ip_longitude": 9,
+              "host_server_name": 14,
+              "host_server_name_extracted": 10,
+              "job": 11,
+              "local_ip": 12,
+              "local_ip_extracted": 13,
+              "local_port": 15,
+              "local_port_extracted": 16,
+              "other_ip": 17,
+              "other_port": 18,
+              "other_port_extracted": 20
+            },
+            "renameByName": {
+              "detected_protocol_name": "Protocol",
+              "geo_ip_country": "Country",
+              "host_server_name": "FQDN",
+              "host_server_name_extracted": "FQDN",
+              "local_ip": "Device",
+              "local_port": "Device Port",
+              "other_ip": "Server",
+              "other_port": "Server Port"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": {
@@ -1830,7 +2469,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 51
       },
       "id": 215,
       "options": {
@@ -1850,7 +2489,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -1956,7 +2595,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 36
+        "y": 57
       },
       "hideTimeOverride": true,
       "id": 91,
@@ -1976,7 +2615,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2044,7 +2683,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 36
+        "y": 57
       },
       "id": 93,
       "links": [],
@@ -2061,7 +2700,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2121,7 +2760,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 36
+        "y": 57
       },
       "hideTimeOverride": false,
       "id": 95,
@@ -2139,7 +2778,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2224,7 +2863,7 @@
         "h": 4,
         "w": 3,
         "x": 12,
-        "y": 36
+        "y": 57
       },
       "id": 97,
       "links": [],
@@ -2241,7 +2880,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2306,7 +2945,7 @@
         "h": 2,
         "w": 3,
         "x": 15,
-        "y": 36
+        "y": 57
       },
       "id": 99,
       "links": [],
@@ -2325,7 +2964,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2390,7 +3029,7 @@
         "h": 2,
         "w": 3,
         "x": 18,
-        "y": 36
+        "y": 57
       },
       "id": 101,
       "links": [],
@@ -2409,7 +3048,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2472,7 +3111,7 @@
         "h": 2,
         "w": 3,
         "x": 21,
-        "y": 36
+        "y": 57
       },
       "id": 109,
       "links": [],
@@ -2491,7 +3130,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2556,7 +3195,7 @@
         "h": 2,
         "w": 3,
         "x": 15,
-        "y": 38
+        "y": 59
       },
       "id": 105,
       "links": [],
@@ -2575,7 +3214,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2638,7 +3277,7 @@
         "h": 2,
         "w": 3,
         "x": 18,
-        "y": 38
+        "y": 59
       },
       "id": 103,
       "links": [],
@@ -2657,7 +3296,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2721,7 +3360,7 @@
         "h": 2,
         "w": 3,
         "x": 21,
-        "y": 38
+        "y": 59
       },
       "id": 107,
       "links": [],
@@ -2740,7 +3379,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2819,7 +3458,7 @@
         "h": 3,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 61
       },
       "id": 210,
       "links": [],
@@ -2838,7 +3477,7 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -2888,7 +3527,7 @@
         "h": 4,
         "w": 24,
         "x": 0,
-        "y": 43
+        "y": 64
       },
       "id": 213,
       "links": [],
@@ -2906,7 +3545,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -3025,7 +3664,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 68
       },
       "id": 131,
       "options": {
@@ -3053,7 +3692,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_network_receive_bytes_total{device=~\"wlan-sta0\"}[10s])",
+          "expr": "rate(node_network_receive_bytes_total{device=~\"wlan0\"}[15s])",
           "hide": false,
           "interval": "",
           "legendFormat": "WAN Download",
@@ -3067,7 +3706,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "rate(node_network_transmit_bytes_total{device=\"wlan-sta0\"}[10s])",
+          "expr": "rate(node_network_transmit_bytes_total{device=\"wlan0\"}[15s])",
           "hide": false,
           "interval": "",
           "legendFormat": "WAN Upload",
@@ -3141,7 +3780,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 54
+        "y": 75
       },
       "id": 135,
       "options": {
@@ -3246,7 +3885,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 54
+        "y": 75
       },
       "id": 133,
       "options": {
@@ -3313,7 +3952,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 63
+        "y": 84
       },
       "id": 211,
       "options": {
@@ -3330,7 +3969,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -3390,7 +4029,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 63
+        "y": 84
       },
       "id": 212,
       "options": {
@@ -3407,7 +4046,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -3483,7 +4122,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 91
       },
       "hideTimeOverride": false,
       "id": 143,
@@ -3614,7 +4253,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 75
+        "y": 96
       },
       "id": 137,
       "options": {
@@ -3730,7 +4369,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 80
+        "y": 101
       },
       "id": 142,
       "interval": "1h",
@@ -3882,7 +4521,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 80
+        "y": 101
       },
       "id": 160,
       "interval": "1d",
@@ -3981,559 +4620,13 @@
           },
           "unit": "decmbytes"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "sport"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "none"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dport"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "none"
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "22": {
-                        "index": 0,
-                        "text": "SSH (22)"
-                      },
-                      "23": {
-                        "index": 1,
-                        "text": "Telnet (23)"
-                      },
-                      "25": {
-                        "index": 2,
-                        "text": "SMTP (25)"
-                      },
-                      "53": {
-                        "index": 3,
-                        "text": "DNS (53)"
-                      },
-                      "80": {
-                        "index": 4,
-                        "text": "HTTP (80)"
-                      },
-                      "123": {
-                        "index": 5,
-                        "text": "NTP (123)"
-                      },
-                      "443": {
-                        "index": 6,
-                        "text": "HTTPS (443)"
-                      },
-                      "3389": {
-                        "index": 7,
-                        "text": "RDP (3389)"
-                      },
-                      "9100": {
-                        "index": 8,
-                        "text": "Prometheus (9100)"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dest"
-            },
-            "properties": [
-              {
-                "id": "links",
-                "value": [
-                  {
-                    "title": "Search ARIN",
-                    "url": "https://www.abuseipdb.com/whois/${__data.fields.dest}"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 87
-      },
-      "id": 193,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Time"
-          }
-        ]
-      },
-      "pluginVersion": "9.3.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-OWRT}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "(node_nat_traffic{dest!=\"10.0.5.1\",dport!=\"53\",dport!=\"53\"} /1024/1024)",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "intervalFactor": 1,
-          "legendFormat": "Dest {{dest}} ->  SRC {{src}}",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "NAT Traffic",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": false,
-              "dport": false,
-              "group": true,
-              "instance": true,
-              "job": true,
-              "sport": true
-            },
-            "indexByName": {
-              "Time": 0,
-              "Value": 8,
-              "dest": 3,
-              "dport": 4,
-              "group": 5,
-              "instance": 6,
-              "job": 7,
-              "sport": 2,
-              "src": 1
-            },
-            "renameByName": {
-              "Value": "data",
-              "dport": "",
-              "sport": "src port"
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-OWRT}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "center",
-            "displayMode": "auto",
-            "filterable": false,
-            "inspect": false
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "local_ip"
-            },
-            "properties": [
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "10.0.5.10": {
-                        "index": 3,
-                        "text": "Synology"
-                      },
-                      "10.0.5.11": {
-                        "index": 4,
-                        "text": "MeLe-Prox"
-                      },
-                      "10.0.5.2": {
-                        "index": 0,
-                        "text": "Firewalla"
-                      },
-                      "10.0.5.220": {
-                        "index": 5,
-                        "text": "LivingRoom-CAM"
-                      },
-                      "10.0.5.221": {
-                        "index": 6,
-                        "text": "AI-CAM"
-                      },
-                      "10.0.5.222": {
-                        "index": 7,
-                        "text": "EI-CAM"
-                      },
-                      "10.0.5.224": {
-                        "index": 8,
-                        "text": "ChromeCast"
-                      },
-                      "10.0.5.226": {
-                        "index": 9,
-                        "text": "Pixel-7"
-                      },
-                      "10.0.5.230": {
-                        "index": 10,
-                        "text": "TasmotaPC"
-                      },
-                      "10.0.5.231": {
-                        "index": 11,
-                        "text": "TasmotaOL3"
-                      },
-                      "10.0.5.232": {
-                        "index": 12,
-                        "text": "TasmotaOL1"
-                      },
-                      "10.0.5.233": {
-                        "index": 13,
-                        "text": "TasmotaOL2"
-                      },
-                      "10.0.5.234": {
-                        "index": 14,
-                        "text": "Ben Note10"
-                      },
-                      "10.0.5.239": {
-                        "index": 15,
-                        "text": "SurfacePro4"
-                      },
-                      "10.0.5.249": {
-                        "index": 16,
-                        "text": "BKF-ISAI"
-                      },
-                      "10.0.5.5": {
-                        "index": 1,
-                        "text": "Home Server"
-                      },
-                      "10.0.5.6": {
-                        "index": 2,
-                        "text": "LVN-Prox"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "other_ip"
-            },
-            "properties": [
-              {
-                "id": "links",
-                "value": [
-                  {
-                    "title": "Search ARIN",
-                    "url": "https://www.abuseipdb.com/whois/${__data.fields.dest}"
-                  }
-                ]
-              },
-              {
-                "id": "mappings",
-                "value": [
-                  {
-                    "options": {
-                      "146.75.94.73": {
-                        "index": 13,
-                        "text": "fastly.com"
-                      },
-                      "166.205.110.129": {
-                        "index": 6,
-                        "text": "mobile-166-205-110-129.mycingular.net"
-                      },
-                      "35.190.22.22": {
-                        "index": 11,
-                        "text": "22.22.190.35.bc.googleusercontent.com"
-                      },
-                      "44.196.175.70": {
-                        "index": 12,
-                        "text": "ec2-44-196-175-70.compute-1.amazonaws.com"
-                      },
-                      "52.182.141.63": {
-                        "index": 10,
-                        "text": "self.events.data.microsoft.com"
-                      },
-                      "52.85.193.246": {
-                        "index": 9,
-                        "text": "server-52-85-193-246.lax50.r.cloudfront.net"
-                      },
-                      "66.23.204.162": {
-                        "index": 5,
-                        "text": "mx5.homeassurednow.com"
-                      },
-                      "74.125.137.188": {
-                        "index": 4,
-                        "text": "dy-in-f188.1e100.net"
-                      },
-                      "74.125.157.106": {
-                        "index": 8,
-                        "text": "lax17s48-in-f10.1e100.net"
-                      },
-                      "8.252.185.124": {
-                        "index": 7,
-                        "text": "level3.com"
-                      },
-                      "8.8.8.8": {
-                        "index": 2,
-                        "text": "DNS.Google.com"
-                      },
-                      "94.140.14.15": {
-                        "index": 1,
-                        "text": "dns-family.adguard.com"
-                      },
-                      "96.16.55.132": {
-                        "index": 3,
-                        "text": "deploy.static.akamaitechnologies.com"
-                      },
-                      "96.43.82.113": {
-                        "index": 0,
-                        "text": "Benisai.com"
-                      }
-                    },
-                    "type": "value"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "detected_protocol_name"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 182
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Time"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 200
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "local_mac"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 172
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "host_server_name"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 246
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "client_sni"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 260
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 94
-      },
-      "id": 218,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "Time"
-          }
-        ]
-      },
-      "pluginVersion": "9.3.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-OWRT}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "router_netify_traffic{other_ip!=\"10.0.5.1\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "intervalFactor": 1,
-          "legendFormat": "Dest {{dest}} ->  SRC {{src}}",
-          "range": false,
-          "refId": "B"
-        }
-      ],
-      "title": "Netify Traffic",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Value": true,
-              "__name__": true,
-              "client_sni": true,
-              "group": true,
-              "http": true,
-              "instance": true,
-              "job": true,
-              "local_ip": false,
-              "local_mac": true,
-              "local_port": true,
-              "user_agent": true
-            },
-            "indexByName": {
-              "Time": 0,
-              "Value": 15,
-              "__name__": 3,
-              "client_sni": 4,
-              "detected_protocol_name": 16,
-              "group": 5,
-              "host_server_name": 6,
-              "http": 13,
-              "instance": 7,
-              "interface": 1,
-              "job": 8,
-              "local_ip": 2,
-              "local_mac": 9,
-              "local_port": 10,
-              "other_ip": 11,
-              "other_port": 12,
-              "user_agent": 14
-            },
-            "renameByName": {
-              "Time": "",
-              "__name__": "",
-              "interface": "",
-              "local_ip": ""
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS-OWRT}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "center",
-            "displayMode": "auto",
-            "filterable": false,
-            "inspect": false
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "decmbytes"
-        },
         "overrides": []
       },
       "gridPos": {
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 101
+        "y": 108
       },
       "id": 214,
       "options": {
@@ -4552,7 +4645,7 @@
           }
         ]
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -4566,12 +4659,12 @@
           "hide": false,
           "instant": true,
           "intervalFactor": 1,
-          "legendFormat": "Dest {{dest}} ->  SRC {{src}}",
+          "legendFormat": "{{device}}",
           "range": false,
           "refId": "A"
         }
       ],
-      "title": "New Devices Connected Last 24hrs",
+      "title": "New Devices Connected",
       "transformations": [
         {
           "id": "organize",
@@ -4587,7 +4680,7 @@
             },
             "indexByName": {},
             "renameByName": {
-              "date": "Date Connected",
+              "date": "Date",
               "device": "Devices",
               "ip": "IP",
               "mac": "MAC"
@@ -5481,7 +5574,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 106
+        "y": 113
       },
       "id": 194,
       "options": {
@@ -5559,7 +5652,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 106
+        "y": 113
       },
       "id": 189,
       "options": {
@@ -5618,47 +5711,293 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "mode": "thresholds"
           },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "filterable": false,
+            "inspect": false
+          },
+          "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
+                "color": "green",
+                "value": null
               }
             ]
           },
-          "unit": "none"
+          "unit": "decmbytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sport"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dport"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "none"
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "22": {
+                        "index": 0,
+                        "text": "SSH (22)"
+                      },
+                      "23": {
+                        "index": 1,
+                        "text": "Telnet (23)"
+                      },
+                      "25": {
+                        "index": 2,
+                        "text": "SMTP (25)"
+                      },
+                      "53": {
+                        "index": 3,
+                        "text": "DNS (53)"
+                      },
+                      "80": {
+                        "index": 4,
+                        "text": "HTTP (80)"
+                      },
+                      "123": {
+                        "index": 5,
+                        "text": "NTP (123)"
+                      },
+                      "443": {
+                        "index": 6,
+                        "text": "HTTPS (443)"
+                      },
+                      "3389": {
+                        "index": 7,
+                        "text": "RDP (3389)"
+                      },
+                      "9100": {
+                        "index": 8,
+                        "text": "Prometheus (9100)"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "src"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "10.0.5.10": {
+                        "index": 3,
+                        "text": "Synology"
+                      },
+                      "10.0.5.11": {
+                        "index": 4,
+                        "text": "MeLe-Prox"
+                      },
+                      "10.0.5.2": {
+                        "index": 0,
+                        "text": "Firewalla"
+                      },
+                      "10.0.5.220": {
+                        "index": 5,
+                        "text": "LivingRoom-CAM"
+                      },
+                      "10.0.5.221": {
+                        "index": 6,
+                        "text": "AI-CAM"
+                      },
+                      "10.0.5.222": {
+                        "index": 7,
+                        "text": "EI-CAM"
+                      },
+                      "10.0.5.224": {
+                        "index": 8,
+                        "text": "ChromeCast"
+                      },
+                      "10.0.5.226": {
+                        "index": 9,
+                        "text": "Pixel-7"
+                      },
+                      "10.0.5.230": {
+                        "index": 10,
+                        "text": "TasmotaPC"
+                      },
+                      "10.0.5.231": {
+                        "index": 11,
+                        "text": "TasmotaOL3"
+                      },
+                      "10.0.5.232": {
+                        "index": 12,
+                        "text": "TasmotaOL1"
+                      },
+                      "10.0.5.233": {
+                        "index": 13,
+                        "text": "TasmotaOL2"
+                      },
+                      "10.0.5.234": {
+                        "index": 14,
+                        "text": "Ben Note10"
+                      },
+                      "10.0.5.239": {
+                        "index": 15,
+                        "text": "SurfacePro4"
+                      },
+                      "10.0.5.249": {
+                        "index": 16,
+                        "text": "BKF-ISAI"
+                      },
+                      "10.0.5.5": {
+                        "index": 1,
+                        "text": "Home Server"
+                      },
+                      "10.0.5.6": {
+                        "index": 2,
+                        "text": "LVN-Prox"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "dest"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "Search ARIN",
+                    "url": "https://www.abuseipdb.com/whois/${__data.fields.dest}"
+                  }
+                ]
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "146.75.94.73": {
+                        "index": 13,
+                        "text": "fastly.com"
+                      },
+                      "166.205.110.129": {
+                        "index": 6,
+                        "text": "mobile-166-205-110-129.mycingular.net"
+                      },
+                      "35.190.22.22": {
+                        "index": 11,
+                        "text": "22.22.190.35.bc.googleusercontent.com"
+                      },
+                      "44.196.175.70": {
+                        "index": 12,
+                        "text": "ec2-44-196-175-70.compute-1.amazonaws.com"
+                      },
+                      "52.182.141.63": {
+                        "index": 10,
+                        "text": "self.events.data.microsoft.com"
+                      },
+                      "52.85.193.246": {
+                        "index": 9,
+                        "text": "server-52-85-193-246.lax50.r.cloudfront.net"
+                      },
+                      "66.23.204.162": {
+                        "index": 5,
+                        "text": "mx5.homeassurednow.com"
+                      },
+                      "74.125.137.188": {
+                        "index": 4,
+                        "text": "dy-in-f188.1e100.net"
+                      },
+                      "74.125.157.106": {
+                        "index": 8,
+                        "text": "lax17s48-in-f10.1e100.net"
+                      },
+                      "8.252.185.124": {
+                        "index": 7,
+                        "text": "level3.com"
+                      },
+                      "8.8.8.8": {
+                        "index": 2,
+                        "text": "DNS.Google.com"
+                      },
+                      "94.140.14.15": {
+                        "index": 1,
+                        "text": "dns-family.adguard.com"
+                      },
+                      "96.16.55.132": {
+                        "index": 3,
+                        "text": "deploy.static.akamaitechnologies.com"
+                      },
+                      "96.43.82.113": {
+                        "index": 0,
+                        "text": "Benisai.com"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 24,
         "x": 0,
-        "y": 113
+        "y": 120
       },
-      "id": 217,
+      "id": 193,
       "options": {
-        "displayMode": "basic",
-        "minVizHeight": 12,
-        "minVizWidth": 0,
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+        "footer": {
           "fields": "",
-          "values": false
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "showUnfilled": true
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
       },
-      "pluginVersion": "9.3.2",
+      "pluginVersion": "9.3.6",
       "targets": [
         {
           "datasource": {
@@ -5666,42 +6005,53 @@
             "uid": "${DS_PROMETHEUS-OWRT}"
           },
           "editorMode": "code",
-          "exemplar": true,
-          "expr": "increase(collectd_iptables_ipt_bytes_total{iptables=\"mangle-iptmon_tx\"}[2h])",
-          "hide": true,
-          "interval": "",
-          "legendFormat": "{{type}}",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS-OWRT}"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "count by (dest) (count_over_time(node_nat_traffic{dport!=\"53\",dport!=\"9100\"}[1h]))",
+          "exemplar": false,
+          "expr": "(node_nat_traffic{dest!=\"10.0.5.1\",dport!=\"53\",dport!=\"53\"} /1024/1024)",
+          "format": "table",
           "hide": false,
-          "interval": "",
-          "legendFormat": "{{type}}",
-          "range": true,
-          "refId": "B"
+          "instant": true,
+          "intervalFactor": 1,
+          "legendFormat": "Dest {{dest}} ->  SRC {{src}}",
+          "range": false,
+          "refId": "A"
         }
       ],
-      "title": "Top IP Last 1h",
+      "title": "NAT Traffic",
       "transformations": [
         {
-          "id": "extractFields",
+          "id": "organize",
           "options": {
-            "source": "Value"
+            "excludeByName": {
+              "Time": false,
+              "dport": false,
+              "group": true,
+              "instance": true,
+              "job": true,
+              "sport": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "Value": 8,
+              "dest": 3,
+              "dport": 4,
+              "group": 5,
+              "instance": 6,
+              "job": 7,
+              "sport": 2,
+              "src": 1
+            },
+            "renameByName": {
+              "Value": "data",
+              "dport": "",
+              "sport": "src port"
+            }
           }
         }
       ],
-      "type": "bargauge"
+      "type": "table"
     }
   ],
-  "refresh": "5s",
+  "refresh": "10s",
   "schemaVersion": 37,
   "style": "dark",
   "tags": [],
@@ -5740,6 +6090,6 @@
   "timezone": "",
   "title": "OpenWRT-Dashboard",
   "uid": "benisai",
-  "version": 258,
+  "version": 14,
   "weekStart": ""
 }
