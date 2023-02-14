@@ -77,7 +77,7 @@ This Docker-Compose.yml file will install Grafana/Prometheus/Collectd-Exporter/A
 Lastly, we need to create a 'sudo crontab -e' entry for the netify-log.sh script. 
   > sudo chmod +x netify-log.sh
   > sudo crontab -e 
-    */1 * * * * /home/USER/Openwrt-Monitoring/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
+    */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
 
 Login to grafana, add the prometheus datasource (I have 2 sources, one for OWRT and the other for AdguardHome, we can use the same datasource if you'd like) and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
 If you do not use AdguardHome, just set both sources to the same Prometheus Source)
