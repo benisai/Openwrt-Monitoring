@@ -90,11 +90,12 @@
    sudo docker network create internal
    sudo Docker-Compose.yml up -d
 ```
-  * Create a Crontab -e to run the netify-log.sh script
+  * Setup netify-log.sh script
 ```sh
    sudo crontab -e
    Add the following line:  */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1  
    sudo chmod +x /home/USER/Openwrt-Monitoring/Docker/netify-log.sh  
+   sudo nano /home/USER/Openwrt-Monitoring/Docker/netify-log.sh and replace the IP + hostname for each device
 ```
 
 ### Router Setup (Openwrt 21.x)
