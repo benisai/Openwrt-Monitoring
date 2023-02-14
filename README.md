@@ -83,10 +83,10 @@ Lastly, we need to create a 'sudo crontab -e' entry for the netify-log.sh script
   > sudo crontab -e 
     */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
 
-Login to grafana, add the prometheus datasource (I have 2 sources, one for OWRT and the other for AdguardHome, we can use the same datasource if you'd like) and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
-If you do not use AdguardHome, just set both sources to the same Prometheus Source)
+Login to grafana, add the prometheus datasource and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
 
-Note about the Grafana Dashboard:: You'll find two variables at the top. One for iptimon (hostname) and (srcip) for prometheus metrics. Unfortunately Prometheus exporter does not export via hostname only IP address. And iptimon exports as hostname. You can use the DHCP panel to find the corresponding IP address to hostname. 
+
+ 
 
 </pre>
 
