@@ -1,38 +1,28 @@
-# Openwrt-Monitoring
-Openwrt Monitoring via Grafana.
 
-This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand.
-Note: This will only work with Openwrt 21.x (IPTables) NFTables will not be supported. 
+## Intro
+* This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand. Note: This will only work with Openwrt 21.x (IPTables). NFTables will not be supported as IPTmon uses iptables. You can still run this project, but you wont get stats per device. 
 
 
-A Home Server running Docker to run the following applications (Scroll down for steps). <br/>
-```Note:  I provided a Docker-Compose.yml file with all the containers needed for the project```
-<br/>
+## Software Used to Monitor Traffic
+### Home Server (Linux)
+* Home Server running Docker + Docker-Compose
+  Note:  I provided a Docker-Compose.yml file with all the containers needed for the project
+  * Prometheus - Container to scrape and store data.
+  * Grafana - Container to display the graphs. (you will need to add your Prometheus location as the data source)
+  * Loki + Promtail + Middleware - Containers used to collect and process Netify logs created by netify-log.sh
+  * AdGuardHome - Container to block Ads/Porn/etc.
+  * Collectd-exporter - Container to collect data from Collectd on the Router
+  * Adguard-exporter - Container to collect data from AdGuardHome
 
-  >Prometheus - Container to scrape and store data.
-
-  >Grafana - Container to display the graphs. (you will need to add your Prometheus location as the data source) 
-  
-  >Loki + Promtail + Middleware - Containers used to collect and process Netify logs created by netify-log.sh
-
-  >AdGuardHome - Container to block Ads/Porn/etc. <br />
-  ```Note: you will need to free port 53, see this link "https://www.linuxuprising.com/2020/07/ubuntu-how-to-free-up-port-53-used-by.html"```
-
-  >Prom-Exporters - Container(s) used to export data so prometheus can scrape the data.
+### Router
+* Openwrt Router (21.x)
+  * Custom shell scripts to collect / output data to report files 
+  * Prometheus - main router monitoring (CPU,MEM,etc) with custom Prometheus Lua Files
+  * Collectd - to monitor ping and export iptmon data
+  * vnstat2 - to monitor monthly WAN Bandwidth usage (12am-Script.sh will check if its the 1st of the month and drop the vnstatdb)
+  * iptmon - to monitor per device usage
 
 
-
-On the router, the following software will be installed (Scroll down for routersetup.sh script)
-
-  >Prometheus - main router monitoring (CPU,MEM,etc)
-
-  >Collectd - to monitor ping and export iptmon data 
-
-  >vnstat2 - to monitor monthly WAN Bandwidth usage (12am-Script.sh will check if its the 1st of the month and drop the vnstatdb)
-
-  >iptmon - to monitor per device usage
- 
- 
 ---------------------------------------------------------------
 <br>
 
@@ -48,107 +38,64 @@ On the router, the following software will be installed (Scroll down for routers
 
 
 
+## Installation
+### Home Server (Linux)
+* Clone this repo to your server. 
+  * gh repo clone benisai/Openwrt-Monitoring
+  * cd Openwrt-Monitoring
+  * sudo nano prometheus.yml 
+    * replace 10.0.5.1 with your Router IP
+  * sudo nano netify-log.sh 
+    * replace 10.0.5.1 with your Router IP
+  * sudo docker network create internal
+  * sudo Docker-Compose.yml up -d
 
-<br/>
-
-# Installation
-
-
-
-Home Server Steps:
-You will need a Raspberry Pi or other linux server with Docker and Docker Compose. 
-
-<pre>
-
-Clone this repo to your server. 
-:~# gh repo clone benisai/Openwrt-Monitoring
-
-:~# cd Docker
-</pre>
-
->NOTE: Make sure to update the prometheus.yml and the netify-log.sh file with your router IP (replace 10.0.5.1 with your Router IP).
->NOTE: Make sure to update the netify-log.sh script to include your ip to hostname conversion. 
-       For example, mine look like this:
-          s/10.0.5.120/AI-CAM/g;  </br>
-          s/10.0.5.121/LivingRoom-CAM/g; </br>
-          s/10.0.5.131/Bens-iPhone/g; </br>
-
-<pre>
-Please create Docker Network called Internal
-:~# Sudo docker network create internal
-
-:~# Sudo Docker-Compose.yml up -d
-
-This Docker-Compose.yml file will install Grafana/Prometheus/Collectd-Exporter/AdguardHome/AdguardHome-Exporter.
-
-Lastly, we need to create a 'sudo crontab -e' entry for the netify-log.sh script. 
-  > sudo chmod +x netify-log.sh
-  > sudo crontab -e 
-    */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
-
-Login to grafana, add the prometheus datasource and Import the dashboard from this GIT Repo. (OpenWRT-Dashboard.json)
+* Create a Crontab -e to run the netify-log.sh script
+  * sudo crontab -e
+    * */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
+  * sudo chmod +x /home/USER/Openwrt-Monitoring/Docker/netify-log.sh  
 
 
- 
-
-</pre>
-
-
-
----------------------------------------------------------------
-OpenWRT21.x Router Steps: 
-
-
-<br>
-
-I've created a shell script that can be ran on the router, it will install all the needed software, scripts and custom lua files. 
-
-Before running the shell script, please edit the routersetup.sh file and replace the home server ip variable. My home server is at 10.0.5.5, if you dont replace this ip, it will cause your DNS to stop working and your collectd export settings wont work. 
+### Router Setup (Openwrt 21.x)
+* Download the shell script to setup the router
+  * wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh
+    * nano routersetup.sh
+      * replace 10.0.5.5 with your Home Server IP
+* sh routersetup.sh
+  * Reboot Router
 
 <pre>
-wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh
-
-nano routersetup.sh -> find 10.0.5.5 and replace that ip with your home-server ip.
-
-sh routersetup.sh
-
-reboot router
-
-</pre>
-
-Note: The New_Device section does not work at the moment.
-
 The routersetup.sh script will do the following:
 
- >Install Nano, netperf (needed for speedtest.sh), openssh-sftp-server,vnstat
+Install Nano, netperf (needed for speedtest.sh), openssh-sftp-server,vnstat
 
- >Install Prometheus and CollectD
- 
- >Install iptmon, wrtbwmon and luci-wrtbwmon
- 
- >Copy custom scripts from this git to /usr/bin/ on the router
- 
- >Copy custom LUA files from this git to /usr/lib/lua/prometheus-collectors on the router.
- 
- >Adding new_device.sh script to dhcp dnsmasq
- 
- >Adding scripts to Crontab
- 
- >Update prometheus config to 'lan'
- 
- >Update Collectd Export IP to home server ip address
- 
- >Add iptmon to your dhcp file under dnsmasq section
- 
- >Set your lan interface to assign out DNS IP of your home server
- 
- >restarts services
+Install Prometheus and CollectD
 
+Install iptmon, wrtbwmon and luci-wrtbwmon
 
+Copy custom scripts from this git to /usr/bin/ on the router
 
+Copy custom LUA files from this git to /usr/lib/lua/prometheus-collectors on the router.
+
+Adding new_device.sh script to dhcp dnsmasq
+
+Adding scripts to Crontab
+
+Update prometheus config to 'lan'
+
+Update Collectd Export IP to home server ip address
+
+Add iptmon to your dhcp file under dnsmasq section
+
+Set your lan interface to assign out DNS IP of your home server
+
+restarts services
+</pre>
 
 
+--------
 
----
-Credit: I have to give credit to Matthew Helmke, I used his blog and grafana dashboard and I added some stuff. I cant say I'm an expert in Grafana or Prometheus (first time using Prom)
-https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/
+Credit: I have to give credit to Matthew Helmke, I used his blog and grafana dashboard and I added some stuff. I cant say I'm an expert in Grafana or Prometheus (first time using Prom) https://grafana.com/blog/2021/02/09/how-i-monitor-my-openwrt-router-with-grafana-cloud-and-prometheus/
+
+
+
