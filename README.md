@@ -8,7 +8,7 @@
   * Packetloss monitoring via shell script, pinging google 40 times
   * Speedtest monitoring -- (kind of a hit/miss, I'll explain below)
   * DNS Stats via AdguardHome
-  * GeoIP Map for Destnation (provided by Netify logs)
+  * GeoIP Map for Destnation (provided by Netify logs, Check out the netify-log.sh script in the Docker folder https://github.com/benisai/Openwrt-Monitoring/blob/main/Docker/netify-log.sh)
   * Device Traffic Panel (provided by Netify logs). Src + Dst + Port + GeoInfo 
   * Device Status (Hostname + IP + Status Online or Offline)
   * System Resources monitoring (CPU/MEM/Load/Etc)
