@@ -41,6 +41,7 @@
   * AdGuardHome - Container to block Ads/Porn/etc.
   * Collectd-exporter - Container to collect data from Collectd on the Router
   * Adguard-exporter - Container to collect data from AdGuardHome
+  * Netify-log.sh - This will create a netcat connection to netifyd running on the router, it will output a local json log 
 
 ### Router
 * Openwrt Router (21.x)
@@ -57,6 +58,7 @@
   * Collectd - to monitor ping and export iptmon data
   * vnstat2 - to monitor monthly WAN Bandwidth usage (12am-Script.sh will check if its the 1st of the month and drop the vnstatdb)
   * iptmon - to monitor per device usage
+  * Netifyd - Netify Agent is a deep-packet inspection server which detects network\\ protocols and applications.
 
 
 </br>
