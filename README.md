@@ -108,6 +108,13 @@
     * nano routersetup.sh
       * replace 10.0.5.5 with your Home Server IP
 * sh routersetup.sh
+* Configure Netify.d
+  * The nc tool in OpenWrt is only able to listen to TCP sockets, so you have to add the listen_address[0] line below to enable TCP sockets in the netifyd engine. In /etc/netifyd.conf:
+    <pre>
+    [socket]
+    listen_path[0] = /var/run/netifyd/netifyd.sock
+    listen_address[0] = 127.0.0.1
+    </pre>
   * Reboot Router
 
 <pre>
