@@ -2,6 +2,7 @@
 ## Intro
 * This project consists of a few applications to help monitor your home router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand. 
   * Note: This will only work with Openwrt 21.x (IPTables). NFTables will not be supported as IPTmon uses iptables. You can still run this project, but you wont get stats per device. 
+  * Please keep in mind. I created this repo to store my project files/config somewhere so I can look back at it later (personal use). Feel free to use it but modify the config files to your environment (IP addresses)
 ```
 * Here are some features of this project
   * Internet monitoring via pings to google/quad9/Cloudflare
