@@ -113,7 +113,7 @@
     <pre>
     [socket]
     listen_path[0] = /var/run/netifyd/netifyd.sock
-    listen_address[0] = 127.0.0.1
+    listen_address[0] = 10.0.5.1 (replace with your routers IP address)   
     </pre>
   * Reboot Router
 
