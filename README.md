@@ -110,10 +110,11 @@
 * sh routersetup.sh
 * Configure Netify.d
   * You have to add your routers IP address to line below to enable TCP sockets in the netifyd engine. In /etc/netifyd.conf:
+  * (replace 10.0.5.1 with your routers IP address)
     <pre>
     [socket]
     listen_path[0] = /var/run/netifyd/netifyd.sock
-    listen_address[0] = 10.0.5.1 (replace with your routers IP address)   
+    listen_address[0] = 10.0.5.1    
     </pre>
   * Reboot Router
 
