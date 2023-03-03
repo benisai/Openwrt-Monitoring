@@ -7,24 +7,24 @@
 * Here are some features of this project
   * Internet monitoring via pings to google/quad9/Cloudflare
   * Packetloss monitoring via shell script, pinging google 40 times
-  * Speedtest monitoring -- (kind of a hit/miss, I'll explain below)
-  * DNS Stats via AdguardHome
+  * Speedtest monitoring via shell script -- (kind of broken, hit/miss, I'll explain below)
+  * DNS Stats via AdguardHome Container in Docker
   * GeoIP Map for Destnation (provided by Netify logs, Check out the netify-log.sh script in the Docker folder https://github.com/benisai/Openwrt-Monitoring/blob/main/Docker/netify-log.sh)
-  * Device Traffic Panel (provided by Netify logs). Src + Dst + Port + GeoInfo 
+  * Device Traffic Panel via netify-log.sh (provided by Netify logs). Src + Dst + Port + GeoInfo 
   * Device Status (Hostname + IP + Status Online or Offline)
-  * System Resources monitoring (CPU/MEM/Load/Etc)
-  * Monthly Bandwidth monitoring (Will clear monthly)
-  * 12hr Traffic usage
-  * WAN Speeds
+  * System Resources monitoring (CPU/MEM/Load/Etc) via prometheus on Router
+  * Monthly Bandwidth monitoring via VNState2 (Will clear monthly on 1st via crontab)
+  * 12hr Traffic usage (calucated by itpmon results from prometheus)
+  * WAN Speeds via prometheus
   * Live traffic per device (iptmon)
-  * Traffic per client usage for 2hr
-  * Ping Stats
-  * Hourly traffic usage (iptmon total)
-  * 7 Day traffic usage (iptmon total)
-  * New Devices Connected to Network
-  * Destnation IP count
-  * Destnation Port count
-  * NAT Traffic (Not really used anymore)
+  * Traffic per client usage for 2hr (calucated by itpmon results from prometheus)
+  * Ping Stats via CollectD
+  * Hourly traffic usage (calucated by itpmon results from prometheus)
+  * 7 Day traffic usage (calucated by itpmon results from prometheus)
+  * New Devices Connected to Network via shell script
+  * Destnation IP count (calucated by nat_traffic results from prometheus)
+  * Destnation Port count (calucated by nat_traffic results from prometheus)
+  * NAT Traffic (calucated by nat_traffic results from prometheus)
 * We need to install a few pieces of software + custom shell scripts on the router to collect this data  
 ```
 
