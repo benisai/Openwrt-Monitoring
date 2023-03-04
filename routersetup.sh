@@ -86,10 +86,9 @@ fi
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/wanip.lua -O /usr/lib/lua/prometheus-collectors/wanip.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/packetloss.lua -O /usr/lib/lua/prometheus-collectors/packetloss.lua
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/new_device.lua -O /usr/lib/lua/prometheus-collectors/new_device.lua 
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/device_status.lua -O /usr/lib/lua/prometheus-collectors/device_status.lua
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/new_device.lua -O /usr/lib/lua/prometheus-collectors/new_device.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/vnstatmonth.lua -O /usr/lib/lua/prometheus-collectors/vnstatmonth.lua
- wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/device-ping-status.lua -O /usr/lib/lua/prometheus-collectors/device-ping-status.lua
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/device-status.lua -O /usr/lib/lua/prometheus-collectors/device-status.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/gl-router-temp.lua -O /usr/lib/lua/prometheus-collectors/gl-router-temp.lua
  
  #echo 'Copying Extra files'
