@@ -104,10 +104,10 @@
 
 ### Router Setup (Openwrt 21.x)
 * Download the shell script to setup the router
-  * wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh
+  * ```wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh```
     * nano routersetup.sh
       * replace 10.0.5.5 with your Home Server IP
-* sh routersetup.sh
+* ```sh routersetup.sh```
 * Configure Netify.d
   * You have to add your routers IP address to line below to enable TCP sockets in the netifyd engine. In /etc/netifyd.conf:
   * (replace 10.0.5.1 with your routers IP address)
