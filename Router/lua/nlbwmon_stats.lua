@@ -2,10 +2,10 @@ local nlbwstat = {
     "mac",
     "ip",
     "conns",
-    "rx_bytes",
-    "rx_pkts",
-    "tx_bytes",
-    "tx_pkts"
+    "download_bytes",
+    "dl_pkts",
+    "upload_bytes",
+    "up_pkts"
 }
 
 local pattern = "(%w+:%w+:%w+:%w+:%w+:%w+)%s+(%d+.%d+.%d+.%d+)%s+(%d+)%s+(%d+)%s+(%d+)%s+(%d+)%s+(%d+)"
@@ -28,10 +28,10 @@ local function scrape()
       mac = nlbw[1],
       ip = nlbw[2],
       conns = nlbw[3],
-      rx_bytes = nlbw[4],
-      rx_pkts = nlbw[5],
-      tx_bytes = nlbw[6],
-      tx_pkts = nlbw[7]
+      download = nlbw[4],
+      dl_pkts = nlbw[5],
+      upload_bytes = nlbw[6],
+      up_pkts = nlbw[7]
     }, nlbw[7])
   end
 end
