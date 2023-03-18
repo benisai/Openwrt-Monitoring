@@ -10,6 +10,9 @@ echo "wanip=${WAN_ADDR}" "publicip=${cip}" >/tmp/wanip.out
 sleep 1
 
 
+####Nlbwmon results
+nlbw -c csv -g ip,mac -o ip | tr -d '"' | tail -n +2 > /tmp/nlbwmon.out
+
 
 #####Run vnstat and parse output
 vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g' | cut -d " " -f2- | cut -d " " -f2- > /tmp/vnstatmonth.out
