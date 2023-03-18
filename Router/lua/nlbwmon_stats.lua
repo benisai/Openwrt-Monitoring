@@ -32,7 +32,7 @@ local function scrape()
       dl_pkts = nlbw[5],
       upload_bytes = nlbw[6],
       up_pkts = nlbw[7]
-    }, nlbw[7])
+    }, nlbw[3])
   end
 end
 
