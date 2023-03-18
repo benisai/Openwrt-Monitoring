@@ -28,7 +28,7 @@ local function scrape()
       mac = nlbw[1],
       ip = nlbw[2],
       conns = nlbw[3],
-      download = nlbw[4],
+      download_bytes = nlbw[4],
       dl_pkts = nlbw[5],
       upload_bytes = nlbw[6],
       up_pkts = nlbw[7]
