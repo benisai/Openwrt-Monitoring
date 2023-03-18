@@ -11,6 +11,10 @@ sleep 1
 
 
 ####Nlbwmon results
+#sampledata
+#20:6d:31:df:00:7e       10.0.0.1        5039    0       0       15227038        232789
+#94:83:c4:19:93:65       10.0.0.2        151194  298574558       1794766 187757841       1951818
+
 nlbw -c csv -g ip,mac -o ip | tr -d '"' | tail -n +2 > /tmp/nlbwmon.out
 
 
