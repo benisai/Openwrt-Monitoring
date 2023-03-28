@@ -14,16 +14,20 @@ find $BACKUP_DIR/*.bkp -mtime +3 -exec rm {} \;
 rm /tmp/new_device.out
 touch /tmp/new_device.out
 
-#NOTE: Please update the interface so it matches your router.
-# If its the first of the month, it will drop the interface.
 
+###----If its the first of the month, drop the vnstat interface and recreate----###
+#Find WAN Interface for vnstat to monitor
+gateway_ip=$(ip route | awk '/default/ {print $3}')
+wan_iface=$(ip route | awk -v ip="$gateway_ip" '$0~ip {print $5}')
+
+#Get Date
 bi=$(date +%d)
 if [ $bi = "01" ]
 then
-    vnstat --remove -i wlan-sta0 --force
-    vnstat --add -i wlan-sta0
+    vnstat --remove -i $wan_iface --force
+    vnstat --add -i $wan_iface
     /etc/init.d/vnstat restart
 
 else
-    echo "not first of the month"
+    echo "It is not the 1st of the month, so vnstat will not drop the interface to recreate"
 fi
