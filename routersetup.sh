@@ -11,20 +11,33 @@ alias cls="clear"
 EOF
 
 
-# === Installing CollectD, Prometheus, and IPTMON. Also Speedtest.sh =============
+# === Update repo =============
  echo 'Updating software packages'
  opkg update
  
- echo 'Installing Nano, netperf and sftp-server, vnstat and Netify'
- opkg install nano netperf openssh-sftp-server vnstat2 vnstati2 luci-app-vnstat2 netifyd
- 
- echo 'Installing CollectD Software on Router'
- opkg install collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics collectd-mod-dhcpleases 
- 
- echo 'Installing Prometheus on Router'
- opkg install  prometheus prometheus-node-exporter-lua prometheus-node-exporter-lua-nat_traffic prometheus-node-exporter-lua-openwrt prometheus-node-exporter-lua-uci_dhcp_host prometheus-node-exporter-lua-wifi prometheus-node-exporter-lua-wifi_stations
- 
- echo 'Installing IPTMON 1.6.1'
+# List of software to check and install
+software="netperf openssh-sftp-server vnstat2 vnstati2 luci-app-vnstat2 netifyd collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics collectd>
+
+# Loop through the list of software
+for s in $software
+do
+  # Check if the software is installed
+  opkg list-installed | grep -q "^$s -"
+  if [ $? -ne 0 ]
+  then
+    # If not installed, install it
+    echo "$s is not installed. Installing..."
+    opkg update
+    opkg install $s
+    echo "$s installation complete."
+  else
+    # If installed, print a message
+    echo "$s is already installed."
+  fi
+done
+
+
+ echo 'Installing IPTMON 1.6.1 from GitHub'
  wget https://github.com/oofnikj/iptmon/releases/download/v0.1.6/iptmon_0.1.6-1_all.ipk -O /root/iptmon_0.1.6-1_all.ipk
  opkg install /root/iptmon_0.1.6-1_all.ipk
  
