@@ -11,7 +11,7 @@ if [ -f "$log_file" ]; then
   rm "$log_file"
 fi
 
-
+# Start Process
 while true; do
     # Ping Google DNS server
     ping -c 1 10.0.5.225 > /dev/null 2>&1
