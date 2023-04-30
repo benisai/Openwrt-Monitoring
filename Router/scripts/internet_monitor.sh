@@ -22,14 +22,14 @@ while true; do
         if [ $internet_working -eq 0 ]; then
             end_time=$(date +%s)
             elapsed_time=$((end_time - start_time))
-            echo "$(date '+%Y-%m-%d %H:%M:%S') Internet_is_working_again_after $elapsed_time" >> $log_file
+            echo "$(date '+%Y-%m-%d@%H:%M:%S') Internet_is_working_again_after $elapsed_time" >> $log_file
             internet_working=1
         fi
     else
         # Internet is not working
         if [ $internet_working -eq 1 ]; then
             start_time=$(date +%s)
-            echo "$(date '+%Y-%m-%d %H:%M:%S') Internet_is down" >> $log_file
+            echo "$(date '+%Y-%m-%d@%H:%M:%S') Internet_is down" >> $log_file
             internet_working=0
         fi
 
