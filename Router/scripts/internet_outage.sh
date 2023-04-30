@@ -11,10 +11,9 @@ if [ -f "$log_file" ]; then
   rm "$log_file"
 fi
 
-# Start Process
 while true; do
     # Ping Google DNS server
-    ping -c 1 8.8.8.8 > /dev/null 2>&1
+    ping -c 1 10.0.5.225 > /dev/null 2>&1
 
     # Check if ping was successful
     if [ $? -eq 0 ]; then
@@ -22,14 +21,14 @@ while true; do
         if [ $internet_working -eq 0 ]; then
             end_time=$(date +%s)
             elapsed_time=$((end_time - start_time))
-            echo "$(date '+%Y-%m-%d@%H:%M:%S') Internet_is_working_again_after $elapsed_time" >> $log_file
+            echo "$(date '+%Y-%m-%d-%H:%M:%S') Internet_is_working $elapsed_time" >> $log_file
             internet_working=1
         fi
     else
         # Internet is not working
         if [ $internet_working -eq 1 ]; then
             start_time=$(date +%s)
-            echo "$(date '+%Y-%m-%d@%H:%M:%S') Internet_is down" >> $log_file
+            echo "$(date '+%Y-%m-%d-%H:%M:%S') Internet_is_down 999999" >> $log_file
             internet_working=0
         fi
 
@@ -39,4 +38,5 @@ while true; do
 
     # Wait for 1 second before pinging again
     sleep 1
+
 done
