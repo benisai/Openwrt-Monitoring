@@ -15,11 +15,18 @@ rm /tmp/new_device.out
 touch /tmp/new_device.out
 
 
+# Remove Internet-outage file at 12am cst
+# Set the path to the log file
+outage_file="/tmp/wan_monitor.log"
+if [ -f "$outage_file" ]; then
+  rm "$outage_file"
+fi
+
+
 ###----If its the first of the month, drop the vnstat interface and recreate----###
 #Find WAN Interface for vnstat to monitor
 gateway_ip=$(ip route | awk '/default/ {print $3}')
 wan_iface=$(ip route | awk -v ip="$gateway_ip" '$0~ip {print $5}')
-
 #Get Date
 bi=$(date +%d)
 if [ $bi = "01" ]
