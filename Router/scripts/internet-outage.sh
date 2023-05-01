@@ -13,8 +13,8 @@ log_file="/tmp/wan_monitor.log"
 #fi
 
 while true; do
-    # Ping Google DNS server
-    ping -c 1 10.0.5.225 2>&1 > /dev/null
+    # Ping DNS server
+    ping -c 1 8.8.8.8 2>&1 > /dev/null
 
     # Check if ping was successful
     if [ $? -eq 0 ]; then
