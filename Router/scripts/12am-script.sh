@@ -1,20 +1,20 @@
 #!/bin/bash
+#---------------------------------------------------------------------------------------------------------#
 DATE=$(date +%m-%d-%Y)
 BACKUP_DIR="/etc/backup"
 BACKUP_DIR="/tmp/mountd/disk1_part1"
-
 # backup the vnstat.db and bwmon.db and add a timestamp to the file
 cp  /var/lib/vnstat/vnstat.db $BACKUP_DIR/vnstat.db-$DATE.bkp
 cp  /tmp/usage.db $BACKUP_DIR/usage.db-$DATE.bkp
-
 # Delete vnstat backup files older than 3 days #
 find $BACKUP_DIR/*.bkp -mtime +3 -exec rm {} \;
 
+#---------------------------------------------------------------------------------------------------------#
 #Remove new_device file
 rm /tmp/new_device.out
 touch /tmp/new_device.out
 
-
+#---------------------------------------------------------------------------------------------------------#
 # Remove Internet-outage file at 12am cst
 # Set the path to the log file
 outage_file="/tmp/wan_monitor.log"
@@ -22,7 +22,7 @@ if [ -f "$outage_file" ]; then
   rm "$outage_file"
 fi
 
-
+#---------------------------------------------------------------------------------------------------------#
 ###----If its the first of the month, drop the vnstat interface and recreate----###
 #Find WAN Interface for vnstat to monitor
 gateway_ip=$(ip route | awk '/default/ {print $3}')
@@ -38,3 +38,7 @@ then
 else
     echo "It is not the 1st of the month, so vnstat will not drop the interface to recreate"
 fi
+
+#---------------------------------------------------------------------------------------------------------#
+
+
