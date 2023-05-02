@@ -1,5 +1,6 @@
 #!/bin/sh
 
+#---------------------------------------------------------------------------------------------------------#
 ####WanIP
 #Get WAN Address from Router
 . /lib/functions/network.sh; network_find_wan NET_IF; network_get_ipaddr WAN_ADDR "${NET_IF}";
@@ -9,12 +10,11 @@ cip=$(curl https://api.ipify.org) > /dev/null 2>&1
 echo "wanip=${WAN_ADDR}" "publicip=${cip}" >/tmp/wanip.out
 sleep 1
 
-
-
+#---------------------------------------------------------------------------------------------------------#
 # Run nlbw export to csv and save to file. 
 nlbw -c csv -g ip,mac -o ip | tr -d '"' | tail -n +2 > /tmp/nlbwmon.out
 
-
+#---------------------------------------------------------------------------------------------------------#
 # Check if internet-outage.sh is running, if not start it.
 if ps | grep  "internet-outage.sh" |  grep -v "grep" > /dev/null
 then
@@ -25,7 +25,7 @@ else
     /usr/bin/internet-outage.sh &
 fi
 
-
+#---------------------------------------------------------------------------------------------------------#
 #####Run vnstat and parse output
 vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g' | cut -d " " -f2- | cut -d " " -f2- > /tmp/vnstatmonth.out
 #vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g' | cut -d " " -f2- > /tmp/monthoutput.out
@@ -33,6 +33,7 @@ vnstat --xml |grep -hnr "month id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //
 #vnstat --xml |grep -hnr "hour id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g; s/  00/:00/g' | cut -d " " -f2-  > /tmp/houroutput.out
 #vnstat --xml |grep -hnr "fiveminute id" | sed 's/<[^>]*>/ /g; s/2023//g; s/        //g' | cut -d " " -f2-   > /tmp/fiveoutput.out
 
+#---------------------------------------------------------------------------------------------------------#
 # Restart Netify if service is not running
 if ! pgrep netifyd
 then /etc/init.d/netifyd start
@@ -47,6 +48,7 @@ fi
 fi
 exit 0
 
+#---------------------------------------------------------------------------------------------------------#
 #ps | grep 7150 | grep -v grep | awk '{print $1}' | xargs kill
 #rm /tmp/netify.out
 #service netifyd restart
