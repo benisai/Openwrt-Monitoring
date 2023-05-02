@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #---------------------------------------------------------------------------------------------------------#
-####WanIP
+#Wan ETH IP and Public IP
 #Get WAN Address from Router
 . /lib/functions/network.sh; network_find_wan NET_IF; network_get_ipaddr WAN_ADDR "${NET_IF}";
 #Get Public IP address from Internet
@@ -49,12 +49,4 @@ fi
 exit 0
 
 #---------------------------------------------------------------------------------------------------------#
-#ps | grep 7150 | grep -v grep | awk '{print $1}' | xargs kill
-#rm /tmp/netify.out
-#service netifyd restart
-#sleep 1000 | nc 10.0.5.1 7150 | grep established | tr -d '"' | sed 's/:/=/g; s/,/ /g'   >> /tmp/netify.out &
 
-
-#vnstat update DB
-#vnstat -u
-#sleep 1
