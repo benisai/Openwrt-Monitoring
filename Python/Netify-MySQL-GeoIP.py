@@ -23,10 +23,10 @@ download_url = f"https://download.maxmind.com/app/geoip_download?edition_id={dat
 output_folder = "geoip"
 GEOIP_DB_FILE = "./geoip/GeoLite2-City.mmdb"
 
-# Send a GET request to the download URL
+# Send a GET request to the download URL MaxMind GeoLite2-City.mmdb
 response = requests.get(download_url, stream=True)
 
-# Check if the request was successful
+# Check if the request was successful for GeoLite2-City.mmdb
 if response.status_code == 200:
     # Extract the filename from the response headers
     content_disposition = response.headers.get("content-disposition")
