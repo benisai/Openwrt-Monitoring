@@ -5,7 +5,7 @@ import requests
 import geoip2.database
 
 # Router IP Address
-ROUTER_IP = "10.0.5.1"
+ROUTER_IP = "10.10.10.1"
 
 # SQLite configuration
 DB_FILE = "netifydb.db"
