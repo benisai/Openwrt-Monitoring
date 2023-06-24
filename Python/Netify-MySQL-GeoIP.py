@@ -13,7 +13,7 @@ ROUTER_IP = "10.10.10.1"
 DB_HOST = "10.10.10.236"
 DB_USER = "root"
 DB_PASSWORD = "password"
-DB_NAME = "netifymysql"
+DB_NAME = "netifyDB"
 
 
 # GeoIP database file and license
