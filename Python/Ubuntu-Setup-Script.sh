@@ -3,7 +3,7 @@
 # MySQL variables
 mysql_user="netify"
 mysql_password="netify"
-mysql_root_password="30EiZl893kas"
+mysql_root_password="password"
 mysql_database="netifyDB"
 
 # Create the parent folder if it doesn't exist
