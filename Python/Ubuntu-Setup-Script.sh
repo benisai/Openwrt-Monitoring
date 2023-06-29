@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# MySQL user and password variables
+mysql_user="netify"
+mysql_password="netify"
+mysql_root_password="30EiZl893kas"
+
 # Create the parent folder if it doesn't exist
 if [ ! -d "$HOME/netify" ]; then
   mkdir "$HOME/netify"
@@ -42,17 +47,17 @@ sed -i "s|/USERNAME|/home/$logged_in_user|g" "$HOME/netify/netify.service"
 # Install MySQL and set the root password
 sudo apt-get update
 sudo apt-get install -y mysql-server
-sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '30EiZl893kas';"
+sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysql_root_password';"
 
 # Create a new user for the 'netify' database
-sudo mysql -e "CREATE USER 'netify'@'localhost' IDENTIFIED BY 'netify';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON netify.* TO 'netify'@'localhost';"
+sudo mysql -e "CREATE USER '$mysql_user'@'localhost' IDENTIFIED BY '$mysql_password';"
+sudo mysql -e "GRANT ALL PRIVILEGES ON netify.* TO '$mysql_user'@'localhost';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
 # Install the required packages using pip
 pip3 install -r "$HOME/netify/requirements.txt"
 
-echo "The files have been successfully copied to the 'netify' folder, the USERNAME placeholder has been replaced, the MySQL root password has been set, a new user 'netify' has been created with full access to the 'netify' database, and the required packages have been installed."
+echo "The files have been successfully copied to the 'netify' folder, the USERNAME placeholder has been replaced, the MySQL root password has been set, a new user '$mysql_user' has been created with full access to the 'netify' database, and the required packages have been installed."
 
 # Reload systemd daemon, start the netify service, and display its status
 sudo systemctl daemon-reload
