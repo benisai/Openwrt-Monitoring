@@ -1,0 +1,14 @@
+[Unit]
+Description=Netify Python Script Service
+After=network.target
+
+[Service]
+user=beniamin
+ExecStart=/usr/bin/python3 /home/USERNAME/netify/netify.py
+WorkingDirectory=/home/USERNAME/netify
+Restart=always
+StandardOutput=file:/var/log/netify.service.log
+StandardError=file:/var/log/netify.service.log
+
+[Install]
+WantedBy=default.target
