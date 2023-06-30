@@ -15,8 +15,8 @@ else
 fi
 
 # Create the 'geoip' folder if it doesn't exist
-if [ ! -d "$HOME/netify/geoip" ]; then
-  mkdir "$HOME/netify/geoip"
+if [ ! -d "$HOME/netify/files" ]; then
+  mkdir "$HOME/netify/files"
   echo "The 'geoip' folder has been created successfully."
 else
   echo "The 'geoip' folder already exists."
