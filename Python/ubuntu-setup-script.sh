@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# MySQL variables
-mysql_user="netify"
-mysql_password="netify"
-mysql_root_password="30EiZl893kas"
-mysql_database="netifyDB"
+# Define variables
+ROOT_PASSWORD="0u0izgawqkiipj08tk0j"
+DATABASE_NAME="netifyDB"
+USERNAME="netify"
+USER_PASSWORD="netify"
 
 # Create the parent folder if it doesn't exist
 if [ ! -d "$HOME/netify" ]; then
@@ -37,16 +37,28 @@ curl -o "$HOME/netify/requirements.txt" "$requirements"
 logged_in_user=$(whoami)
 sed -i "s|/USERNAME|/home/$logged_in_user|g" "/etc/systemd/system/netify.service"
 
-# Install MySQL and set the root password
+# Install pip
 sudo apt-get update
 sudo apt-get install -y pip
-sudo apt-get install -y mysql-server
-sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysql_root_password';"
 
-# Create a new user for the specified database
-sudo mysql -e "CREATE USER '$mysql_user'@'localhost' IDENTIFIED BY '$mysql_password';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON $mysql_database.* TO '$mysql_user'@'localhost';"
+# Install MySQL
+sudo apt-get install mysql-server -y
+# Start MySQL service
+sudo service mysql start
+# Configure root password
+sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '${ROOT_PASSWORD}';"
+# Create the database
+sudo mysql -e "CREATE DATABASE ${DATABASE_NAME};"
+# Create the user
+sudo mysql -e "CREATE USER '${USERNAME}'@'localhost' IDENTIFIED BY '${USER_PASSWORD}';"
+# Grant full access to the user for the database
+sudo mysql -e "GRANT ALL PRIVILEGES ON ${DATABASE_NAME}.* TO '${USERNAME}'@'localhost';"
+# Flush privileges to apply changes
 sudo mysql -e "FLUSH PRIVILEGES;"
+echo "MySQL installation and configuration complete."
+
+
+
 
 # Install the required packages using pip
 pip3 install -r "$HOME/netify/requirements.txt"
