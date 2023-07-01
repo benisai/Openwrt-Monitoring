@@ -75,6 +75,6 @@ echo "Cron job for netify has been added to sudo crontab."
 
 # Reload systemd daemon, start the netify service, and display its status
 sudo systemctl daemon-reload
-sudo systemctl enable myscript
+sudo systemctl enable netify
 sudo systemctl start netify
 sudo systemctl status netify
