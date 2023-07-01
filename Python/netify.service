@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 user=USERNAME
-ExecStart=/usr/bin/python3 /home/USERNAME/netify/netify.py
+ExecStart=/usr/bin/python3 /home/USERNAME/netify/Netify-MySQL-GeoIP.py
 WorkingDirectory=/home/USERNAME/netify
 Restart=always
 StandardOutput=file:/var/log/netify.service.log
