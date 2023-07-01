@@ -37,8 +37,10 @@ curl -o "$HOME/netify/requirements.txt" "$requirements"
 logged_in_user=$(whoami)
 sed -i "s|/USERNAME|/home/$logged_in_user|g" "/etc/systemd/system/netify.service"
 
-# Install pip
+# Apt Update
 sudo apt-get update
+
+# Install pip
 sudo apt-get install -y pip
 
 # Install MySQL
@@ -58,8 +60,6 @@ sudo mysql -e "FLUSH PRIVILEGES;"
 echo "MySQL installation and configuration complete."
 
 
-
-
 # Install the required packages using pip
 pip3 install -r "$HOME/netify/requirements.txt"
 
@@ -68,12 +68,10 @@ echo "The MySQL root password has been set, a new user '$mysql_user' has been cr
 echo "The required packages have been installed."
 
 
-# Add service to crontab to ensure its running
-cron_entry="*/1 * * * * sudo systemctl start netify > /var/log/netify.service.log"
-# Replace the above line with your desired cron job entry, specifying the path to your shell script.
-(crontab -l ; echo "$cron_entry") | crontab -
-# Appends the new cron job entry to the existing crontab file.
-echo "Cron job added successfully."
+# Add the cron job entry to the sudo crontab
+sudo bash -c 'echo "*/1 * * * * sudo systemctl start netify > /tmp/netify.sudo.log" >> /etc/crontab'
+# Display a message indicating the cron job has been added
+echo "Cron job for netify has been added to sudo crontab."
 
 # Reload systemd daemon, start the netify service, and display its status
 sudo systemctl daemon-reload
