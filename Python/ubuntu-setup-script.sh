@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-ROOT_PASSWORD="0u0izgawqkiipj08tk0j"
+ROOT_PASSWORD="netify"
 DATABASE_NAME="netifyDB"
 USERNAME="netify"
 USER_PASSWORD="netify"
