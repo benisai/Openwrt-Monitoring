@@ -3,7 +3,7 @@ Description=Netify Python Script Service
 After=network.target
 
 [Service]
-user=beniamin
+user=USERNAME
 ExecStart=/usr/bin/python3 /home/USERNAME/netify/netify.py
 WorkingDirectory=/home/USERNAME/netify
 Restart=always
