@@ -14,21 +14,14 @@ else
   echo "The 'netify' folder already exists."
 fi
 
-# Create the 'geoip' folder if it doesn't exist
+# Create the 'files' folder if it doesn't exist
 if [ ! -d "$HOME/netify/files" ]; then
   mkdir "$HOME/netify/files"
-  echo "The 'geoip' folder has been created successfully."
+  echo "The 'files' folder has been created successfully."
 else
-  echo "The 'geoip' folder already exists."
+  echo "The 'files' folder already exists."
 fi
 
-# Create the 'config' folder if it doesn't exist
-if [ ! -d "$HOME/netify/config" ]; then
-  mkdir "$HOME/netify/config"
-  echo "The 'config' folder has been created successfully."
-else
-  echo "The 'config' folder already exists."
-fi
 
 # Define the file URLs to be copied
 file1_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/Netify-MySQL-GeoIP.py"
@@ -37,7 +30,7 @@ file3_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Pyt
 
 # Download and copy the files to the netify folder
 curl -o "$HOME/netify/Netify-MySQL-GeoIP.py" "$file1_url"
-curl -o "$HOME/netify/netify.service" "$file2_url"
+curl -o "/etc/systemd/system/netify.service" "$file2_url"
 curl -o "$HOME/netify/requirements.txt" "$file3_url"
 
 # Replace the USERNAME placeholder with the logged-in user's username
