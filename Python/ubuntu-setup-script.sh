@@ -55,6 +55,14 @@ echo "The files have been successfully copied to the 'netify' folder, the USERNA
 echo "The MySQL root password has been set, a new user '$mysql_user' has been created with full access to the '$mysql_database' database" 
 echo "The required packages have been installed."
 
+
+# Add service to crontab to ensure its running
+cron_entry="*/1 * * * * sudo systemctl start netify > /var/log/netify.service.log"
+# Replace the above line with your desired cron job entry, specifying the path to your shell script.
+(crontab -l ; echo "$cron_entry") | crontab -
+# Appends the new cron job entry to the existing crontab file.
+echo "Cron job added successfully."
+
 # Reload systemd daemon, start the netify service, and display its status
 sudo systemctl daemon-reload
 sudo systemctl enable myscript
