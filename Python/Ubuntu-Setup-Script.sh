@@ -24,7 +24,7 @@ fi
 
 
 # Define the file URLs to be copied
-file1_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/Netify-MySQL-GeoIP.py"
+file1_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/netify.py"
 file2_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/netify.service"
 file3_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/requirements.txt"
 
