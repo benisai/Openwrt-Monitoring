@@ -55,5 +55,6 @@ echo "The files have been successfully copied to the 'netify' folder, the USERNA
 
 # Reload systemd daemon, start the netify service, and display its status
 sudo systemctl daemon-reload
+sudo systemctl enable myscript
 sudo systemctl start netify
 sudo systemctl status netify
