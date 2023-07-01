@@ -24,22 +24,22 @@ fi
 
 
 # Define the file URLs to be copied
-file1_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/netify.py"
-file2_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/netify.service"
-file3_url="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/requirements.txt"
+netify_py="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/netify.py"
+netify_service="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/netify.service"
+requirements="https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Python/requirements.txt"
 
 # Download and copy the files to the netify folder
-curl -o "$HOME/netify/Netify-MySQL-GeoIP.py" "$file1_url"
-curl -o "/etc/systemd/system/netify.service" "$file2_url"
-curl -o "$HOME/netify/requirements.txt" "$file3_url"
+curl -o "$HOME/netify/netify.py" "$netify_py"
+curl -o "/etc/systemd/system/netify.service" "$netify_service"
+curl -o "$HOME/netify/requirements.txt" "$requirements"
 
 # Replace the USERNAME placeholder with the logged-in user's username
 logged_in_user=$(whoami)
-sed -i "s|/USERNAME|/home/$logged_in_user|g" "$HOME/netify/netify.service"
-sed -i "s|/USERNAME|/home/$logged_in_user|g" "$HOME/netify/netify.service"
+sed -i "s|/USERNAME|/home/$logged_in_user|g" "/etc/systemd/system/netify.service"
 
 # Install MySQL and set the root password
 sudo apt-get update
+sudo apt-get install -y pip
 sudo apt-get install -y mysql-server
 sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$mysql_root_password';"
 
@@ -51,7 +51,9 @@ sudo mysql -e "FLUSH PRIVILEGES;"
 # Install the required packages using pip
 pip3 install -r "$HOME/netify/requirements.txt"
 
-echo "The files have been successfully copied to the 'netify' folder, the USERNAME placeholder has been replaced, the MySQL root password has been set, a new user '$mysql_user' has been created with full access to the '$mysql_database' database, and the required packages have been installed."
+echo "The files have been successfully copied to the 'netify' folder, the USERNAME placeholder has been replaced."
+echo "The MySQL root password has been set, a new user '$mysql_user' has been created with full access to the '$mysql_database' database" 
+echo "The required packages have been installed."
 
 # Reload systemd daemon, start the netify service, and display its status
 sudo systemctl daemon-reload
