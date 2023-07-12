@@ -85,7 +85,7 @@
 * Clone this repo to your server. 
 ```sh
    gh repo clone benisai/Openwrt-Monitoring
-   cd Openwrt-Monitoring
+   cd Openwrt-Monitoring/Docker
    sudo nano prometheus.yml 
     * replace 10.0.5.1 with your Router IP
    sudo nano netify-log.sh 
