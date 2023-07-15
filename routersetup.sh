@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # === Please set the IP address to point to your Home Server (Where Docker is installed) ============
-HOMESERVER="10.0.5.5"
+HOMESERVER="10.0.5.1"
 echo "Using IP Address: ${HOMESERVER} for HomeServer (where Docker is installed)"
 
 # === Set Custom Alias for clear as cls ============
@@ -92,6 +92,8 @@ fi
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/device-status-ping.sh -O /usr/bin/device-status-ping.sh && chmod +x /usr/bin/device-status-ping.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/packet-loss.sh -O /usr/bin/packet-loss.sh && chmod +x /usr/bin/packet-loss.sh
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/new_device.sh -O /usr/bin/new_device.sh && chmod +x /usr/bin/new_device.sh
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/internet-outage.sh -O /usr/bin/internet-outage.sh && chmod +x /usr/bin/internet-outage.sh
+
 
 
 
@@ -104,6 +106,8 @@ fi
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/vnstatmonth.lua -O /usr/lib/lua/prometheus-collectors/vnstatmonth.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/device-status.lua -O /usr/lib/lua/prometheus-collectors/device-status.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/gl-router-temp.lua -O /usr/lib/lua/prometheus-collectors/gl-router-temp.lua
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/internet-outage.lua -O /usr/lib/lua/prometheus-collectors/internet-outage.lua
+
  
  #echo 'Copying Extra files'
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
