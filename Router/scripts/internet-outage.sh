@@ -24,14 +24,14 @@ while true; do
             elapsed_time=$((end_time - start_time))
             #Create a new file, with the down message and up message in 1 line.
             upmsg="$(date '+%Y-%m-%d-%H:%M:%S') up $elapsed_time"
-            sed -i "s/UP_MSG/$upmsg/g" $log_file #> $log_file.tmp && mv $log_file.tmp $log_file
+            sed -i "s/placeholder/$upmsg/g" $log_file #> $log_file.tmp && mv $log_file.tmp $log_file
             internet_working=1
         fi
     else
         # Internet is not working (iid)
         if [ $internet_working -eq 1 ]; then
             start_time=$(date +%s)
-            echo "$(date '+%Y-%m-%d-%H:%M:%S') down UP_MSG " >> $log_file
+            echo "$(date '+%Y-%m-%d-%H:%M:%S') down placeholder " >> $log_file
             internet_working=0
         fi
 
