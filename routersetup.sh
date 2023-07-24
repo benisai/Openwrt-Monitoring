@@ -95,8 +95,6 @@ fi
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/scripts/internet-outage.sh -O /usr/bin/internet-outage.sh && chmod +x /usr/bin/internet-outage.sh
 
 
-
-
  echo 'Copying custom LUA Files from GIT to router'
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/nat_traffic.lua -O /usr/lib/lua/prometheus-collectors/nat_traffic.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/speedtest.lua -O /usr/lib/lua/prometheus-collectors/speedtest.lua
@@ -107,7 +105,7 @@ fi
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/device-status.lua -O /usr/lib/lua/prometheus-collectors/device-status.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/gl-router-temp.lua -O /usr/lib/lua/prometheus-collectors/gl-router-temp.lua
  wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/internet-outage.lua -O /usr/lib/lua/prometheus-collectors/internet-outage.lua
-
+ wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/lua/dnsmasq.lua -O /usr/lib/lua/prometheus-collectors/dnsmasq.lua
  
  #echo 'Copying Extra files'
  #wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/Router/vnstat_backup -O /etc/init.d/vnstat_backup && chmod +x /etc/init.d/vnstat_backup
