@@ -26,5 +26,26 @@ local function scrape_leasefile(leasefile)
   file:close()
 end
 
+local function scrape()
+  local u = ubus.connect()
+
+  local metrics = u:call("dnsmasq", "metrics", {})
+  if not metrics then return end
+  for name, value in pairs(metrics) do
+    metric("dnsmasq_"..name, "counter", nil, value)
+  end
+
+  local values = u:call("uci", "get", {config="dhcp", type="dnsmasq"})
+  if not values then return end
+  for _, configs in pairs(values) do
+    for name, config in pairs(configs) do
+      for key, value in pairs(config) do
+        if key == "leasefile" then
+	  scrape_leasefile(value)
+        end
+      end
+    end
+  end
+end
 
 return { scrape = scrape }
