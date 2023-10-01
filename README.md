@@ -108,6 +108,7 @@
     * nano routersetup.sh
       * replace 10.0.5.5 with your Home Server IP
 * ```sh routersetup.sh```
+* Note: I removed the interface dns as it was causing some issues if you dont have Adguard home running on your docker server. if you do, uncomment the dns part if the script so Adguard home can see the hostnames of the devices. 
 * Configure Netify.d
   * You have to add your routers IP address to line below to enable TCP sockets in the netifyd engine. In /etc/netifyd.conf:
   * (replace 10.0.5.1 with your routers IP address)
