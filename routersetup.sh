@@ -155,14 +155,14 @@ fi
  sed -i "s/10.0.5.5/${HOMESERVER}/g"  /etc/config/luci_statistics
 
 # === Setting up DNS ===========
-L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
- if [[ -z "$L" ]]; then
-  echo "Adding $HOMESERVER DNS entry to LAN Interface"
-  uci add_list dhcp.lan.dhcp_option="6,${HOMESERVER}"
-  uci commit dhcp
- elif [[ -n "$L" ]]; then
-  echo "${HOMESERVER} DNS was found, no changes to DNS"
- fi
+#L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
+# if [[ -z "$L" ]]; then
+#  echo "Adding $HOMESERVER DNS entry to LAN Interface"
+#  uci add_list dhcp.lan.dhcp_option="6,${HOMESERVER}"
+#  uci commit dhcp
+# elif [[ -n "$L" ]]; then
+#  echo "${HOMESERVER} DNS was found, no changes to DNS"
+# fi
 
 # === Setting Services to enable and restarting Services =============
  echo 'Enable and Restart services'
