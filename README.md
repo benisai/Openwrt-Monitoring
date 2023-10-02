@@ -117,7 +117,7 @@
       * Configure the Ping (1.1.1.1, 8.8.8.8, 9.9.9.9)
       * Configure the Firewall plugin (See screenshot https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/CollectD1-firewall.PNG)
   * Output plugins:
-      * Configure Network -> Server interfaces (add your home server ip ex.10.0.5.5, port )
+      * Configure Network -> Server interfaces (add your home server ip ex.10.0.5.5) (see screenshot https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Collectd-output.PNG)
 * Configure Netify.d
   * You have to add your routers IP address to line below to enable TCP sockets in the netifyd engine. In /etc/netifyd.conf:
   * (replace 10.0.5.1 with your routers IP address)
