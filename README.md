@@ -32,8 +32,8 @@
 </br>
 
 ## Software Used to Monitor Traffic
-### Home Server (Linux)
-* Home Server running Docker + Docker-Compose
+### Home Server (Ubuntu)
+* Ubuntu Home Server running Docker + Docker-Compose
   Note:  I provided a Docker-Compose.yml file with all the containers needed for the project
   * Prometheus - Container to scrape and store data.
   * Grafana - Container to display the graphs. (you will need to add your Prometheus location as the data source)
