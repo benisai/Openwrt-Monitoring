@@ -34,30 +34,8 @@ if [ $TIMEDIFF -gt $OLDTIME ]; then
     echo "Netify Netcat Process is Not Running." 1>&2
     echo "Starting Netify Netcat Process"
     sleep 1000 | nc $router 7150 | grep established | sed 's/"established":false,//g; s/"flow":{//g; s/0}/0/g' | (sed '
-        s/10.0.5.120/AI-CAM/g;
-        s/10.0.5.121/LivingRoom-CAM/g;
-        s/10.0.5.131/Bens-iPhone/g;
-        s/10.0.5.3/FWP-SE/g;
-        s/10.0.5.5/Home-Server/g;
-        s/10.0.5.223/vw-logs/g;
-        s/10.0.5.122/EI-CAM/g;
-        s/10.0.5.170/Chelsea-iPhone/g;
-        s/10.0.5.119/Nest/g;
-        s/10.0.5.146/Bens-iPad/g;
-        s/10.0.5.110/tasmotapc-0095/g;
-        s/10.0.5.238/SYN-Datto/g;
-        s/10.0.5.144/Bens-Air/g;
-        s/10.0.5.10/Synology/g;
-        s/10.0.5.141/Chromecast/g;
-        s/10.0.5.112/tasmotaOL1-0312/g;
-        s/10.0.5.239/Pixel-7/g;
-        s/10.0.5.229/Datto/g;
-        s/110.0.5.214/Chelsea-Air/g;
-        s/10.0.5.238/Syn-Datto/g;
-        s/10.0.5.10/Synology/g;
-        s/10.0.5.11/MeLe-WiFi/g;
-        s/10.0.5.111/tasmotaOL3-5016/g;
-        s/10.0.5.113/tasmotaOL2-2268/g') >>/var/log/netify/netify.log &
+        s/0.0.0.0/TEMP/g;
+        s/0.0.0.1/END/g') >>/var/log/netify/netify.log &
 
 
             PIDS=$(ps -eaf | grep $router | grep -v grep | awk '{print $2}')
