@@ -34,7 +34,7 @@ if [ $TIMEDIFF -gt $OLDTIME ]; then
     echo "Netify Netcat Process is Not Running." 1>&2
     echo "Starting Netify Netcat Process"
     sleep 1000 | nc $router 7150 | grep established | sed 's/"established":false,//g; s/"flow":{//g; s/0}/0/g' | (sed '
-        s/0.0.0.0/TEMP/g;
+        s/0.0.0.0/START/g;
         s/0.0.0.1/END/g') >>/var/log/netify/netify.log &
 
 
