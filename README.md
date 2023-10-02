@@ -102,6 +102,8 @@
 ```
 </br>
 
+-------------------------------------------------------------------------------
+
 ### Router Setup (Openwrt 21.x)
 * Download the shell script to setup the router
   * ```wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh```
@@ -109,8 +111,10 @@
       * replace 10.0.5.5 with your Home Server IP
 * ```sh routersetup.sh```
 * Note: I removed the interface dns as it was causing some issues if you dont have Adguard home running on your docker server. if you do, uncomment the dns part if the script so Adguard home can see the hostnames of the devices. 
-* Configure Collectd
-  * Statistics -> Setup ->
+
+=============================================================================
+* Configure Collectd on Router
+  * Licu -> Statistics -> Setup ->
   * Collectd Settings:
       * Set the Data collection interval to 10 seconds
   * Network plugins:
@@ -118,15 +122,21 @@
       * Configure the Firewall plugin (See screenshot https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/CollectD1-firewall.PNG)
   * Output plugins:
       * Configure Network -> Server interfaces (add your home server ip ex.10.0.5.5) (see screenshot https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Collectd-output.PNG)
-* Configure Netify.d
-  * You have to add your routers IP address to line below to enable TCP sockets in the netifyd engine. In /etc/netifyd.conf:
-  * (replace 10.0.5.1 with your routers IP address)
-    <pre>
-    [socket]
-    listen_path[0] = /var/run/netifyd/netifyd.sock
-    listen_address[0] = 10.0.5.1    
-    </pre>
+   
+=============================================================================  
+* Configure Netify.d on Router
+  * SSH into router
+  * You have to add your routers IP address to Socket section below to enable TCP sockets in the netifyd engine.
+  * nano /etc/netifyd.conf
+    * (replace 10.0.5.1 with your routers IP address)
+      <pre>
+      [socket]
+      listen_path[0] = /var/run/netifyd/netifyd.sock
+      listen_address[0] = 10.0.5.1    <---------Add this line, update the Router IP
+      </pre>
   * Reboot Router
+
+=============================================================================
 
 <pre>
 The routersetup.sh script will do the following:
