@@ -6,11 +6,32 @@ CURRENT_USER=$(whoami)
 # Set the Router IP address
 ROUTER_IP="10.0.5.1"
 
+# Check if the ROUTER_IP is set to the default value
+if [ "$ROUTER_IP" == "10.0.5.1" ]; then
+    read -p "Is 10.0.5.1 the correct Router IP? (Y/n): " correct_ip
+
+    if [[ ! $correct_ip =~ ^[Yy]$ ]]; then
+        echo "Please update the script with the correct Router_IP variable and run it again."
+        exit 1
+    fi
+fi
+
+
 # Check if Docker is installed
 if ! command -v docker &> /dev/null; then
-    echo "Docker is not installed. Please install Docker before running this script."
-    exit 1
+    echo "Docker is not installed."
+    read -p "Do you want to install Docker? (Y/n): " install_docker
+
+    if [[ $install_docker =~ ^[Yy]$ ]]; then
+        # Install Docker using the official script
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        sudo sh get-docker.sh
+    else
+        echo "Docker installation aborted. Exiting script."
+        exit 1
+    fi
 fi
+
 
 # Clone the repository
 git clone https://github.com/benisai/Openwrt-Monitoring.git
