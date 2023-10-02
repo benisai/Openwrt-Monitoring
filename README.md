@@ -79,7 +79,9 @@
 </br>
 </br>
 
-## Installation
+
+
+## Installation (pt1 Linux Server, pt2 Openwrt)
 ### Home Server (Linux)
 
 * Clone this repo to your server. 
@@ -93,13 +95,17 @@
    sudo docker network create internal
    sudo Docker-Compose.yml up -d
 ```
-  * Setup netify-log.sh script
-```sh
-   sudo crontab -e
-   Add the following line:  */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1  
-   sudo chmod +x /home/USER/Openwrt-Monitoring/Docker/netify-log.sh  
-   sudo nano /home/USER/Openwrt-Monitoring/Docker/netify-log.sh and replace the IP + hostname for each device
+
+  * Create Crontab config on Server (replace USER with your username for the Cronjobs)
+    
+   run 'sudo crontab -e'  and add the line below. 
+```   
+   */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
 ```
+   Then run these commands:
+   sudo chmod +x /home/USER/Openwrt-Monitoring/Docker/netify-log.sh 
+   sudo nano /home/USER/Openwrt-Monitoring/Docker/netify-log.sh
+
 </br>
 
 -------------------------------------------------------------------------------
