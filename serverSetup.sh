@@ -40,7 +40,7 @@ fi
 
 # Clone the repository
 git clone https://github.com/benisai/Openwrt-Monitoring.git
-cd Openwrt-Monitoring/Docker
+cd ./Openwrt-Monitoring
 # Cleaning up files that are not needed on the docker server
 rm -r Python
 rm -r Router
@@ -49,6 +49,7 @@ rm serverSetup.sh
 rm routersetup.sh
 rm README.md
 
+cd ./Docker
 # Replace the Router IP in prometheus.yml
 sed -i "s/10.0.5.1/$ROUTER_IP/g" prometheus.yml
 
