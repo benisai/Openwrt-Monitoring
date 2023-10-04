@@ -64,14 +64,22 @@ sudo chmod +x netify-log.sh
 sudo bash -c "echo '*/1 * * * * /home/$CURRENT_USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1' > /etc/cron.d/netify-log-cronjob"
 
 
-# Ask the user if they want to start the Docker containers
+# Do you want to start the Docker containers
 read -p "Do you want to start the Docker containers? (Y/n): " start_docker
 
 if [[ $start_docker =~ ^[Yy]$ ]]; then
-    # Start the Docker containers
-    sudo docker-compose up -d
+    # Do you want to install AdGuard Home
+    read -p "Do you want to install AdGuard Home? (Y/n): " install_adguard
+
+    if [[ $install_adguard =~ ^[Yy]$ ]]; then
+        # Start AdGuard Home using a different Docker Compose file (docker-compose-extras.yml)
+        sudo docker-compose -f docker-compose-extras.yml up -d
+    else
+        # Start the Docker containers using the default Compose file
+        sudo docker-compose up -d
+    fi
 else
-    echo "Docker containers not started, please run 'sudo docker-compose up -d' manually"
+    echo "Docker containers not started."
 fi
 
 echo "Script Completed"
