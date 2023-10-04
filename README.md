@@ -3,6 +3,8 @@
 * This project consists of a few applications to help monitor your Openwrt router. You will need a decent router (anything from 2-3yrs ago will work) with dual core CPU, with 256mb-512mb of RAM and 128mb nand. 
   * Note: This will only work with Openwrt 21.x (IPTables). NFTables will not be supported as IPTmon uses iptables. You can still run this project, but you wont get stats per device. 
   * Please keep in mind. I created this repo to store my project files/config somewhere so I can look back at it later (personal use). Feel free to use it but modify the config files to your environment (IP addresses)
+ 
+ 
 ```
 * Here are some features of this project
   * Internet monitoring via pings to google/quad9/Cloudflare
@@ -81,18 +83,17 @@
 
 
 
-## Installation (pt1 Linux Server, pt2 Openwrt)
-### Home Server (Linux)
+
+## Home Server Installation (Linux)
 
 * Clone this repo to your server. 
-  *```sudo wget https://github.com/benisai/Openwrt-Monitoring/blob/main/serverSetup.sh```
-   *run 'sudo nano ./serverSetup.sh' and update the router_ip variable.
-   *run 'sudo chmod +x ./serverSetup.sh'
-   *run 'sudo ./serverSetup.sh'
-   This command will ask if you want to install docker, if its already installed, it will be skipped 
+  ```sudo wget https://github.com/benisai/Openwrt-Monitoring/blob/main/serverSetup.sh```
+   * run 'sudo nano ./serverSetup.sh' and update the router_ip variable.
+   * run 'sudo chmod +x ./serverSetup.sh'
+   * run 'sudo ./serverSetup.sh'
+   * This command will ask if you want to install docker, if its already installed, it will be skipped 
 
-  * Create Crontab config on Server (replace USER with your username for the Cronjobs)
-    
+   Create Crontab config on Server (replace USER with your username for the Cronjobs)  
    run 'sudo crontab -e'  and add the line below. 
 ```   
    */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
@@ -100,41 +101,14 @@
 
 </br>
 
--------------------------------------------------------------------------------
 
-### Router Setup (Openwrt 21.x)
+
+## Router Installation (Openwrt 21.x)
 * Download the shell script to setup the router
   * ```wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh```
     * nano routersetup.sh
       * replace 10.0.5.5 with your Home Server IP
 * ```sh routersetup.sh```
-* Note: I removed the interface dns as it was causing some issues if you dont have Adguard home running on your docker server. if you do, uncomment the dns part if the script so Adguard home can see the hostnames of the devices. 
-
-=============================================================================
-* Configure Collectd on Router
-  * Licu -> Statistics -> Setup ->
-  * Collectd Settings:
-      * Set the Data collection interval to 10 seconds
-  * Network plugins:
-      * Configure the Ping (1.1.1.1, 8.8.8.8, 9.9.9.9)
-      * Configure the Firewall plugin (See screenshot https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/CollectD1-firewall.PNG)
-  * Output plugins:
-      * Configure Network -> Server interfaces (add your home server ip ex.10.0.5.5) (see screenshot https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Collectd-output.PNG)
-   
-=============================================================================  
-* Configure Netify.d on Router
-  * SSH into router
-  * You have to add your routers IP address to Socket section below to enable TCP sockets in the netifyd engine.
-  * nano /etc/netifyd.conf
-    * (replace 10.0.5.1 with your routers IP address)
-      <pre>
-      [socket]
-      listen_path[0] = /var/run/netifyd/netifyd.sock
-      listen_address[0] = 10.0.5.1    <---------Add this line, update the Router IP
-      </pre>
-  * Reboot Router
-
-=============================================================================
 
 <pre>
 The routersetup.sh script will do the following:
@@ -151,6 +125,43 @@ The routersetup.sh script will do the following:
 * Set your lan interface to assign out DNS IP of your home server
 * restarts services
 </pre>
+
+* Note: I removed the interface dns as it was causing some issues if you dont have Adguard home running on your docker server. if you do, uncomment the dns part if the script so Adguard home can see the hostnames of the devices. 
+
+
+<br>
+<br>
+<br>
+
+
+
+
+## Extra Configuration for OpenWRT
+
+* Configure Collectd on Router
+  * Licu -> Statistics -> Setup ->
+  * Collectd Settings:
+      * Set the Data collection interval to 10 seconds
+  * Network plugins:
+      * Configure the Ping (1.1.1.1, 8.8.8.8, 9.9.9.9)
+      * Configure the Firewall plugin (See screenshot https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/CollectD1-firewall.PNG)
+  * Output plugins:
+      * Configure Network -> Server interfaces (add your home server ip ex.10.0.5.5) (see screenshot https://github.com/benisai/Openwrt-Monitoring/blob/main/screenshots/Collectd-output.PNG)
+
+<br>
+   
+* Configure Netify.d on Router
+  * SSH into router
+  * You have to add your routers IP address to Socket section below to enable TCP sockets in the netifyd engine.
+  * nano /etc/netifyd.conf
+    * (replace 10.0.5.1 with your routers IP address)
+      <pre>
+      [socket]
+      listen_path[0] = /var/run/netifyd/netifyd.sock
+      listen_address[0] = 10.0.5.1    <---------Add this line, update the Router IP
+      </pre>
+  * Reboot Router
+
 
 
 --------
