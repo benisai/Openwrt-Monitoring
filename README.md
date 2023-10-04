@@ -85,15 +85,12 @@
 ### Home Server (Linux)
 
 * Clone this repo to your server. 
-```sh
-   gh repo clone benisai/Openwrt-Monitoring
-   cd Openwrt-Monitoring/Docker
-   sudo nano prometheus.yml 
-    * replace 10.0.5.1 with your Router IP
-   sudo nano netify-log.sh 
-    * replace 10.0.5.1 with your Router IP
-   sudo docker network create internal
-   sudo Docker-Compose.yml up -d
+```
+   sudo wget https://github.com/benisai/Openwrt-Monitoring/blob/main/serverSetup.sh
+   run 'sudo nano ./serverSetup.sh' and update the router_ip variable.
+   run 'sudo chmod +x ./serverSetup.sh'
+   run 'sudo ./serverSetup.sh'
+   This command will ask if you want to install docker, if its already installed, it will be skipped 
 ```
 
   * Create Crontab config on Server (replace USER with your username for the Cronjobs)
@@ -102,9 +99,6 @@
 ```   
    */1 * * * * /home/USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1
 ```
-   Then run these commands:
-   sudo chmod +x /home/USER/Openwrt-Monitoring/Docker/netify-log.sh 
-   sudo nano /home/USER/Openwrt-Monitoring/Docker/netify-log.sh
 
 </br>
 
