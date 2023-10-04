@@ -85,7 +85,7 @@
 ### Home Server (Linux)
 
 * Clone this repo to your server. 
-  *```sudo wget https://github.com/benisai/Openwrt-Monitoring/blob/main/serverSetup.sh && sudo chmod +x serverSetup.sh```
+  *```sudo wget https://github.com/benisai/Openwrt-Monitoring/blob/main/serverSetup.sh```
    *run 'sudo nano ./serverSetup.sh' and update the router_ip variable.
    *run 'sudo chmod +x ./serverSetup.sh'
    *run 'sudo ./serverSetup.sh'
