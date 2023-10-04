@@ -40,16 +40,15 @@ fi
 
 # Clone the repository
 git clone https://github.com/benisai/Openwrt-Monitoring.git
-cd ./Openwrt-Monitoring
 # Cleaning up files that are not needed on the docker server
-rm -r Python
-rm -r Router
-rm -r screenshots
-rm serverSetup.sh
-rm routersetup.sh
-rm README.md
+rm -r ./Openwrt-Monitoring/Python
+rm -r ./Openwrt-Monitoring/Router
+rm -r ./Openwrt-Monitoring/screenshots
+rm ./Openwrt-Monitoring/serverSetup.sh
+rm ./Openwrt-Monitoring/routersetup.sh
+rm ./Openwrt-Monitoring/README.md
 
-cd ./Docker
+cd ./Openwrt-Monitoring/Docker
 # Replace the Router IP in prometheus.yml
 sed -i "s/10.0.5.1/$ROUTER_IP/g" prometheus.yml
 
@@ -69,7 +68,7 @@ echo "*/1 * * * * /home/$CURRENT_USER/Openwrt-Monitoring/Docker/netify-log.sh >>
 sudo chmod +x netify-log.sh
 
 # Edit netify-log.sh
-sudo nano netify-log.sh
+#sudo nano netify-log.sh
 
 # Clean up temporary files
 rm cronjob.tmp
