@@ -73,3 +73,5 @@ if [[ $start_docker =~ ^[Yy]$ ]]; then
 else
     echo "Docker containers not started, please run 'sudo docker-compose up -d' manually"
 fi
+
+echo "Script Completed"
