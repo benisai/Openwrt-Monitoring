@@ -1,0 +1,136 @@
+version: '3.5'
+services:
+################################################################################
+  grafana:
+    image: grafana/grafana:latest
+    restart: always
+    container_name: grafana-home
+    networks:
+      - internal
+    user: "$UID:$GID"
+    ports:
+      - 3000:3000
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+####################################################################################
+  prometheus-home:
+    image: prom/prometheus:latest
+    container_name: prometheus-home
+    restart: always
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=45d
+      - --internal.console.libraries=/usr/share/prometheus/console_libraries
+      - --internal.console.templates=/usr/share/prometheus/consoles
+      - --internal.enable-admin-api
+    networks:
+      - internal
+    ports:
+      - 9191:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus:/prometheus
+#####################################################################################
+  collectd-exporter:
+    image: prom/collectd-exporter:latest
+    container_name: collectd-exp-home
+    restart: always
+    command:
+      - --collectd.listen-address=:25826
+    networks:
+      - internal
+    ports:
+      - 9103:9103
+      - 25826:25826/udp
+#####################################################################################
+  adguard_exporter:
+    image: ebrianne/adguard-exporter:latest
+    container_name: agh-exporter-home
+    restart: always
+    ports:
+      - '9617:9617'
+    networks:
+      - internal
+    environment:
+      - adguard_protocol=http
+      - adguard_hostname=Adguard-Home
+      - adguard_username=admin
+      - adguard_password=admin
+      - adguard_port=84
+      - server_port=9617
+      - interval=10s
+      - log_limit=10000
+
+#####################################################################################
+  loki:
+    image: grafana/loki:2.4.1
+    container_name: loki
+    restart: always
+    ports:
+      - 3100:3100
+    expose:
+      - 3100
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - internal
+#####################################################################################
+  enhance_middleware:
+    image: nihiue/loki_enhance_middleware:latest
+    container_name: lokimiddleware
+    restart: always
+    environment:
+      - LOKI_HOST=http://loki:3100
+      - WORKER_COUNT=1
+      - PORT=3100
+    expose:
+      - 3100
+    networks:
+      - internal
+#####################################################################################
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    restart: always
+    volumes:
+      - /var/log:/var/log:ro     
+      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+      - internal
+#####################################################################################      
+  adguard-home:
+    image: adguard/adguardhome
+    container_name: Adguard-Home
+    restart: always
+    networks:
+      - internal
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    ports:
+      - '84:80/tcp' #webport
+      - '53:53/udp' #DNS
+      - '53:53/tcp' #DNS
+      - '853:853/tcp'
+      - '3333:3000/tcp'
+    volumes:
+      - './opt:/opt/adguardhome/work'
+      - './confdir:/opt/adguardhome/conf'
+#####################################################################################
+#speedtest-exporter:
+  #  image: billimek/prometheus-speedtest-exporter:latest
+  #  container_name: speedtest
+  #  ports:
+  #    - 6100:9469
+  #  restart: unless-stopped
+#####################################################################################
+
+
+
+networks:
+  internal:
+    external: true
+
+volumes:
+  prometheus:
