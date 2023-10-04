@@ -57,11 +57,19 @@ sed -i "s/10.0.5.1/$ROUTER_IP/g" prometheus.yml
 # Replace the Router IP in netify-log.sh
 sed -i "s/10.0.5.1/$ROUTER_IP/g" netify-log.sh
 
-# Start the Docker containers
-sudo docker-compose up -d
-
 # Make netify-log.sh executable
 sudo chmod +x netify-log.sh
 
 # Create a Crontab entry as root
 sudo bash -c "echo '*/1 * * * * /home/$CURRENT_USER/Openwrt-Monitoring/Docker/netify-log.sh >> /var/log/crontab.netify.txt 2>&1' > /etc/cron.d/netify-log-cronjob"
+
+
+# Ask the user if they want to start the Docker containers
+read -p "Do you want to start the Docker containers? (Y/n): " start_docker
+
+if [[ $start_docker =~ ^[Yy]$ ]]; then
+    # Start the Docker containers
+    sudo docker-compose up -d
+else
+    echo "Docker containers not started, please run 'sudo docker-compose up -d' manually"
+fi
