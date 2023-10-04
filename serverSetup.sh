@@ -26,6 +26,11 @@ if ! command -v docker &> /dev/null; then
         # Install Docker using the official script
         curl -fsSL https://get.docker.com -o get-docker.sh
         sudo sh get-docker.sh
+        echo "Please wait . . . . "
+        sleep 5
+        echo "running apt update and apt install docker-compose"
+        sudo apt update
+        sudo apt install docker-compose -y
     else
         echo "Docker installation aborted. Exiting script."
         exit 1
