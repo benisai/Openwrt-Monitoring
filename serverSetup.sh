@@ -32,8 +32,8 @@ if ! command -v docker &> /dev/null; then
         sudo apt update
         sudo apt install docker-compose -y
     else
-        echo "Docker installation aborted. Exiting script."
-        exit 1
+        echo "Docker installation aborted. Continuing with the script."
+        # No exit here, script will continue
     fi
 fi
 
