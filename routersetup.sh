@@ -47,7 +47,12 @@ done
   echo "Adding iptmon to DHCPScript option"
         uci set dhcp.@dnsmasq[0].dhcpscript=/usr/sbin/iptmon
         uci commit
-        #echo '/usr/sbin/iptmon init' >> /etc/firewall.user
+        ## firewall configuration for iptmon
+        echo '/usr/sbin/iptmon init' >> /etc/firewall.user
+        ## luci_statistics/collectd configuration
+	       uci set luci_statistics.collectd.Include='/etc/collectd/conf.d'
+        uci commit
+        
         elif [[ -n "$ipt" ]]; then
   echo "IPTMon was found, no changes made to DHCP"
  fi
