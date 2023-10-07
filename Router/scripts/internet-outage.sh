@@ -7,11 +7,6 @@ start_time=0
 # Set the path to the log file
 log_file="/tmp/wan_monitor.log"
 
-# Delete log file if it exists
-#if [ -f "$log_file" ]; then
-#  rm "$log_file"
-#fi
-
 while true; do
     # Ping DNS server
     ping -c 1 8.8.8.8 2>&1 > /dev/null
@@ -22,9 +17,13 @@ while true; do
         if [ $internet_working -eq 0 ]; then
             end_time=$(date +%s)
             elapsed_time=$((end_time - start_time))
-            #Create a new file, with the down message and up message in 1 line.
-            upmsg="$(date '+%Y-%m-%d-%H:%M:%S') up $elapsed_time"
-            sed -i "s/placeholder/$upmsg/g" $log_file #> $log_file.tmp && mv $log_file.tmp $log_file
+
+            # Only write to the log file if the outage lasted longer than 5 seconds
+            if [ $elapsed_time -ge 5 ]; then
+                upmsg="$(date '+%Y-%m-%d-%H:%M:%S') up $elapsed_time"
+                sed -i "s/placeholder/$upmsg/g" $log_file
+            fi
+
             internet_working=1
         fi
     else
@@ -34,13 +33,8 @@ while true; do
             echo "$(date '+%Y-%m-%d-%H:%M:%S') down placeholder " >> $log_file
             internet_working=0
         fi
-
-        # Increment seconds
-        seconds=$((seconds+10))
     fi
-    
     
     # Wait for 1 second before pinging again
     sleep 1
-
 done
