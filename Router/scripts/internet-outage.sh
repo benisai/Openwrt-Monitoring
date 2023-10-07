@@ -19,7 +19,7 @@ while true; do
             elapsed_time=$((end_time - start_time))
 
             # Only write to the log file if the outage lasted longer than 5 seconds
-            if [ $elapsed_time -ge 5 ]; then
+            if [ $elapsed_time -ge 10 ]; then
                 upmsg="$(date '+%Y-%m-%d-%H:%M:%S') up $elapsed_time"
                 sed -i "s/placeholder/$upmsg/g" $log_file
             fi
