@@ -116,7 +116,7 @@
   * ```wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/main/routersetup.sh```
     * nano routersetup.sh
       * replace 10.0.5.5 with your Home Server IP
-      * chmod +x .\routersetup.sh
+      * chmod +x routersetup.sh
 * ```sh .\routersetup.sh```
 
 <pre>
