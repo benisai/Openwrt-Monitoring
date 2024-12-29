@@ -85,11 +85,11 @@ fi
 
  
  
- echo 'Installing WrtBWmon'
- wget https://github.com/pyrovski/wrtbwmon/releases/download/0.36/wrtbwmon_0.36_all.ipk -O /root/wrtbwmon_0.36_all.ipk
- wget https://github.com/Kiougar/luci-wrtbwmon/releases/download/v0.8.3/luci-wrtbwmon_v0.8.3_all.ipk -O /root/luci-wrtbwmon_v0.8.3_all.ipk
- opkg install /root/wrtbwmon_0.36_all.ipk
- opkg install /root/luci-wrtbwmon_v0.8.3_all.ipk
+ # echo 'Installing WrtBWmon'
+ # wget https://github.com/pyrovski/wrtbwmon/releases/download/0.36/wrtbwmon_0.36_all.ipk -O /root/wrtbwmon_0.36_all.ipk
+ # wget https://github.com/Kiougar/luci-wrtbwmon/releases/download/v0.8.3/luci-wrtbwmon_v0.8.3_all.ipk -O /root/luci-wrtbwmon_v0.8.3_all.ipk
+ # opkg install /root/wrtbwmon_0.36_all.ipk
+ # opkg install /root/luci-wrtbwmon_v0.8.3_all.ipk
  
 
  #Copying scripts and lua files to router
@@ -180,8 +180,8 @@ fi
  echo 'Enable and Restart services'
  /etc/init.d/cron start
  /etc/init.d/cron enable
- /etc/init.d/wrtbwmon enable
- /etc/init.d/wrtbwmon start
+ # /etc/init.d/wrtbwmon enable
+ # /etc/init.d/wrtbwmon start
  #/etc/init.d/vnstat_backup enable
  /etc/init.d/vnstat restart
  /etc/init.d/luci_statistics enable
