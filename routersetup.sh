@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# === Set REPO the branch =====
+BRANCH="collectd"
+
 # === Please set the IP address to point to your Home Server (Where Docker is installed) ============
 HOMESERVER="10.0.5.5"
 echo "Using IP Address: ${HOMESERVER} for HomeServer (where Docker is installed)"
@@ -16,7 +19,7 @@ EOF
  opkg update
  
 # List of software to check and install
-software="netperf openssh-sftp-server vnstat2 vnstati2 luci-app-vnstat2 netifyd collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics collectd-mod-dhcpleases prometheus prometheus-node-exporter-lua prometheus-node-exporter-lua-nat_traffic prometheus-node-exporter-lua-openwrt prometheus-node-exporter-lua-uci_dhcp_host prometheus-node-exporter-lua-wifi prometheus-node-exporter-lua-wifi_stations"
+software="luci-lib-jsonc netperf openssh-sftp-server vnstat2 vnstati2 luci-app-vnstat2 netifyd collectd collectd-mod-iptables collectd-mod-ping luci-app-statistics collectd-mod-dhcpleases prometheus prometheus-node-exporter-lua prometheus-node-exporter-lua-nat_traffic prometheus-node-exporter-lua-openwrt prometheus-node-exporter-lua-uci_dhcp_host prometheus-node-exporter-lua-wifi prometheus-node-exporter-lua-wifi_stations"
 
 
 # Loop through the list of software
@@ -38,7 +41,8 @@ do
 done
 
 
- echo 'Installing nlbw2collectd from GitHub'
+# === Creating DIRs for nlbw2collectd === 
+echo 'Creating DIRs for nlbw2collectd' 
 # Create /etc/collectd/conf.d if it doesn't exist
 if [ ! -d "/etc/collectd/conf.d" ]; then
     echo "Creating directory: /etc/collectd/conf.d"
@@ -56,6 +60,10 @@ else
 fi
  
 
+#======= Copy config / lua files for nlbw2collectd ===============
+echo 'Installing nlbw2collectd from GitHub'
+wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/collectd/Router/nlbw2collectd/lua.conf -O /etc/collectd/conf.d/lua.conf
+wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/collectd/Router/nlbw2collectd/nlbw2collectd.lua -O /usr/share/collectd-mod-lua/nlbw2collectd.lua
 
  
 
