@@ -31,7 +31,6 @@ do
   then
     # If not installed, install it
     echo "$s is not installed. Installing..."
-    opkg update
     opkg install $s
     echo "$s installation complete."
   else
