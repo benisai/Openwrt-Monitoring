@@ -38,26 +38,25 @@ do
 done
 
 
- echo 'Installing IPTMON 1.6.1 from GitHub'
- wget https://github.com/oofnikj/iptmon/releases/download/v0.1.6/iptmon_0.1.6-1_all.ipk -O /root/iptmon_0.1.6-1_all.ipk
- opkg install /root/iptmon_0.1.6-1_all.ipk
+ echo 'Installing nlbw2collectd from GitHub'
+# Create /etc/collectd/conf.d if it doesn't exist
+if [ ! -d "/etc/collectd/conf.d" ]; then
+    echo "Creating directory: /etc/collectd/conf.d"
+    mkdir -p "/etc/collectd/conf.d"
+else
+    echo "Directory already exists: /etc/collectd/conf.d"
+fi
+
+# Create /usr/share/collectd-mod-lua/ if it doesn't exist
+if [ ! -d "/usr/share/collectd-mod-lua/" ]; then
+    echo "Creating directory: /usr/share/collectd-mod-lua/"
+    mkdir -p "/usr/share/collectd-mod-lua/"
+else
+    echo "Directory already exists: /usr/share/collectd-mod-lua/"
+fi
  
-  ipt=$(uci show dhcp.@dnsmasq[0].dhcpscript | grep "iptmon")
- if [[ -z "$ipt" ]]; then
-  echo "Adding iptmon to DHCPScript option"
-        uci set dhcp.@dnsmasq[0].dhcpscript=/usr/sbin/iptmon
-        uci commit
-        ## firewall configuration for iptmon
-        echo '/usr/sbin/iptmon init' >> /etc/firewall.user
-        ## luci_statistics/collectd configuration
-	       uci set luci_statistics.collectd.Include='/etc/collectd/conf.d'
-        uci commit
-        
-        elif [[ -n "$ipt" ]]; then
-  echo "IPTMon was found, no changes made to DHCP"
- fi
- 
- 
+
+
  
 
 #Changing vnstat backup location to SD Card.
