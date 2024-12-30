@@ -64,6 +64,10 @@ echo 'Installing nlbw2collectd from GitHub'
 wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/collectd/Router/nlbw2collectd/lua.conf -O /etc/collectd/conf.d/lua.conf
 wget https://raw.githubusercontent.com/benisai/Openwrt-Monitoring/collectd/Router/nlbw2collectd/nlbw2collectd.lua -O /usr/share/collectd-mod-lua/nlbw2collectd.lua
 
+
+# ====== Configure nlbwmon to 10s ===========
+sed -i 's/option refresh_interval 30s/option refresh_interval 10s/' /etc/config/nlbwmon
+
  
 
 #Changing vnstat backup location to SD Card.
