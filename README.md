@@ -175,28 +175,6 @@ The routersetup.sh script will do the following:
 <br>
 
 
-## Troubleshooting: 
-* if you cannot find the iptmon in luci_statistics firewall, Run these commands manually. 
-```
-## dnsmasq configuration
-	uci set dhcp.@dnsmasq[0].dhcpscript=/usr/sbin/iptmon
-	
-## firewall configuration
-	echo '/usr/sbin/iptmon init' >> /etc/firewall.user
-
-## luci_statistics/collectd configuration.
-	uci set luci_statistics.collectd.Include='/etc/collectd/conf.d'
-
-## Commit changes.
-	uci commit
-
-## Restart services.
- /etc/init.d/dnsmasq restart
-	/etc/init.d/firewall restart
-	/etc/init.d/luci_statistics restart
-
- rm -rf /tmp/luci-modulecache/
-```
 
 --------
 
