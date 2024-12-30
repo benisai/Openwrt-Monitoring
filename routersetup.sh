@@ -165,9 +165,30 @@ fi
  echo 'updating prometheus config from loopback to lan'
  sed -i 's/loopback/lan/g'  /etc/config/prometheus-node-exporter-lua
 
-# === Updating CollectD export ip ==============
+# === Updating CollectD config file ==============
  echo 'updating luci_statistics server export config to ${HOMESERVER}'
  sed -i "s/10.0.5.5/${HOMESERVER}/g"  /etc/config/luci_statistics
+
+collectdFILE="/etc/config/luci_statistics"
+if [ -f "$collectdFILE" ]; then
+    # Check if '5minute' already exists in RRATimespans
+    if grep -q "option RRATimespans.*5minute" "$collectdFILE"; then
+        echo "'5minute' already exists in RRATimespans. No changes made."
+    else
+        # Add the new timespans to the front of the RRATimespans option
+        sed -i "/option RRATimespans/s/'\(.*\)'/'5minute 15minute 30minute 1hour \1'/" "$collectdFILE"
+
+        # Verify the change
+        echo "Modified RRATimespans in $collectdFILE:"
+        grep "option RRATimespans" "$collectdFILE"
+    fi
+    echo "Updating Collectd Config file complete."
+else
+    echo "File not found: $collectdFILE"
+fi
+
+
+
 
 # === Setting up DNS ===========
 #L=$(uci show dhcp.lan.dhcp_option | grep "$HOMESERVER")
