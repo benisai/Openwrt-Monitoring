@@ -35,5 +35,6 @@ else
     echo "ARP file not found: $ARP_FILE" >> "$OUTPUT_FILE"
 fi
 
+ ln -s $OUTPUT_FILE /www/clientlist.html
 #---------------------------------------------------------------------------------------------------------#
 
